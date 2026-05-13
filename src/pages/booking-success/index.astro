@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromPath, useT, localizedPath, withBase } from '../../i18n/utils';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+const homeHref = localizedPath('/', lang);
+const guestHref = localizedPath('/guest-service/', lang);
+---
+<Layout title={t('page.title.success')}>
+  <section class="bs-section">
+    <div class="bs-card">
+      <div class="bs-check">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h1>{t('success.title')}</h1>
+      <p class="bs-sub">{t('success.sub')}</p>
+
+      <div class="bs-note">
+        <p class="bs-note-main">{t('success.msg1')}</p>
+        <p class="bs-note-sub">{t('success.msg2')}</p>
+      </div>
+
+      <div class="bs-steps">
+        <h3>{t('success.next')}</h3>
+        <ol>
+          <li>{t('success.s1')}</li>
+          <li>{t('success.s2')}</li>
+          <li>{t('success.s3')}</li>
+        </ol>
+      </div>
+
+      <div class="bs-cta">
+        <a href={guestHref} class="btn-primary">{t('success.cta1')} →</a>
+        <a href={homeHref} class="btn-outline">{t('success.cta2')}</a>
+      </div>
+
+      <div class="bs-contact">
+        <p>{t('success.contact')}</p>
+        <p>
+          <a href="tel:+81988942474">+81 98-894-2474</a>
+          <span class="bs-sep">·</span>
+          <a href="mailto:info.serena.breeze@gmail.com">info.serena.breeze@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .bs-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(80px, 12vw, 140px) 20px 60px;
+    background: var(--color-cream);
+  }
+  .bs-card {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+  .bs-check {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 32px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 32px rgba(42, 90, 110, 0.25);
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 300;
+    color: var(--color-primary-dark);
+    letter-spacing: 2px;
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .bs-sub {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--color-ink-soft);
+    margin: 0 0 36px;
+    letter-spacing: 1px;
+  }
+  .bs-note {
+    background: #fff;
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .bs-note-main {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-primary-dark);
+    line-height: 1.8;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .bs-note-sub {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .bs-steps {
+    background: rgba(42, 90, 110, 0.04);
+    border: 1px solid rgba(42, 90, 110, 0.15);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .bs-steps h3 {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+  .bs-steps ol {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    line-height: 2;
+    padding-left: 20px;
+    margin: 0;
+  }
+  .bs-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .bs-contact {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-cream-darker);
+  }
+  .bs-contact p {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-muted);
+    margin: 0 0 6px;
+  }
+  .bs-contact a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .bs-sep { padding: 0 8px; opacity: 0.5; }
+</style>

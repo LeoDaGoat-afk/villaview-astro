@@ -1,0 +1,9 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BookingPage from '../../../components/BookingPage.astro';
+import { useT } from '../../../i18n/utils';
+const t = useT('fr');
+---
+<Layout title={t('page.title.booking')} description={t('page.desc.booking')}>
+  <BookingPage />
+</Layout>

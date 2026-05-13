@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomeContent from '../../components/HomeContent.astro';
+import { useT } from '../../i18n/utils';
+const t = useT('de');
+---
+<Layout title={t('page.title.home')} description={t('page.desc.home')}>
+  <HomeContent />
+</Layout>

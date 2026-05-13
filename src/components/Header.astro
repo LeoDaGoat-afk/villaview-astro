@@ -1,0 +1,324 @@
+---
+import { getLangFromPath, useT, localizedPath, LANGS } from '../i18n/utils';
+
+const currentPath = Astro.url.pathname;
+const lang = getLangFromPath(currentPath);
+const t = useT(lang);
+
+const homeHref = localizedPath('/', lang);
+const navLinks = [
+  { href: homeHref, label: t('nav.home') },
+  { href: localizedPath('/booking/', lang), label: t('nav.booking') },
+  { href: localizedPath('/contact/', lang), label: t('nav.contact') },
+];
+
+const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
+---
+
+<header id="vv-header" role="banner">
+  <div class="vv-header-inner">
+    <a href={homeHref} class="vv-logo" aria-label="VILLA VIEW">VILLA VIEW</a>
+
+    <nav class="vv-nav-desktop" role="navigation">
+      {navLinks.map(link => (
+        <a href={link.href} class:list={['vv-nav-link', currentPath === link.href ? 'active' : '']}>{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="vv-lang-wrap" aria-label={t('lang.label')}>
+      <button type="button" class="vv-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span>{currentLangLabel}</span>
+      </button>
+      <ul class="vv-lang-menu" role="listbox">
+        {LANGS.map(l => (
+          <li>
+            <a
+              href={localizedPath(currentPath, l.code)}
+              class:list={[l.code === lang ? 'active' : '']}
+              data-lang={l.code}
+            >{l.native}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <button id="vv-burger" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="vv-mobile-menu">
+    <button id="vv-mobile-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M6 18L18 6" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <nav>
+      {navLinks.map(link => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <div class="vv-mobile-langs">
+      {LANGS.map(l => (
+        <a
+          href={localizedPath(currentPath, l.code)}
+          class:list={['vv-lang-pill', l.code === lang ? 'active' : '']}
+          data-lang={l.code}
+        >{l.native}</a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  #vv-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(18, 40, 50, 0);
+    transition: background 0.4s ease, backdrop-filter 0.4s ease;
+  }
+  #vv-header.scrolled {
+    background: rgba(18, 40, 50, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .vv-header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px clamp(20px, 4vw, 36px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .vv-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 6px;
+    text-decoration: none;
+  }
+  .vv-nav-desktop {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    margin-left: auto;
+  }
+  .vv-nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 6px 0;
+    position: relative;
+    transition: opacity 0.3s;
+  }
+  .vv-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.4s ease;
+  }
+  .vv-nav-link:hover::after,
+  .vv-nav-link.active::after { width: 100%; }
+
+  /* Language dropdown */
+  .vv-lang-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+  .vv-lang-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .vv-lang-trigger:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .vv-lang-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 4px;
+    padding: 4px 0;
+    margin: 0;
+    list-style: none;
+    min-width: 150px;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+    z-index: 110;
+  }
+  .vv-lang-wrap:hover .vv-lang-menu,
+  .vv-lang-wrap:focus-within .vv-lang-menu,
+  .vv-lang-wrap.open .vv-lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .vv-lang-menu li { list-style: none; }
+  .vv-lang-menu a {
+    display: block;
+    padding: 8px 14px;
+    color: #333;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .vv-lang-menu a:hover {
+    background: var(--color-cream);
+    color: var(--color-primary);
+  }
+  .vv-lang-menu a.active {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  /* Mobile burger */
+  #vv-burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 6px;
+  }
+  #vv-burger svg { width: 28px; height: 28px; display: block; }
+
+  @media (max-width: 900px) {
+    .vv-nav-desktop, .vv-lang-wrap { display: none; }
+    #vv-burger { display: block; margin-left: auto; }
+  }
+
+  /* Mobile menu drawer */
+  #vv-mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(320px, 86vw);
+    background: var(--color-primary-darker);
+    color: #fff;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 120;
+    padding: 60px 28px 28px;
+    overflow-y: auto;
+  }
+  #vv-mobile-menu.open { transform: translateX(0); }
+  #vv-mobile-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 6px;
+    cursor: pointer;
+  }
+  #vv-mobile-close svg { width: 26px; height: 26px; display: block; }
+  #vv-mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+  #vv-mobile-menu nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .vv-mobile-langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .vv-lang-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  .vv-lang-pill.active {
+    background: #fff;
+    color: var(--color-primary-darker);
+  }
+</style>
+
+<script>
+  const header = document.getElementById('vv-header');
+  const burger = document.getElementById('vv-burger');
+  const closeBtn = document.getElementById('vv-mobile-close');
+  const mobileMenu = document.getElementById('vv-mobile-menu');
+
+  function onScroll() {
+    if (window.scrollY > 40) header?.classList.add('scrolled');
+    else header?.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  burger?.addEventListener('click', () => {
+    mobileMenu?.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+  });
+  closeBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+  });
+
+  // Persist language preference
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang]').forEach(a => {
+    a.addEventListener('click', () => {
+      try { localStorage.setItem('vv-lang', a.dataset.lang || 'ja'); } catch {}
+    });
+  });
+</script>

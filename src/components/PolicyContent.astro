@@ -1,0 +1,118 @@
+---
+import { withBase, localizedPath, getLangFromPath, useT } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  body: string; // newline-separated text content
+}
+const { title, body } = Astro.props;
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+const homeHref = localizedPath('/', lang);
+---
+
+<section class="vv-policy-hero" style={`background-image: linear-gradient(rgba(10,30,40,.55), rgba(10,30,40,.7)), url('${withBase('/images/hero-scenery.jpg')}')`}>
+  <div class="vv-policy-hero-inner">
+    <p class="vv-policy-eyebrow">VILLA VIEW</p>
+    <h1 class="vv-policy-h1">{title}</h1>
+    <div class="vv-divider-line"></div>
+  </div>
+</section>
+
+<section class="vv-policy-section">
+  <article class="vv-policy-body">
+    <Fragment set:html={
+      body
+        .split('\n')
+        .map(line => {
+          const l = line.trim();
+          if (!l) return '<p class="vv-policy-spacer"></p>';
+          if (l.startsWith('■')) return `<h2 class="vv-policy-h2">${l.replace(/^■\s*/, '')}</h2>`;
+          if (l.startsWith('・') || l.startsWith('- ')) return `<p class="vv-policy-li">${l.replace(/^[・-]\s*/, '・ ')}</p>`;
+          return `<p class="vv-policy-p">${l}</p>`;
+        })
+        .join('')
+    } />
+    <p class="vv-policy-back">
+      <a class="btn-outline" href={homeHref}>{t('common.backHome')}</a>
+    </p>
+  </article>
+</section>
+
+<style>
+  .vv-policy-hero {
+    background-size: cover;
+    background-position: center center;
+    padding: clamp(120px, 18vw, 200px) 20px clamp(60px, 8vw, 100px);
+    color: #fff;
+    text-align: center;
+  }
+  .vv-policy-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .vv-policy-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin: 0 0 18px;
+  }
+  .vv-policy-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  .vv-divider-line {
+    width: 60px;
+    height: 1px;
+    background: rgba(255,255,255,0.6);
+    margin: 20px auto 0;
+  }
+
+  .vv-policy-section {
+    padding: clamp(50px, 8vw, 90px) clamp(20px, 5vw, 60px);
+    background: var(--color-cream);
+  }
+  .vv-policy-body {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 12px;
+    padding: clamp(28px, 5vw, 56px);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  }
+  .vv-policy-h2 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin: 28px 0 12px;
+    padding-left: 14px;
+    border-left: 3px solid var(--color-accent);
+  }
+  .vv-policy-p {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-ink-soft);
+    margin: 0 0 8px;
+  }
+  .vv-policy-li {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--color-ink-soft);
+    margin: 0 0 4px;
+    padding-left: 10px;
+  }
+  .vv-policy-spacer { height: 8px; }
+  .vv-policy-back {
+    text-align: center;
+    margin-top: 40px;
+  }
+</style>

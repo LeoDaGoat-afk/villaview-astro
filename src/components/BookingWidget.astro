@@ -1,0 +1,761 @@
+---
+import { getLangFromPath } from '../i18n/utils';
+
+const lang = getLangFromPath(Astro.url.pathname);
+
+// All booking widget text packed into JSON for the hydrated client script
+const T: Record<string, Record<string, string>> = {
+  ja: { checkIn: "チェックイン", checkOut: "チェックアウト", adults: "大人", children: "子供 (6-12歳)", infants: "幼児 (0-5歳)", nights: "泊", night: "1泊", basePrice: "基本料金", extraGuests: "追加料金", cleaning: "クリーニング費", total: "合計", perNight: "/ 泊", upTo4: "4名様まで", extraPerson: "大人 +¥4,000 / 名", extraChild: "子供 +¥2,000 / 名", infantFree: "幼児無料", firstName: "名", lastName: "姓", email: "メールアドレス", phone: "電話番号", comment: "ご要望", book: "ご予約を確定する", booking: "予約処理中...", success: "ご予約ありがとうございます！確認メールをお送りしました。", error: "予約に失敗しました。お手数ですがお電話 098-894-2474 までご連絡ください。", notAvailable: "選択された日程は満室です", free: "無料", optional: "（任意）", nameRequired: "お名前をご入力ください", emailRequired: "メールアドレスをご入力ください", phoneRequired: "電話番号をご入力ください", legendAvailable: "空室", legendBooked: "満室", legendSelected: "選択中", selectStartHint: "チェックイン日をクリックしてください", selectEndHint: "チェックアウト日をクリックしてください", directDiscountSub: "公式サイト予約限定の特別レート（10% OFF）", subtotal: "通常レート", discount: "公式予約特典", finalTotal: "お支払い合計", savingNote: "通常レートより", saved: "お得", allIncluded: "税込み・全料金込み（追加費用なし）", cancelTitle: "キャンセルポリシー", cancelText: "宿泊日の7日前まで無料 / 6〜2日前 50% / 前日 80% / 当日 100%" },
+  en: { checkIn: "Check-in", checkOut: "Check-out", adults: "Adults", children: "Children (6-12)", infants: "Infants (0-5)", nights: "nights", night: "1 night", basePrice: "Base rate", extraGuests: "Extra guests", cleaning: "Cleaning fee", total: "Total", perNight: "/ night", upTo4: "Up to 4 guests", extraPerson: "Adult +¥4,000 each", extraChild: "Child +¥2,000 each", infantFree: "Infants free", firstName: "First name", lastName: "Last name", email: "Email", phone: "Phone", comment: "Special requests", book: "Confirm Reservation", booking: "Processing...", success: "Thank you for your reservation! A confirmation email has been sent.", error: "Booking failed. Please call us at +81-98-894-2474.", notAvailable: "Selected dates are not available", free: "Free", optional: "(optional)", nameRequired: "Please enter your name", emailRequired: "Please enter your email", phoneRequired: "Please enter your phone", legendAvailable: "Available", legendBooked: "Booked", legendSelected: "Selected", selectStartHint: "Click a date to select check-in", selectEndHint: "Click a date to select check-out", directDiscountSub: "Special rate for direct bookings (10% OFF)", subtotal: "Standard rate", discount: "Members rate", finalTotal: "Final total", savingNote: "vs. standard rate,", saved: "saved", allIncluded: "Tax included · all fees covered (no extra charges)", cancelTitle: "Cancellation Policy", cancelText: "Free up to 7 days / 6-2 days 50% / 1 day 80% / Day-of 100%" },
+  zh: { checkIn: "入住日期", checkOut: "退房日期", adults: "成人", children: "儿童 (6-12岁)", infants: "幼儿 (0-5岁)", nights: "晚", night: "1晚", basePrice: "基本价格", extraGuests: "加人费用", cleaning: "清洁费", total: "合计", perNight: "/ 晚", upTo4: "4人以内", extraPerson: "成人 +¥4,000 / 人", extraChild: "儿童 +¥2,000 / 人", infantFree: "幼儿免费", firstName: "名", lastName: "姓", email: "邮箱", phone: "电话", comment: "特殊要求", book: "确认预订", booking: "处理中...", success: "感谢您的预订！确认邮件已发送。", error: "预订失败。请致电 +81-98-894-2474。", notAvailable: "所选日期已满房", free: "免费", optional: "（选填）", nameRequired: "请输入姓名", emailRequired: "请输入邮箱", phoneRequired: "请输入电话", legendAvailable: "可预订", legendBooked: "已满房", legendSelected: "已选", selectStartHint: "请点击入住日期", selectEndHint: "请点击退房日期", directDiscountSub: "官网预订限定优惠价 (9折)", subtotal: "标准价", discount: "会员特典", finalTotal: "应付合计", savingNote: "比标准价", saved: "优惠", allIncluded: "含税·已包含所有费用（无额外收费）", cancelTitle: "取消政策", cancelText: "入住日 7 天前免费 / 6-2 天前 50% / 前一天 80% / 当日 100%" },
+  "zh-Hant": { checkIn: "入住日期", checkOut: "退房日期", adults: "成人", children: "兒童 (6-12歲)", infants: "幼兒 (0-5歲)", nights: "晚", night: "1晚", basePrice: "基本價格", extraGuests: "加人費用", cleaning: "清潔費", total: "合計", perNight: "/ 晚", upTo4: "4人以內", extraPerson: "成人 +¥4,000 / 人", extraChild: "兒童 +¥2,000 / 人", infantFree: "幼兒免費", firstName: "名", lastName: "姓", email: "信箱", phone: "電話", comment: "特殊需求", book: "確認預訂", booking: "處理中...", success: "感謝您的預訂！確認郵件已寄出。", error: "預訂失敗。請致電 +81-98-894-2474。", notAvailable: "所選日期已滿房", free: "免費", optional: "（選填）", nameRequired: "請輸入姓名", emailRequired: "請輸入信箱", phoneRequired: "請輸入電話", legendAvailable: "可預訂", legendBooked: "已滿房", legendSelected: "已選", selectStartHint: "請點擊入住日期", selectEndHint: "請點擊退房日期", directDiscountSub: "官網預訂限定優惠價 (9折)", subtotal: "標準價", discount: "會員特典", finalTotal: "應付合計", savingNote: "比標準價", saved: "優惠", allIncluded: "含稅·已包含所有費用（無額外收費）", cancelTitle: "取消政策", cancelText: "入住日 7 天前免費 / 6-2 天前 50% / 前一天 80% / 當日 100%" },
+  ko: { checkIn: "체크인", checkOut: "체크아웃", adults: "성인", children: "어린이 (6-12세)", infants: "유아 (0-5세)", nights: "박", night: "1박", basePrice: "기본 요금", extraGuests: "추가 요금", cleaning: "청소비", total: "합계", perNight: "/ 박", upTo4: "4명까지", extraPerson: "성인 +¥4,000", extraChild: "어린이 +¥2,000", infantFree: "유아 무료", firstName: "이름", lastName: "성", email: "이메일", phone: "전화", comment: "요청사항", book: "예약 확정", booking: "처리 중...", success: "예약해 주셔서 감사합니다! 확인 이메일을 발송했습니다.", error: "예약에 실패했습니다. +81-98-894-2474로 전화해 주세요.", notAvailable: "선택하신 날짜는 만실입니다", free: "무료", optional: "(선택)", nameRequired: "성함을 입력해 주세요", emailRequired: "이메일을 입력해 주세요", phoneRequired: "전화번호를 입력해 주세요", legendAvailable: "예약 가능", legendBooked: "만실", legendSelected: "선택됨", selectStartHint: "체크인 날짜를 클릭하세요", selectEndHint: "체크아웃 날짜를 클릭하세요", directDiscountSub: "공식 사이트 예약 한정 특별 요금 (10% OFF)", subtotal: "정상 요금", discount: "회원 특전", finalTotal: "결제 금액", savingNote: "정상 요금 대비", saved: "할인", allIncluded: "세금 포함 · 모든 요금 포함", cancelTitle: "취소 정책", cancelText: "체크인 7일 전까지 무료 / 6-2일 전 50% / 전일 80% / 당일 100%" },
+  th: { checkIn: "เช็คอิน", checkOut: "เช็คเอาท์", adults: "ผู้ใหญ่", children: "เด็ก (6-12)", infants: "ทารก (0-5)", nights: "คืน", night: "1 คืน", basePrice: "ราคาพื้นฐาน", extraGuests: "ค่าเพิ่ม", cleaning: "ค่าทำความสะอาด", total: "รวม", perNight: "/ คืน", upTo4: "สูงสุด 4 ท่าน", extraPerson: "ผู้ใหญ่ +¥4,000", extraChild: "เด็ก +¥2,000", infantFree: "ทารกฟรี", firstName: "ชื่อ", lastName: "นามสกุล", email: "อีเมล", phone: "โทรศัพท์", comment: "คำขอพิเศษ", book: "ยืนยันการจอง", booking: "กำลังดำเนินการ...", success: "ขอบคุณสำหรับการจอง!", error: "การจองล้มเหลว กรุณาโทร +81-98-894-2474", notAvailable: "วันที่เลือกเต็มแล้ว", free: "ฟรี", optional: "(ไม่บังคับ)", nameRequired: "กรุณากรอกชื่อ", emailRequired: "กรุณากรอกอีเมล", phoneRequired: "กรุณากรอกเบอร์โทร", legendAvailable: "ว่าง", legendBooked: "เต็ม", legendSelected: "เลือกแล้ว", selectStartHint: "คลิกวันที่เพื่อเลือกวันเช็คอิน", selectEndHint: "คลิกวันที่เพื่อเลือกวันเช็คเอาท์", directDiscountSub: "ราคาพิเศษสำหรับการจองตรง (ลด 10%)", subtotal: "ราคาปกติ", discount: "ราคาสมาชิก", finalTotal: "ยอดสุทธิ", savingNote: "เทียบกับราคาปกติ", saved: "ประหยัด", allIncluded: "รวมภาษี · รวมค่าใช้จ่ายทั้งหมด", cancelTitle: "นโยบายการยกเลิก", cancelText: "ฟรีถึง 7 วันก่อน / 6-2 วัน 50% / 1 วัน 80% / วันเช็คอิน 100%" },
+  hi: { checkIn: "चेक-इन", checkOut: "चेक-आउट", adults: "वयस्क", children: "बच्चे (6-12)", infants: "शिशु (0-5)", nights: "रातें", night: "1 रात", basePrice: "मूल दर", extraGuests: "अतिरिक्त मेहमान", cleaning: "सफ़ाई शुल्क", total: "कुल", perNight: "/ रात", upTo4: "4 तक", extraPerson: "वयस्क +¥4,000", extraChild: "बच्चा +¥2,000", infantFree: "शिशु निःशुल्क", firstName: "पहला नाम", lastName: "उपनाम", email: "ईमेल", phone: "फ़ोन", comment: "विशेष अनुरोध", book: "आरक्षण की पुष्टि", booking: "प्रसंस्करण...", success: "आरक्षण के लिए धन्यवाद!", error: "बुकिंग विफल। कृपया +81-98-894-2474 पर कॉल करें।", notAvailable: "चयनित तिथियाँ उपलब्ध नहीं हैं", free: "निःशुल्क", optional: "(वैकल्पिक)", nameRequired: "कृपया अपना नाम दर्ज करें", emailRequired: "कृपया अपना ईमेल दर्ज करें", phoneRequired: "कृपया अपना फ़ोन दर्ज करें", legendAvailable: "उपलब्ध", legendBooked: "बुक", legendSelected: "चयनित", selectStartHint: "चेक-इन चुनने के लिए तिथि पर क्लिक करें", selectEndHint: "चेक-आउट चुनने के लिए तिथि पर क्लिक करें", directDiscountSub: "सीधी बुकिंग के लिए विशेष दर (10% छूट)", subtotal: "मानक दर", discount: "सदस्य दर", finalTotal: "अंतिम कुल", savingNote: "मानक दर बनाम", saved: "बचत", allIncluded: "कर सहित · सभी शुल्क शामिल", cancelTitle: "रद्दीकरण नीति", cancelText: "7 दिन तक मुफ़्त / 6-2 दिन 50% / 1 दिन 80% / उस दिन 100%" },
+  fr: { checkIn: "Arrivée", checkOut: "Départ", adults: "Adultes", children: "Enfants (6-12)", infants: "Bébés (0-5)", nights: "nuits", night: "1 nuit", basePrice: "Tarif de base", extraGuests: "Personnes suppl.", cleaning: "Frais de ménage", total: "Total", perNight: "/ nuit", upTo4: "Jusqu'à 4 pers.", extraPerson: "Adulte +4 000 ¥", extraChild: "Enfant +2 000 ¥", infantFree: "Bébés gratuits", firstName: "Prénom", lastName: "Nom", email: "Email", phone: "Téléphone", comment: "Demandes spéciales", book: "Confirmer la réservation", booking: "Traitement...", success: "Merci pour votre réservation !", error: "Échec de la réservation. Appelez le +81-98-894-2474.", notAvailable: "Les dates sélectionnées ne sont pas disponibles", free: "Gratuit", optional: "(facultatif)", nameRequired: "Veuillez saisir votre nom", emailRequired: "Veuillez saisir votre email", phoneRequired: "Veuillez saisir votre téléphone", legendAvailable: "Disponible", legendBooked: "Réservé", legendSelected: "Sélectionné", selectStartHint: "Cliquez sur une date pour sélectionner l'arrivée", selectEndHint: "Cliquez sur une date pour sélectionner le départ", directDiscountSub: "Tarif spécial pour réservations directes (-10%)", subtotal: "Tarif standard", discount: "Tarif membre", finalTotal: "Total final", savingNote: "vs. tarif standard,", saved: "économisé", allIncluded: "Taxes comprises · tous frais inclus", cancelTitle: "Politique d'annulation", cancelText: "Gratuit jusqu'à 7 jours / 6-2 jours 50% / 1 jour 80% / Jour J 100%" },
+  de: { checkIn: "Anreise", checkOut: "Abreise", adults: "Erwachsene", children: "Kinder (6-12)", infants: "Kleinkinder (0-5)", nights: "Nächte", night: "1 Nacht", basePrice: "Grundpreis", extraGuests: "Zusatzpersonen", cleaning: "Reinigungsgebühr", total: "Gesamt", perNight: "/ Nacht", upTo4: "Bis zu 4 Gäste", extraPerson: "Erwachsener +¥4.000", extraChild: "Kind +¥2.000", infantFree: "Kleinkinder gratis", firstName: "Vorname", lastName: "Nachname", email: "E-Mail", phone: "Telefon", comment: "Sonderwünsche", book: "Reservierung bestätigen", booking: "Verarbeitung...", success: "Vielen Dank für Ihre Reservierung!", error: "Buchung fehlgeschlagen. Bitte rufen Sie +81-98-894-2474 an.", notAvailable: "Gewählte Daten sind nicht verfügbar", free: "Kostenlos", optional: "(optional)", nameRequired: "Bitte Namen eingeben", emailRequired: "Bitte E-Mail eingeben", phoneRequired: "Bitte Telefon eingeben", legendAvailable: "Verfügbar", legendBooked: "Belegt", legendSelected: "Ausgewählt", selectStartHint: "Klicken Sie auf ein Datum für die Anreise", selectEndHint: "Klicken Sie auf ein Datum für die Abreise", directDiscountSub: "Sonderpreis für Direktbuchungen (10% Rabatt)", subtotal: "Standardpreis", discount: "Mitgliederpreis", finalTotal: "Endsumme", savingNote: "vs. Standardpreis,", saved: "gespart", allIncluded: "Inkl. Steuern · alle Gebühren enthalten", cancelTitle: "Stornierungsbedingungen", cancelText: "Kostenlos bis 7 Tage / 6-2 Tage 50% / 1 Tag 80% / Anreisetag 100%" },
+  es: { checkIn: "Entrada", checkOut: "Salida", adults: "Adultos", children: "Niños (6-12)", infants: "Bebés (0-5)", nights: "noches", night: "1 noche", basePrice: "Tarifa base", extraGuests: "Personas extra", cleaning: "Limpieza", total: "Total", perNight: "/ noche", upTo4: "Hasta 4 personas", extraPerson: "Adulto +¥4.000", extraChild: "Niño +¥2.000", infantFree: "Bebés gratis", firstName: "Nombre", lastName: "Apellido", email: "Correo", phone: "Teléfono", comment: "Solicitudes", book: "Confirmar reserva", booking: "Procesando...", success: "¡Gracias por su reserva!", error: "Reserva fallida. Por favor llame al +81-98-894-2474.", notAvailable: "Las fechas seleccionadas no están disponibles", free: "Gratis", optional: "(opcional)", nameRequired: "Por favor ingrese su nombre", emailRequired: "Por favor ingrese su correo", phoneRequired: "Por favor ingrese su teléfono", legendAvailable: "Disponible", legendBooked: "Reservado", legendSelected: "Seleccionado", selectStartHint: "Haga clic en una fecha para entrada", selectEndHint: "Haga clic en una fecha para salida", directDiscountSub: "Tarifa especial para reservas directas (10% OFF)", subtotal: "Tarifa estándar", discount: "Tarifa miembros", finalTotal: "Total final", savingNote: "vs. tarifa estándar,", saved: "ahorrado", allIncluded: "Impuestos incluidos · todas las tarifas incluidas", cancelTitle: "Política de cancelación", cancelText: "Gratis hasta 7 días / 6-2 días 50% / 1 día 80% / Día de llegada 100%" }
+};
+const dict = T[lang] ?? T.ja;
+---
+
+<div class="bw-widget" data-lang={lang}>
+  <div class="bw-sub-banner">{dict.directDiscountSub}</div>
+
+  <div class="bw-row">
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.checkIn}</label>
+      <input id="bw-arrival" type="date" class="bw-input" />
+    </div>
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.checkOut}</label>
+      <input id="bw-departure" type="date" class="bw-input" />
+    </div>
+  </div>
+
+  <div class="bw-grp">
+    <div class="bw-cal-header">
+      <button type="button" id="bw-prev" class="bw-cal-nav" aria-label="Prev month">◀</button>
+      <div class="bw-cal-legend">
+        <span><span class="bw-cal-dot bw-cal-avail"></span>{dict.legendAvailable}</span>
+        <span><span class="bw-cal-dot bw-cal-booked"></span>{dict.legendBooked}</span>
+        <span><span class="bw-cal-dot bw-cal-selected"></span>{dict.legendSelected}</span>
+      </div>
+      <button type="button" id="bw-next" class="bw-cal-nav" aria-label="Next month">▶</button>
+    </div>
+    <div id="bw-calendar" class="bw-cal-months">Loading…</div>
+    <div id="bw-hint" class="bw-cal-hint">{dict.selectStartHint}</div>
+  </div>
+
+  <div class="bw-row3">
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.adults}</label>
+      <div class="bw-num" data-counter="adults" data-min="1" data-max="10">
+        <button type="button" data-act="-">−</button>
+        <span data-val>2</span>
+        <button type="button" data-act="+">+</button>
+      </div>
+    </div>
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.children}</label>
+      <div class="bw-num" data-counter="children" data-min="0" data-max="6">
+        <button type="button" data-act="-">−</button>
+        <span data-val>0</span>
+        <button type="button" data-act="+">+</button>
+      </div>
+    </div>
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.infants}</label>
+      <div class="bw-num" data-counter="infants" data-min="0" data-max="6">
+        <button type="button" data-act="-">−</button>
+        <span data-val>0</span>
+        <button type="button" data-act="+">+</button>
+      </div>
+      <div class="bw-info">{dict.infantFree}</div>
+    </div>
+  </div>
+
+  <div id="bw-pricing" class="bw-pricecard" hidden></div>
+
+  <div class="bw-row">
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.lastName}</label>
+      <input id="bw-lastName" type="text" class="bw-input" />
+    </div>
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.firstName}</label>
+      <input id="bw-firstName" type="text" class="bw-input" />
+    </div>
+  </div>
+
+  <div class="bw-row">
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.email}</label>
+      <input id="bw-email" type="email" class="bw-input" />
+    </div>
+    <div class="bw-grp">
+      <label class="bw-lbl">{dict.phone}</label>
+      <input id="bw-phone" type="tel" class="bw-input" />
+    </div>
+  </div>
+
+  <div class="bw-grp">
+    <label class="bw-lbl">{dict.comment} {dict.optional}</label>
+    <textarea id="bw-comment" class="bw-input" rows="3"></textarea>
+  </div>
+
+  <button id="bw-submit" type="button" class="bw-btn" disabled>{dict.book}</button>
+
+  <div id="bw-msg" class="bw-msg" hidden></div>
+</div>
+
+<script is:inline define:vars={{ T, lang }}>
+  (function() {
+    const PROXY_BASE = "https://smartinn-api-proxy.leoroy225.workers.dev";
+    const ROOM_ID = 674526;
+    const PROPERTY_ID = 322452;
+    const UP_TO_PERSON = 4;
+    const EXTRA_PERSON_PRICE = 4000;
+    const EXTRA_CHILD_PRICE = 2000;
+    const CLEANING_FEE = 10000;
+    const MAX_PEOPLE = 10;
+    const DIRECT_DISCOUNT_RATE = 0.10;
+
+    const t = T[lang] || T.ja;
+
+    const $ = (id) => document.getElementById(id);
+    const arrivalEl = $('bw-arrival');
+    const departureEl = $('bw-departure');
+    const calEl = $('bw-calendar');
+    const hintEl = $('bw-hint');
+    const pricingEl = $('bw-pricing');
+    const submitBtn = $('bw-submit');
+    const msgEl = $('bw-msg');
+
+    function fmtJPY(n) { return "¥" + Math.round(n).toLocaleString("ja-JP"); }
+    function todayISO() { return new Date().toISOString().slice(0, 10); }
+    function addDays(iso, n) {
+      const d = new Date(iso);
+      d.setDate(d.getDate() + n);
+      return d.toISOString().slice(0, 10);
+    }
+    function nightsBetween(a, b) {
+      if (!a || !b) return 0;
+      const ms = new Date(b) - new Date(a);
+      return Math.max(0, Math.round(ms / 86400000));
+    }
+
+    const state = {
+      arrival: addDays(todayISO(), 1),
+      departure: addDays(todayISO(), 2),
+      adults: 2,
+      children: 0,
+      infants: 0,
+      displayMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+      availability: new Map(),
+      calendar: null,
+      submitting: false,
+    };
+
+    arrivalEl.value = state.arrival;
+    departureEl.value = state.departure;
+    arrivalEl.min = todayISO();
+    departureEl.min = addDays(state.arrival, 1);
+
+    arrivalEl.addEventListener('change', (e) => {
+      state.arrival = e.target.value;
+      if (!state.departure || state.departure <= state.arrival) {
+        state.departure = addDays(state.arrival, 1);
+        departureEl.value = state.departure;
+      }
+      departureEl.min = addDays(state.arrival, 1);
+      const d = new Date(state.arrival);
+      state.displayMonth = new Date(d.getFullYear(), d.getMonth(), 1);
+      renderCalendar();
+      fetchPricing();
+    });
+    departureEl.addEventListener('change', (e) => {
+      state.departure = e.target.value;
+      renderCalendar();
+      fetchPricing();
+    });
+
+    // Counters
+    document.querySelectorAll('[data-counter]').forEach((el) => {
+      const key = el.getAttribute('data-counter');
+      const min = parseInt(el.getAttribute('data-min'), 10);
+      const max = parseInt(el.getAttribute('data-max'), 10);
+      el.querySelectorAll('[data-act]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const delta = btn.getAttribute('data-act') === '+' ? 1 : -1;
+          state[key] = Math.max(min, Math.min(max, state[key] + delta));
+          el.querySelector('[data-val]').textContent = String(state[key]);
+          fetchPricing();
+        });
+      });
+    });
+
+    function buildMonthGrid(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const startDow = firstDay.getDay();
+      const lastDay = new Date(year, month + 1, 0).getDate();
+      const grid = [];
+      for (let i = 0; i < startDow; i++) grid.push(null);
+      for (let d = 1; d <= lastDay; d++) {
+        const iso = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+        grid.push({ day: d, iso });
+      }
+      while (grid.length % 7 !== 0) grid.push(null);
+      return grid;
+    }
+
+    function monthLabel(d) {
+      const months = {
+        ja: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        zh: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        'zh-Hant': ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      };
+      const m = (months[lang] || months.en)[d.getMonth()];
+      return `${d.getFullYear()} ${m}`;
+    }
+
+    function weekdays() {
+      const ws = {
+        ja: ['日','月','火','水','木','金','土'],
+        zh: ['日','一','二','三','四','五','六'],
+        'zh-Hant': ['日','一','二','三','四','五','六'],
+        ko: ['일','월','화','수','목','금','토'],
+        en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+      };
+      return ws[lang] || ws.en;
+    }
+
+    async function fetchAvailability() {
+      const m = state.displayMonth;
+      const start = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2,'0')}-01`;
+      const end = new Date(m.getFullYear(), m.getMonth() + 2, 0).toISOString().slice(0,10);
+      try {
+        const res = await fetch(`${PROXY_BASE}/beds24/proxy/inventory/rooms/calendar?roomId=${ROOM_ID}&startDate=${start}&endDate=${end}&includeNumAvail=true`);
+        const data = await res.json();
+        const cal = (data && data.data && data.data[0] && data.data[0].calendar) || [];
+        const map = new Map();
+        for (const seg of cal) {
+          const f = new Date(seg.from);
+          const tt = new Date(seg.to);
+          for (let d = new Date(f); d <= tt; d.setDate(d.getDate() + 1)) {
+            const key = d.toISOString().slice(0,10);
+            map.set(key, seg.numAvail);
+          }
+        }
+        state.availability = map;
+      } catch (e) { state.availability = new Map(); }
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const today = todayISO();
+      const m1 = state.displayMonth;
+      const m2 = new Date(m1.getFullYear(), m1.getMonth() + 1, 1);
+      const wds = weekdays();
+
+      let html = '';
+      for (const m of [m1, m2]) {
+        const grid = buildMonthGrid(m.getFullYear(), m.getMonth());
+        html += `<div class="bw-cal-month">`;
+        html += `<div class="bw-cal-month-title">${monthLabel(m)}</div>`;
+        html += `<div class="bw-cal-weekdays">${wds.map(w=>`<div class="bw-cal-wkd">${w}</div>`).join('')}</div>`;
+        html += `<div class="bw-cal-grid">`;
+        for (const cell of grid) {
+          if (!cell) { html += '<div class="bw-cal-cell empty"></div>'; continue; }
+          const isPast = cell.iso < today;
+          const avail = state.availability.get(cell.iso);
+          const isBooked = avail !== undefined && avail === 0;
+          const isArrival = cell.iso === state.arrival;
+          const isDeparture = cell.iso === state.departure;
+          const inRange = state.arrival && state.departure && cell.iso > state.arrival && cell.iso < state.departure;
+          let cls = 'bw-cal-cell';
+          if (isPast) cls += ' past';
+          else if (isBooked) cls += ' booked';
+          else if (isArrival || isDeparture) cls += ' selected';
+          else if (inRange) cls += ' inrange';
+          else cls += ' avail';
+          const disabled = isPast || isBooked ? 'disabled' : '';
+          html += `<button type="button" class="${cls}" data-iso="${cell.iso}" ${disabled}>${cell.day}</button>`;
+        }
+        html += `</div></div>`;
+      }
+      calEl.innerHTML = html;
+
+      calEl.querySelectorAll('[data-iso]:not([disabled])').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const iso = btn.getAttribute('data-iso');
+          if (!state.arrival || (state.arrival && state.departure)) {
+            state.arrival = iso;
+            state.departure = '';
+          } else if (iso <= state.arrival) {
+            state.arrival = iso;
+            state.departure = '';
+          } else {
+            state.departure = iso;
+          }
+          arrivalEl.value = state.arrival;
+          departureEl.value = state.departure;
+          updateHint();
+          renderCalendar();
+          fetchPricing();
+        });
+      });
+      updateHint();
+    }
+
+    function updateHint() {
+      const n = nightsBetween(state.arrival, state.departure);
+      if (!state.arrival) hintEl.textContent = t.selectStartHint;
+      else if (!state.departure) hintEl.textContent = t.selectEndHint;
+      else hintEl.textContent = `${state.arrival} → ${state.departure} (${n}${t.nights})`;
+    }
+
+    async function fetchPricing() {
+      const nights = nightsBetween(state.arrival, state.departure);
+      if (nights < 1) { pricingEl.hidden = true; submitBtn.disabled = true; return; }
+      const endMinus = addDays(state.departure, -1);
+      const url = `${PROXY_BASE}/beds24/proxy/inventory/rooms/calendar?roomId=${ROOM_ID}&startDate=${state.arrival}&endDate=${endMinus}&includePrices=true&includeNumAvail=true`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        state.calendar = (data && data.data && data.data[0] && data.data[0].calendar) || [];
+      } catch (e) { state.calendar = []; }
+      renderPricing();
+    }
+
+    function computePricing() {
+      const nights = nightsBetween(state.arrival, state.departure);
+      if (!state.calendar || nights < 1) return null;
+      const dayMap = new Map();
+      for (const seg of state.calendar) {
+        const f = new Date(seg.from);
+        const tt = new Date(seg.to);
+        for (let d = new Date(f); d <= tt; d.setDate(d.getDate() + 1)) {
+          dayMap.set(d.toISOString().slice(0,10), seg);
+        }
+      }
+      let basePerNight = 0;
+      let allAvailable = true;
+      let allHavePrice = true;
+      for (let i = 0; i < nights; i++) {
+        const dateKey = addDays(state.arrival, i);
+        const seg = dayMap.get(dateKey);
+        if (!seg) { allAvailable = false; allHavePrice = false; continue; }
+        if (seg.numAvail === 0) allAvailable = false;
+        if (seg.price1 == null) allHavePrice = false;
+        basePerNight += seg.price1 || 0;
+      }
+      const extraAdults = Math.max(0, state.adults - UP_TO_PERSON);
+      const extraAdultsCharge = extraAdults * EXTRA_PERSON_PRICE * nights;
+      const childrenCharge = state.children * EXTRA_CHILD_PRICE * nights;
+      const subtotal = basePerNight + extraAdultsCharge + childrenCharge + CLEANING_FEE;
+      const discount = Math.round(subtotal * DIRECT_DISCOUNT_RATE);
+      const total = subtotal - discount;
+      return { basePerNight, extraAdults, extraAdultsCharge, childrenCharge, subtotal, discount, total, allAvailable, allHavePrice, nights };
+    }
+
+    function renderPricing() {
+      const p = computePricing();
+      if (!p) { pricingEl.hidden = true; submitBtn.disabled = true; return; }
+      pricingEl.hidden = false;
+      if (!p.allAvailable || !p.allHavePrice) {
+        pricingEl.innerHTML = `<div class="bw-na">${t.notAvailable}</div>`;
+        submitBtn.disabled = true;
+        return;
+      }
+      let html = '';
+      html += `<div class="bw-price-row"><span>${t.basePrice} (${p.nights === 1 ? t.night : p.nights + t.nights} × ${t.upTo4})</span><span>${fmtJPY(p.basePerNight)}</span></div>`;
+      if (p.extraAdultsCharge > 0) html += `<div class="bw-price-row"><span>${t.extraGuests} (${t.extraPerson} × ${p.extraAdults} × ${p.nights}${t.nights})</span><span>${fmtJPY(p.extraAdultsCharge)}</span></div>`;
+      if (p.childrenCharge > 0) html += `<div class="bw-price-row"><span>${t.extraChild} × ${state.children} × ${p.nights}${t.nights}</span><span>${fmtJPY(p.childrenCharge)}</span></div>`;
+      html += `<div class="bw-price-row"><span>${t.cleaning}</span><span>${fmtJPY(CLEANING_FEE)}</span></div>`;
+      html += `<div class="bw-price-row bw-pre-discount"><span>${t.subtotal}</span><span class="bw-strike">${fmtJPY(p.subtotal)}</span></div>`;
+      html += `<div class="bw-price-row bw-discount-row"><span>▌ ${t.discount} (−10%)</span><span>−${fmtJPY(p.discount)}</span></div>`;
+      html += `<div class="bw-price-row bw-total"><span>${t.finalTotal}</span><span>${fmtJPY(p.total)}</span></div>`;
+      html += `<div class="bw-note">✓ ${t.allIncluded}</div>`;
+      html += `<div class="bw-saved">${t.savingNote} ${fmtJPY(p.discount)} ${t.saved}</div>`;
+      html += `<div class="bw-cancel"><div class="bw-cancel-title">▌ ${t.cancelTitle}</div><div>${t.cancelText}</div></div>`;
+      pricingEl.innerHTML = html;
+      submitBtn.disabled = false;
+    }
+
+    // Submit
+    submitBtn.addEventListener('click', async () => {
+      if (state.submitting) return;
+      const p = computePricing();
+      if (!p || !p.allAvailable || !p.allHavePrice) return;
+      const firstName = $('bw-firstName').value.trim();
+      const lastName = $('bw-lastName').value.trim();
+      const email = $('bw-email').value.trim();
+      const phone = $('bw-phone').value.trim();
+      const comment = $('bw-comment').value.trim();
+      if (!firstName || !lastName) { showMsg(t.nameRequired, 'error'); return; }
+      if (!email) { showMsg(t.emailRequired, 'error'); return; }
+      if (!phone) { showMsg(t.phoneRequired, 'error'); return; }
+
+      state.submitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = t.booking;
+      const payload = [{
+        propertyId: PROPERTY_ID, roomId: ROOM_ID, offerId: 1, status: 'new',
+        arrival: state.arrival, departure: state.departure,
+        numAdult: state.adults, numChild: state.children,
+        firstName, lastName, email, phone, comments: comment,
+        lang, referer: 'direct', channel: 'direct',
+        price: p.total, deposit: p.total,
+        invoiceItems: [{ type: 'charge', description: `${state.arrival}〜${state.departure} ${p.nights}泊`, qty: 1, amount: p.total, vatRate: 0 }],
+        allowWebhooks: 'all',
+      }];
+      try {
+        const res = await fetch(`${PROXY_BASE}/beds24/proxy/bookings`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        const ok = Array.isArray(data) ? data[0]?.success : data?.success;
+        const newBookingId = Array.isArray(data) ? data[0]?.new?.id : null;
+        if (ok) {
+          showMsg(t.success, 'success');
+          if (newBookingId) {
+            // Notify worker webhook
+            fetch(`${PROXY_BASE}/webhook/beds24`, {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                id: String(newBookingId), propertyId: PROPERTY_ID, roomId: ROOM_ID,
+                status: 'new', arrival: state.arrival, departure: state.departure,
+                numAdult: state.adults, numChild: state.children,
+                firstName, lastName, email, phone, comments: comment,
+                price: p.total, currency: 'JPY', apiSource: 'Direct',
+                referer: 'direct', channel: 'direct', lang,
+              }),
+            }).catch(()=>{});
+            setTimeout(() => {
+              const payLang = lang === 'zh' || lang === 'zh-Hant' ? 'zh' : lang === 'en' ? 'en' : 'ja';
+              window.location.href = `https://beds24.com/bookpay.php?bookid=${newBookingId}&pay=bookbalance&lang=${payLang}`;
+            }, 1500);
+          }
+        } else {
+          showMsg(t.error, 'error');
+        }
+      } catch (e) {
+        showMsg(t.error, 'error');
+      } finally {
+        state.submitting = false;
+        submitBtn.textContent = t.book;
+      }
+    });
+
+    function showMsg(text, kind) {
+      msgEl.textContent = text;
+      msgEl.className = 'bw-msg ' + (kind || '');
+      msgEl.hidden = false;
+    }
+
+    // Calendar nav
+    $('bw-prev').addEventListener('click', () => {
+      const now = new Date();
+      const cur = state.displayMonth;
+      if (cur.getFullYear() === now.getFullYear() && cur.getMonth() <= now.getMonth()) return;
+      state.displayMonth = new Date(cur.getFullYear(), cur.getMonth() - 1, 1);
+      fetchAvailability();
+    });
+    $('bw-next').addEventListener('click', () => {
+      const cur = state.displayMonth;
+      state.displayMonth = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+      fetchAvailability();
+    });
+
+    // Init
+    fetchAvailability();
+    fetchPricing();
+  })();
+</script>
+
+<style>
+  .bw-widget {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+  }
+  .bw-sub-banner {
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    box-shadow: 0 2px 8px rgba(42,90,110,.15);
+    letter-spacing: 0.5px;
+  }
+  .bw-grp { margin-bottom: 18px; }
+  .bw-lbl {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .bw-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    transition: border-color .2s;
+  }
+  .bw-input:focus { outline: none; border-color: var(--color-primary); }
+  .bw-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .bw-row3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) {
+    .bw-row, .bw-row3 { grid-template-columns: 1fr; }
+  }
+  .bw-num {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .bw-num button {
+    width: 36px;
+    height: 40px;
+    border: none;
+    background: #f6f5f3;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--color-primary);
+  }
+  .bw-num button:hover { background: var(--color-primary); color: #fff; }
+  .bw-num span {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .bw-info {
+    font-size: 11px;
+    color: var(--color-muted-light);
+    margin-top: 4px;
+  }
+
+  .bw-cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .bw-cal-nav {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-cream-darker);
+    background: #fff;
+    cursor: pointer;
+    color: var(--color-primary);
+  }
+  .bw-cal-nav:hover { background: var(--color-primary); color: #fff; }
+  .bw-cal-legend {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+  .bw-cal-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+  .bw-cal-avail { background: #fff; border: 1px solid #d4cfc4; }
+  .bw-cal-booked { background: #e8a8a0; border: 1px solid #c97770; }
+  .bw-cal-selected { background: var(--color-primary); }
+
+  .bw-cal-months {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 700px) { .bw-cal-months { grid-template-columns: 1fr; } }
+  .bw-cal-month-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+  }
+  .bw-cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 4px;
+  }
+  .bw-cal-wkd {
+    text-align: center;
+    font-size: 10px;
+    color: var(--color-muted-light);
+    padding: 4px 0;
+    letter-spacing: 1px;
+  }
+  .bw-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+  .bw-cal-cell {
+    aspect-ratio: 1 / 1;
+    border: 1px solid transparent;
+    background: none;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all .15s;
+    color: var(--color-ink);
+  }
+  .bw-cal-cell.empty { visibility: hidden; }
+  .bw-cal-cell.past { color: #c8c4bd; cursor: not-allowed; background: #f5f4f1; }
+  .bw-cal-cell.avail { background: #fff; border-color: #d4cfc4; }
+  .bw-cal-cell.avail:hover { background: #eaf0f3; border-color: var(--color-primary); }
+  .bw-cal-cell.booked {
+    color: #fff;
+    background: #e8a8a0;
+    cursor: not-allowed;
+    border-color: #c97770;
+    text-decoration: line-through;
+  }
+  .bw-cal-cell.selected {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    font-weight: 600;
+  }
+  .bw-cal-cell.inrange {
+    background: #d2e0e6;
+    border-color: #d2e0e6;
+  }
+  .bw-cal-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-top: 12px;
+    padding: 8px;
+    background: var(--color-cream);
+    border-radius: 6px;
+  }
+
+  .bw-pricecard {
+    background: #f9f7f3;
+    border: 1px solid #e8e4dc;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+  .bw-price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .bw-price-row.bw-total {
+    font-size: 18px;
+    font-weight: 600;
+    padding-top: 14px;
+    margin-top: 6px;
+    border-top: 1px solid var(--color-cream-darker);
+  }
+  .bw-pre-discount {
+    border-top: 1px solid var(--color-cream-darker);
+    padding-top: 10px;
+    margin-top: 4px;
+    color: var(--color-muted);
+  }
+  .bw-strike { text-decoration: line-through; }
+  .bw-discount-row { color: var(--color-primary); }
+  .bw-note {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--color-ink-soft);
+    text-align: right;
+    font-style: italic;
+  }
+  .bw-saved {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--color-primary);
+    text-align: right;
+  }
+  .bw-cancel {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: rgba(42, 90, 110, 0.05);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 4px;
+  }
+  .bw-cancel-title {
+    font-size: 11px;
+    color: var(--color-primary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .bw-cancel div:last-child {
+    font-size: 11px;
+    color: var(--color-ink-soft);
+    line-height: 1.6;
+  }
+  .bw-na {
+    text-align: center;
+    padding: 12px;
+    color: #8a2424;
+    font-size: 13px;
+  }
+
+  .bw-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .bw-btn:hover:not(:disabled) { background: var(--color-primary-dark); }
+  .bw-btn:disabled { background: #c0bdb7; cursor: not-allowed; }
+
+  .bw-msg {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .bw-msg.success { background: #e8f3ec; color: #1c5b35; border: 1px solid #b6dbc1; }
+  .bw-msg.error { background: #fbeaea; color: #8a2424; border: 1px solid #e8b8b8; }
+</style>

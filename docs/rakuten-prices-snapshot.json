@@ -1,0 +1,161 @@
+{
+  "matrix": {
+    "double": {
+      "sutomari": [
+        {
+          "date": "2026-05-17",
+          "total": 11880,
+          "perPerson": 5940,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-20",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-22",
+          "total": 15840,
+          "perPerson": 7920,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-26",
+          "total": 11880,
+          "perPerson": 5940,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-27",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-28",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-29",
+          "total": 15840,
+          "perPerson": 7920,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-31",
+          "total": 11880,
+          "perPerson": 5940,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-06-03",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ダブルルーム◇【禁煙室】"
+        }
+      ],
+      "choshoku": [],
+      "choseki": []
+    },
+    "twin": {
+      "sutomari": [
+        {
+          "date": "2026-05-13",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ツインルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-14",
+          "total": 13860,
+          "perPerson": 6930,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ツインルーム◇【禁煙室】"
+        },
+        {
+          "date": "2026-05-24",
+          "total": 11880,
+          "perPerson": 5940,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇ツインルーム◇【禁煙室】"
+        }
+      ],
+      "choshoku": [],
+      "choseki": []
+    },
+    "triple": {
+      "sutomari": [
+        {
+          "date": "2026-05-16",
+          "total": 15840,
+          "perPerson": 7920,
+          "planId": 6132254,
+          "planName": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》",
+          "roomName": "◇トリプル◇【禁煙室】"
+        }
+      ],
+      "choshoku": [],
+      "choseki": []
+    }
+  },
+  "summary": {
+    "double": {
+      "sutomari": {
+        "samples": 9,
+        "min": 11880,
+        "median": 13860,
+        "max": 15840,
+        "sample_plan": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》"
+      },
+      "choshoku": null,
+      "choseki": null
+    },
+    "twin": {
+      "sutomari": {
+        "samples": 3,
+        "min": 11880,
+        "median": 13860,
+        "max": 13860,
+        "sample_plan": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》"
+      },
+      "choshoku": null,
+      "choseki": null
+    },
+    "triple": {
+      "sutomari": {
+        "samples": 1,
+        "min": 15840,
+        "median": 15840,
+        "max": 15840,
+        "sample_plan": "☆日曜〜平日限定☆のんびりお得にステイ♪《素泊まり》"
+      },
+      "choshoku": null,
+      "choseki": null
+    }
+  }
+}

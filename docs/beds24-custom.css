@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Oswald:wght@200;300;400;500&family=Lato:wght@300;400;700&display=swap");
+:root{--t:#2F555A;--t2:#244348;--o:#E8633A;--o2:#c84e28;--b:#e2e2e2;--font-oswald:"Oswald",sans-serif;--font-jp:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;--font-serif:"Noto Serif JP","Playfair Display",serif}
+html,body{background:#fff!important;color:#333!important;font-family:var(--font-jp)!important;overflow:visible!important;height:auto!important;margin:0!important}
+a,a:visited{color:var(--t);text-decoration:none}a:hover{color:var(--o)}
+h1,h2,h3,h4,h5,h6{color:var(--t)!important;font-weight:600!important}
+
+.fg-site-header{background:#fff;border-bottom:1px solid #e5e5e5;padding:14px 0;width:100%}
+.fg-header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.fg-logo{flex-shrink:0;display:block;line-height:0}
+.fg-logo img{width:260px;height:auto;display:block}
+.fg-nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;flex:1 1 auto}
+.fg-nav a{color:#222!important;font-size:13px;font-weight:500;letter-spacing:1.5px;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.fg-nav a:hover{color:var(--t)!important;border-bottom-color:var(--t)}
+.fg-tel{flex-shrink:0;color:var(--t)!important;font-family:var(--font-oswald);font-size:18px;letter-spacing:1.5px;text-decoration:none;font-weight:400;white-space:nowrap}
+.fg-tel:hover{color:var(--o)!important}
+
+.fg-page-hero{position:relative;width:100%;height:200px;background-size:cover;background-position:center center;display:flex;align-items:center;justify-content:center;z-index:1}
+.fg-page-hero-overlay{position:absolute;inset:0;background-color:rgba(35,41,57,.5);z-index:0}
+.fg-page-hero-content{position:relative;z-index:2;text-align:center;color:#fff}
+.fg-page-hero h1{color:rgba(255,255,255,.92)!important;font-family:var(--font-oswald)!important;font-size:30px!important;font-weight:200!important;letter-spacing:.25em!important;text-transform:uppercase!important;margin:0!important;text-shadow:1px 1px 0 rgba(0,0,0,.2)}
+.fg-page-hero p{color:rgba(255,255,255,.7);font-family:var(--font-oswald);font-size:12px;letter-spacing:5px;margin:8px 0 0;text-transform:uppercase}
+
+.fg-breadcrumb{max-width:1200px;margin:0 auto;padding:12px 24px;font-size:12px;color:#777}
+.fg-breadcrumb a{color:#777!important;margin-right:4px}
+.fg-breadcrumb a:hover{color:var(--t)!important}
+.fg-breadcrumb span{margin:0 4px;opacity:.5}
+.fg-breadcrumb-current{color:#444!important;opacity:1}
+
+.fpt{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px 24px;max-width:1100px;margin:0 auto 22px}
+.fpt>a{position:relative;display:block;overflow:hidden;border-radius:4px;text-decoration:none!important;aspect-ratio:4/3;box-shadow:0 2px 6px rgba(0,0,0,.1);transition:transform .3s,box-shadow .3s}
+.fpt>a:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.fpt>a>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.fpt>a:hover>img{transform:scale(1.06)}
+.fpt>a::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 35%,rgba(0,0,0,.55) 75%,rgba(0,0,0,.85) 100%);pointer-events:none;transition:background .3s}
+.fpt>a:hover::after{background:linear-gradient(to bottom,rgba(0,0,0,0) 25%,rgba(47,85,90,.7) 70%,rgba(47,85,90,.92) 100%)}
+.fpt>a>span{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;color:#fff!important}
+.fpt>a>span strong{display:block;font-size:15px;font-weight:600;letter-spacing:1.5px;color:#fff!important}
+.fpt>a>span em{display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.92)!important;letter-spacing:.5px;margin-top:3px}
+
+.card{background:#fff!important;border:1px solid var(--b)!important;border-radius:4px!important;box-shadow:none!important;margin:0 auto 14px!important;max-width:1100px}
+.card-header,.card>.card-header{background:var(--t)!important;color:#fff!important;border:none!important;border-radius:4px 4px 0 0!important;padding:12px 18px!important;font-weight:600!important;letter-spacing:1px!important;font-size:16px!important}
+.card-header h2,.card-header h3,.card-header h4,.card-header .card-title{color:#fff!important;margin:0!important;background:transparent!important}
+.card-body{padding:16px 18px!important;background:#fff!important}
+.form-control,.form-select,input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select,textarea{border:1px solid var(--b)!important;border-radius:3px!important;padding:9px 12px!important;font-size:14px!important;background:#fff!important;color:#333!important;box-shadow:none!important;height:auto!important}
+.form-control:focus,.form-select:focus,input:focus,select:focus,textarea:focus{outline:none!important;border-color:var(--t)!important;box-shadow:0 0 0 2px rgba(47,85,90,.12)!important}
+.input-group-text{background:var(--t)!important;color:#fff!important;border:1px solid var(--t)!important}
+.input-group-text i,.input-group-text svg{color:#fff!important}
+label,.form-label,.col-form-label{color:#333!important;font-weight:600!important;font-size:13px!important;margin-bottom:4px!important}
+.btn,button,input[type=submit],input[type=button]{border-radius:3px!important;font-weight:500!important;letter-spacing:1.5px!important;padding:9px 22px!important;font-size:14px!important;box-shadow:none!important;text-shadow:none!important;transition:background .25s,border-color .25s!important}
+.btn-primary,.btn-success,button[type=submit]{background:var(--o)!important;border:1px solid var(--o)!important;color:#fff!important}
+.btn-primary:hover,.btn-success:hover,button[type=submit]:hover{background:var(--o2)!important;border-color:var(--o2)!important;color:#fff!important}
+.btn-secondary,.btn-outline-primary,.btn-default,.btn-info,.btn-link{background:var(--t)!important;border:1px solid var(--t)!important;color:#fff!important}
+.btn-secondary:hover,.btn-outline-primary:hover,.btn-default:hover,.btn-info:hover,.btn-link:hover{background:var(--t2)!important;border-color:var(--t2)!important;color:#fff!important}
+.btn-danger,.btn-warning{background:#999!important;border-color:#999!important;color:#fff!important}
+.btn-danger:hover,.btn-warning:hover{background:#777!important;border-color:#777!important}
+.text-end strong,.text-right strong,.price,.b24-price,.roomPrice,.totalPrice{color:var(--o)!important;font-weight:700!important;font-size:16px!important}
+.card img{border-radius:3px;max-width:100%;height:auto}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange,.flatpickr-day.inRange{background:var(--o)!important;border-color:var(--o)!important;color:#fff!important}
+.flatpickr-day.today{border-color:var(--t)!important}
+.nav-tabs .nav-link{color:var(--t)!important;border:1px solid var(--b)!important;border-bottom:none!important}
+.nav-tabs .nav-link.active{background:var(--t)!important;color:#fff!important;border-color:var(--t)!important}
+.alert-info{background:#eaf3f4!important;color:var(--t)!important;border-color:var(--t)!important}
+.alert-success{background:#fdf0ea!important;color:var(--o2)!important;border-color:var(--o)!important}
+a[href*="beds24.com"][target=_blank],.poweredBy,.b24-poweredBy,img[src*="beds24-logo"],img[src*="powered_by"]{display:none!important}
+input[name=promo],input[name=promocode],input[name=coupon],input[name="promoCode"],.promoCode,.promo-code,.b24-promo,label[for*=promo]{display:none!important}
+/* Conservative hide rules — only the top search-form row, NEVER touches room cards */
+/* Beds24's room cards may contain hidden form fields, so we avoid any .card / .col / .row hiders */
+
+/* On Beds24 checkout (Guest Info) and confirmation (bookid) pages, hide our search UI —
+   customer already selected/confirmed; fbar/cards/total/promo are redundant there */
+/* On checkout / confirmation steps: hide search UI but KEEP cancel-policy
+   visible so the customer can re-check terms before finalizing their booking. */
+.fg-no-search .fpt,.fg-no-search .fbar,.fg-no-search .fg-rooms,.fg-no-search .fg-total,.fg-no-search .fg-page-hero,.fg-no-search .fg-meal-bar{display:none!important}
+
+/* Confirmation banner — shown when URL has ?bookid=… */
+.fg-confirm-banner{background:linear-gradient(135deg,#2a6b6e 0%,#1e5054 100%);color:#fff;padding:48px 20px 56px;text-align:center}
+.fg-confirm-inner{max-width:760px;margin:0 auto}
+.fg-confirm-eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.7);font-family:"Lato",sans-serif}
+.fg-confirm-title{margin:0 0 14px;font-size:28px;font-weight:600;color:#fff!important;font-family:"Noto Serif JP",serif;letter-spacing:2px}
+.fg-confirm-sub{margin:0 0 28px;font-size:14px;line-height:1.8;color:rgba(255,255,255,.92)}
+.fg-confirm-ref{display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:16px 32px;margin:0 0 22px}
+.fg-confirm-ref-lbl{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.75);font-family:"Lato",sans-serif}
+.fg-confirm-ref-val{font-size:26px;font-weight:700;color:#fff;font-family:"Lato","Noto Sans JP",sans-serif;letter-spacing:1px}
+.fg-confirm-note{margin:0 0 26px;font-size:12px;color:rgba(255,255,255,.75)}
+.fg-confirm-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.fg-confirm-btn{display:inline-block;padding:10px 20px;font-size:13px;border:1px solid rgba(255,255,255,.6);color:#fff!important;background:transparent;border-radius:3px;text-decoration:none!important;transition:background .15s,color .15s;font-family:"Noto Sans JP",sans-serif;letter-spacing:1px}
+.fg-confirm-btn:hover{background:rgba(255,255,255,.15)}
+.fg-confirm-btn-primary{background:var(--o);border-color:var(--o)}
+.fg-confirm-btn-primary:hover{background:var(--o2);border-color:var(--o2)}
+@media (max-width:640px){
+  .fg-confirm-banner{padding:36px 16px 44px}
+  .fg-confirm-title{font-size:22px}
+  .fg-confirm-ref-val{font-size:22px}
+  .fg-confirm-cta{flex-direction:column}
+  .fg-confirm-btn{width:100%}
+}
+
+/* Our own room cards + qty selectors + total bar — by beds24-body-top.js */
+.fg-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1100px;margin:18px auto 0;padding:0 16px}
+.fg-room-card{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
+.fg-room-card.is-selected{border-color:var(--o);box-shadow:0 0 0 2px rgba(232,99,58,.18)}
+.fg-room-card picture,.fg-room-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.fg-room-body{padding:14px 16px 18px;display:flex;flex-direction:column;flex:1}
+.fg-room-body h3{margin:0 0 6px;font-size:17px;font-weight:600;color:var(--t)!important;font-family:"Noto Serif JP","Playfair Display",serif;letter-spacing:1px}
+.fg-room-meta{margin:0 0 12px;font-size:12.5px;color:#666;line-height:1.5}
+.fg-room-price{margin:0 0 14px;display:flex;align-items:baseline;gap:4px}
+.fg-room-from{font-size:11px;color:#888}
+.fg-price-val{font-size:22px;color:var(--o);font-weight:700;font-family:"Lato","Noto Sans JP",sans-serif}
+.fg-room-tax{font-size:11px;color:#888}
+/* Included-in-price tags row under price */
+.fg-room-incl{margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px}
+.fg-incl-tag{display:inline-block;font-size:11px;padding:3px 8px;background:#f0f5f5;color:#2a6b6e;border:1px solid #d0dfe0;border-radius:2px;letter-spacing:0.5px;line-height:1.4}
+.fg-incl-tag.fg-incl-meal{background:#fdf0ea;color:var(--o2);border-color:#f3c8b5}
+/* Qty stepper inside each card */
+.fg-qty-row{display:flex!important;align-items:center;gap:8px;margin-top:auto;padding-top:8px;border-top:1px dashed #e5e5e5;visibility:visible!important;opacity:1!important}
+.fg-qty-lbl{font-size:12px;color:#666;flex:1}
+.fg-qty-btn{width:30px!important;height:30px!important;flex-shrink:0;border:1px solid var(--t)!important;background:#fff!important;color:var(--t)!important;font-size:16px!important;font-weight:600!important;cursor:pointer;border-radius:3px!important;line-height:1;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;transition:background .15s,color .15s;visibility:visible!important;opacity:1!important;pointer-events:auto!important;-webkit-tap-highlight-color:rgba(232,99,58,.2);touch-action:manipulation}
+.fg-qty-btn:hover{background:var(--t)!important;color:#fff!important}
+.fg-qty-input{width:36px!important;flex-shrink:0;text-align:center;font-size:14px!important;font-weight:600!important;color:#222!important;border:0!important;background:transparent!important;padding:0!important;-moz-appearance:textfield;appearance:textfield}
+.fg-qty-input::-webkit-outer-spin-button,.fg-qty-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* Total bar (sticky bottom on desktop, fixed-bottom on mobile) */
+.fg-total{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--t);box-shadow:0 -4px 16px rgba(0,0,0,.06);z-index:50;margin:24px 0 0}
+.fg-total-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.fg-total-detail{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.fg-total-lbl{font-size:13px;color:#666;letter-spacing:1px}
+.fg-total-val{font-size:28px;color:var(--o);font-weight:700;font-family:"Lato","Noto Sans JP",sans-serif}
+.fg-total-sub{font-size:12px;color:#888}
+.fg-total-tax{font-size:11px;padding:2px 8px;background:#fdf0ea;color:var(--o2);border:1px solid #f3c8b5;border-radius:2px;letter-spacing:0.5px;line-height:1.5;align-self:center}
+.fg-total-note{max-width:1100px;margin:0 auto;padding:0 20px 10px;font-size:11px;color:#888;line-height:1.5;text-align:center}
+.fg-go-btn{background:#ccc!important;color:#fff!important;border:0!important;padding:14px 36px!important;font-size:15px!important;font-weight:700!important;letter-spacing:2px!important;cursor:not-allowed;border-radius:3px!important;transition:background .2s;font-family:inherit;min-width:200px}
+.fg-go-btn.is-ready{background:var(--o)!important;cursor:pointer}
+.fg-go-btn.is-ready:hover{background:var(--o2)!important}
+@media(max-width:900px){.fg-rooms{grid-template-columns:1fr;gap:12px}.fg-room-card picture,.fg-room-card img{aspect-ratio:16/9}.fg-total-inner{flex-direction:column;align-items:stretch;gap:8px}.fg-total-detail{justify-content:center}.fg-go-btn{width:100%;padding:14px!important}}
+/* Mobile qty stepper: 44pt touch target per Apple HIG */
+@media (max-width:640px) {
+  .fg-qty-row { gap: 14px; padding-top: 12px; margin-top: 10px; }
+  .fg-qty-lbl { font-size: 14px!important; font-weight: 600; color: #333!important }
+  .fg-qty-btn { width: 44px!important; height: 44px!important; font-size: 22px!important; border-width: 1.5px!important }
+  .fg-qty-input { width: 56px!important; font-size: 18px!important; font-weight: 700!important }
+  .fg-card-people { gap: 12px; padding: 12px 0 14px }
+  .fg-card-adult, .fg-card-child { padding: 10px 12px!important; font-size: 15px!important; min-height: 44px }
+  .fg-card-lbl { font-size: 12px!important }
+  /* Cancel policy summary: stack vertically on narrow screens */
+  .fg-cancel-summary { flex-wrap: wrap; gap: 8px; padding: 12px 14px }
+  .fg-cancel-badge { flex-basis: auto }
+  .fg-cancel-text { flex: 1 1 100%; font-size: 12.5px; line-height: 1.5 }
+  .fg-cancel-toggle { flex-shrink: 0 }
+}
+/* NOTE: do NOT hide .fbar in iframe — it's the only place customers pick dates */
+/* .embed .fbar removed 2026-05-12 — was breaking mobile booking */
+.fbar{max-width:1100px;margin:18px auto 22px;padding:0 16px;font-family:var(--font-jp)}
+.fbar-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px}
+.fbar-row2{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:stretch}
+.fbar-cell{background:#fff;border:1px solid #e2e2e2;padding:4px 10px;display:flex;flex-direction:column;justify-content:center;min-height:44px}
+.fbar-lbl{font-size:10px;color:#777!important;margin:0 0 2px;line-height:1.2;letter-spacing:.5px;font-weight:500!important}
+.fbar-hint{color:#aaa!important;font-weight:400!important;font-size:9px}
+.fbar-cell input[type=date],.fbar-cell select{border:0!important;background:transparent!important;padding:0!important;font-size:13px!important;color:#1f2937!important;width:100%;height:auto!important;line-height:1.4;outline:none!important;cursor:pointer;font-family:inherit}
+.fbar-cell input[type=date]:focus,.fbar-cell select:focus{outline:none!important;box-shadow:none!important}
+.fbar-meal{background:#fff;border:1px solid #e2e2e2;padding:4px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:44px;margin:0}
+.fbar-meal legend{font-size:10px;color:#777!important;padding:0 4px;font-weight:500!important;letter-spacing:.5px;width:auto;margin:0}
+.fbar-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 10px 4px 6px;border:1px solid #d1d5db;border-radius:3px;cursor:pointer;font-size:12.5px;color:#374151;transition:background .15s,border-color .15s,color .15s;background:#fff;margin:0}
+.fbar-pill:hover{border-color:var(--t);color:var(--t)}
+.fbar-pill input[type=radio]{margin:0 2px 0 0;accent-color:var(--t);transform:scale(.9)}
+.fbar-pill:has(input:checked){border-color:var(--t);background:#f4f6f6;color:var(--t);font-weight:500}
+.fbar-tag{font-size:10px;padding:1px 5px;border-radius:2px;background:var(--o);color:#fff!important;font-weight:600;letter-spacing:.5px;margin-left:2px}
+.fbar-tag-rec{background:var(--t)}
+.fbar-go{background:var(--o)!important;color:#fff!important;border:0!important;padding:0 28px!important;font-weight:600!important;letter-spacing:1.5px!important;font-size:13px!important;cursor:pointer;transition:background .15s;min-height:44px;font-family:inherit}
+.fbar-go:hover{background:var(--o2)!important;color:#fff!important}
+@media(max-width:900px){.fbar-row{grid-template-columns:repeat(2,1fr)}.fbar-row2{grid-template-columns:1fr}.fbar-meal{justify-content:center}.fbar-go{width:100%;padding:12px!important}}
+.priceCategory,.b24-price-category{margin:8px 0;display:flex;flex-wrap:wrap;gap:8px}
+.priceCategory label,.b24-price-category label{display:inline-flex;align-items:center;gap:6px;padding:6px 14px 6px 10px;border:1px solid #d1d5db;border-radius:3px;background:#fff;font-size:13px;color:#374151;cursor:pointer;transition:background .15s,border-color .15s,color .15s;margin:0}
+.priceCategory label:hover,.b24-price-category label:hover{border-color:var(--t);color:var(--t)}
+.priceCategory label:has(input:checked),.b24-price-category label:has(input:checked){border-color:var(--t);background:#f4f6f6;color:var(--t);font-weight:500}
+.priceCategory input[type=radio],.b24-price-category input[type=radio]{accent-color:var(--t);margin:0}
+.embed .fg-site-header,.embed .fg-page-hero,.embed .fg-breadcrumb{display:none!important}
+
+.fp{background:#fff;padding:28px 20px 12px;border-top:1px solid #eee;max-width:1100px;margin:24px auto 0}
+.fp>h2{font-size:18px!important;color:var(--t)!important;margin:0 0 18px!important;text-align:center;letter-spacing:1.5px;font-weight:600!important}
+.fpg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1100px;margin:0 auto}
+.fpi{background:#F8F8F8;padding:16px 18px;border-left:3px solid var(--t)}
+.fpi h3{margin:0 0 6px!important;font-size:13px!important;color:var(--t)!important;font-weight:600!important;letter-spacing:.5px}
+.fpi p{margin:0;font-size:12.5px;color:#555;line-height:1.65}
+.fpf{text-align:center;margin:18px 0 0;font-size:12px;color:#888}
+.fpf a{color:var(--t)!important;text-decoration:none;border-bottom:1px dotted var(--t)}
+.fpf a:hover{color:var(--o)!important}
+.embed .fp{display:none!important}
+.fm{background:#F5F5F5;padding:48px 20px;margin:30px 0 0}
+.fm h2{text-align:center;font-family:var(--font-serif)!important;font-size:26px!important;color:#222!important;font-weight:500!important;letter-spacing:2px;margin:0 0 8px!important}
+.fm h2::after{content:"";display:block;width:40px;height:2px;background:var(--t);margin:14px auto 0}
+.fm>p{text-align:center;color:#666;font-size:14px;margin:0 0 30px}
+.fmg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.fmg article{background:#fff;border:1px solid #e5e5e5;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.fmg article:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.fmg img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#eee;transition:transform .5s}
+.fmg article:hover img{transform:scale(1.04)}
+.fmg h3{color:#222!important;font-size:16px!important;font-weight:500!important;margin:14px 18px 10px!important;letter-spacing:1px;padding:0}
+.fmg article p{color:#00608d;font-size:22px;font-weight:600;margin:0 18px 18px;font-family:"Lato","Noto Sans JP",sans-serif}
+.fmg article p span{font-size:12px;color:#888;font-weight:400;margin-left:6px}
+.fmn{max-width:800px;margin:24px auto 0;padding:14px 20px;background:#fff;border-left:3px solid var(--t);color:#555;font-size:13px;line-height:1.85}
+
+@media(max-width:1024px){.fg-nav{gap:12px}.fg-nav a{font-size:12px;letter-spacing:1px}.fg-tel{font-size:16px}}
+@media(max-width:900px){.fpt{grid-template-columns:repeat(3,1fr)}.fmg{grid-template-columns:repeat(2,1fr)}.fpg{grid-template-columns:repeat(2,1fr)}.fg-header-inner{gap:10px}.fg-logo img{width:200px}.fg-tel{font-size:15px}.fg-page-hero{height:160px}.fg-page-hero h1{font-size:24px!important;letter-spacing:.18em!important}}
+@media(max-width:640px){.fm{padding:34px 14px}.fm h2{font-size:22px!important}.fmg{grid-template-columns:1fr;gap:16px}.fpg{grid-template-columns:1fr;gap:10px}.fpt{gap:8px;padding:12px}.fpt>a{aspect-ratio:5/3}.fpt>a>span{padding:10px 12px}.fpt>a>span strong{font-size:13px}.fpt>a>span em{font-size:10px}.fg-page-hero{height:140px}.fg-page-hero h1{font-size:20px!important;letter-spacing:.12em!important}.fg-page-hero p{font-size:10px;letter-spacing:3px}.fg-nav{gap:8px 14px}.fg-nav a{font-size:11px;padding:4px 0}}
+@media(max-width:767px){body{font-size:14px!important}.card-header{font-size:15px!important;padding:10px 14px!important}.card-body{padding:12px 14px!important}.btn,button,input[type=submit]{width:100%;padding:11px 14px!important}}
+
+/* Cancellation policy summary (between fbar and rooms) */
+.fg-cancel-policy{max-width:1100px;margin:14px auto 0;padding:0 16px}
+/* On checkout/confirmation pages, force-show the detail table so customer
+   sees the full policy without clicking — important before finalizing booking */
+.fg-no-search .fg-cancel-policy{margin-top:18px}
+.fg-no-search .fg-cancel-detail{display:block!important}
+.fg-no-search .fg-cancel-detail[hidden]{display:block!important}
+.fg-no-search .fg-cancel-toggle{display:none!important}
+.fg-cancel-summary{display:flex;align-items:center;gap:12px;width:100%;padding:11px 16px;background:#f0f5f5;border:1px solid #cfdcdd!important;border-radius:4px!important;cursor:pointer;font-family:inherit;text-align:left;color:#333!important;transition:background .15s}
+.fg-cancel-summary:hover{background:#e5eded}
+.fg-cancel-badge{flex-shrink:0;font-size:11px;padding:3px 10px;background:#2a6b6e;color:#fff!important;border-radius:2px;letter-spacing:1px;font-weight:600}
+.fg-cancel-text{flex:1;font-size:13px;color:#333}
+.fg-cancel-text strong{color:#2a6b6e;font-weight:700}
+.fg-cancel-toggle{flex-shrink:0;font-size:12px;color:#2a6b6e;font-weight:600;letter-spacing:1px}
+.fg-cancel-summary[aria-expanded=true] .fg-cancel-toggle{transform:rotate(180deg);display:inline-block}
+.fg-cancel-detail{margin:6px 0 0;padding:14px 18px;background:#fff;border:1px solid #cfdcdd;border-radius:4px}
+.fg-cancel-detail table{width:100%;border-collapse:collapse;font-size:13px}
+.fg-cancel-detail td{padding:7px 4px;border-bottom:1px dashed #eee;color:#555}
+.fg-cancel-detail tr:last-child td{border-bottom:0}
+.fg-cancel-detail td:last-child{text-align:right;font-weight:600;color:#333}
+.fg-cancel-detail .fg-cancel-free{color:#2a6b6e!important}
+.fg-cancel-detail .fg-cancel-full{color:#c44!important}
+.fg-cancel-note{margin:10px 0 0;font-size:11px;color:#888;line-height:1.6}
+
+/* Footer (always at bottom on all step pages) */
+.fg-site-footer{margin:40px 0 0;background:#1e2a2b;color:#cfd5d6;padding:36px 20px 20px}
+.fg-footer-inner{max-width:1100px;margin:0 auto}
+.fg-footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.12)}
+.fg-footer-name{margin:0 0 12px;font-size:16px;color:#fff;font-weight:600;font-family:"Noto Serif JP",serif;letter-spacing:2px}
+.fg-footer-addr{margin:0;font-size:12px;color:#9aa5a6;line-height:1.7}
+.fg-footer-h{margin:0 0 12px;font-size:12px;color:#fff;font-weight:600;letter-spacing:2px}
+.fg-footer-contact p,.fg-footer-links p{margin:0 0 6px;font-size:13px}
+.fg-footer-contact a,.fg-footer-links a{color:#cfd5d6!important;text-decoration:none;transition:color .15s}
+.fg-footer-contact a:hover,.fg-footer-links a:hover{color:#e8633a!important}
+.fg-footer-hours{margin:6px 0 0!important;font-size:11px!important;color:#7a8485!important}
+.fg-footer-copy{margin:18px 0 0;font-size:11px;color:#7a8485;text-align:center;letter-spacing:1px}
+@media(max-width:760px){
+  .fg-footer-grid{grid-template-columns:1fr;gap:24px;padding-bottom:20px}
+  .fg-site-footer{padding:28px 16px 16px}
+}
+
+/* Per-card people selection */
+.fg-card-people{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 0 10px;border-top:1px dashed #e5e5e5;margin-top:auto}
+.fg-card-people-cell{display:flex;flex-direction:column;gap:3px}
+.fg-card-lbl{font-size:11px;color:#666;font-weight:500;letter-spacing:0.5px}
+.fg-card-hint{font-size:10px;color:#999;font-weight:400}
+.fg-card-adult,.fg-card-child{padding:6px 8px!important;font-size:13px!important;border:1px solid #ddd!important;background:#fff!important;color:#333!important;border-radius:3px!important;height:auto!important;width:100%!important}
+.fg-card-adult:focus,.fg-card-child:focus{border-color:var(--t)!important;outline:none!important}
+.fg-room-card .fg-qty-row{border-top:0;padding-top:6px;margin-top:0}
+
+/* fbar — date only row */
+.fbar-row-dates{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* Global meal plan bar (between rooms and total) */
+.fg-meal-bar{max-width:1100px;margin:18px auto 0;padding:14px 18px;background:#fff;border:1px solid #e5e5e5;border-radius:4px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fg-meal-lbl{font-size:13px;color:#2a6b6e;font-weight:600;letter-spacing:1px;margin-right:6px}
+.fg-meal-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1.5px solid #e5e5e5;border-radius:3px;cursor:pointer;font-size:13px;color:#555;background:#fff;transition:all .15s;position:relative}
+.fg-meal-pill input{position:absolute;opacity:0;pointer-events:none}
+.fg-meal-pill:hover{border-color:#cfdcdd;background:#f7f9f9}
+.fg-meal-pill:has(input:checked){border-color:var(--o);background:#fdf0ea;color:var(--o2);font-weight:600}
+.fg-meal-tag{font-size:10px;padding:2px 6px;background:var(--o);color:#fff;border-radius:2px;letter-spacing:0.5px}
+@media(max-width:640px){
+  .fg-meal-bar{padding:12px 14px;gap:8px}
+  .fg-meal-pill{flex:1;justify-content:center;padding:8px 10px;font-size:12px}
+  .fg-meal-lbl{width:100%;text-align:center;margin:0 0 4px}
+}
+
+/* Hide Beds24 native date picker + alerts + language switcher + chat widgets
+   Note: rules deliberately conservative — JS in beds24-body-top.js
+   does the heavier lifting via content/attribute probes. */
+.card:has(input[name=checkin]),
+.card:has(input[name=checkout]),
+.card.searchCard,
+.searchForm,
+.b24-search-form,
+.b24-languageSelector,
+[class*=languageSwitch],
+/* Hide 3rd-party / Beds24 chat widgets that overlap our qty stepper */
+.b24-widget-button,
+[class*=b24-widget],
+[id*=bx-livechat],
+[class*=bx-livechat],
+[id*=crisp-client],
+#crisp-chatbox,
+#intercom-container,
+#intercom-frame,
+[class*=intercom-launcher],
+[class*=chat-widget],
+[class*=ChatBubble],
+iframe[src*="crisp"],
+iframe[src*="chat-widget"],
+iframe[src*="bitrix24"],
+iframe[src*="b24-"],
+iframe[src*="livechat"]{display:none!important}
+
+/* Always keep Beds24 Property Calendar visible (it's the one native module we want) */
+.b24-propertyCalendar,
+.propertyCalendar,
+.calendarTable,
+table[class*=Calendar]:not(.flatpickr-calendar){display:block!important}
+
+/* Restyle Beds24 native Property Calendar to brand colors (overrides Beds24 green/grey defaults) */
+.calendarTable,.b24-propertyCalendar,.propertyCalendar{max-width:1100px;margin:18px auto;padding:0 16px;background:transparent!important}
+.calendarTable th,.b24-propertyCalendar th,.propertyCalendar th{background:#f0f5f5!important;color:#2a6b6e!important;font-weight:600!important;padding:8px 0!important;border:0!important;font-size:12px!important}
+.calendarTable td,.b24-propertyCalendar td,.propertyCalendar td{padding:8px 4px!important;border:1px solid #f0f0f0!important;color:#888!important;text-align:center;background:#fafafa!important}
+/* Available days */
+.calendarTable td.available,
+.calendarTable td[class*=avail]:not([class*=unavail]):not([class*=sold]),
+.b24-propertyCalendar td.available,
+.propertyCalendar td.available{background:#2a6b6e!important;color:#fff!important;font-weight:600;cursor:pointer}
+.calendarTable td.available:hover,
+.b24-propertyCalendar td.available:hover{background:var(--o)!important}
+/* Unavailable / sold-out days */
+.calendarTable td.unavailable,
+.calendarTable td.sold,
+.b24-propertyCalendar td.unavailable,
+.b24-propertyCalendar td.sold{background:#f0f0f0!important;color:#bbb!important;text-decoration:line-through;cursor:not-allowed}
+
+/* 素泊 限定説明 */
+.fg-meal-tag-info{background:#7a9596!important;color:#fff!important}
+/* 素泊 pill disabled state (checkin > 3 days out) */
+.fg-meal-pill-disabled{opacity:.45!important;pointer-events:none!important;cursor:not-allowed!important;background:#f5f5f5!important;border-color:#e5e5e5!important;color:#999!important}
+.fg-meal-pill-disabled .fg-meal-tag-info{background:#cfcfcf!important}
+.fg-meal-note{flex-basis:100%;margin:10px 0 0;padding:8px 12px;font-size:12px;color:#666;line-height:1.6;background:#f7f9f9;border-left:3px solid var(--t);border-radius:0 3px 3px 0}
+.fg-meal-note strong{color:#2a6b6e;font-weight:600}

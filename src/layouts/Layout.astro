@@ -1,0 +1,290 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromPath, withBase, htmlLangFor, LANGS, useT } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  breadcrumbs?: { name: string; path: string }[];
+  schemas?: Record<string, unknown>[];
+  noHeader?: boolean;
+  noFooter?: boolean;
+}
+
+const pageLang = getLangFromPath(Astro.url.pathname);
+const htmlLang = htmlLangFor(pageLang);
+const t = useT(pageLang);
+
+const siteUrl = 'https://villaokinawa.com';
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
+const {
+  title,
+  description = t('page.desc.home'),
+  ogImage = '/images/hero-scenery.jpg',
+  canonical,
+  breadcrumbs,
+  schemas,
+  noHeader = false,
+  noFooter = false,
+} = Astro.props;
+
+const siteName = 'VILLA VIEW';
+const finalTitle = title ?? t('page.title.home');
+const siteTitle = finalTitle.includes(siteName) ? finalTitle : `${finalTitle} | ${siteName}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(withBase(ogImage), siteUrl).href;
+
+const ogLocaleMap: Record<string, string> = {
+  ja: 'ja_JP', zh: 'zh_CN', 'zh-Hant': 'zh_TW', en: 'en_US',
+  ko: 'ko_KR', th: 'th_TH', hi: 'hi_IN', fr: 'fr_FR', de: 'de_DE', es: 'es_ES',
+};
+const allOgLocales = Object.values(ogLocaleMap);
+const ogLocaleAlts = allOgLocales.filter(l => l !== ogLocaleMap[pageLang]);
+
+// hreflang for multilingual SEO
+const stripBase = (p: string) => (base && p.startsWith(base)) ? (p.slice(base.length) || '/') : p;
+const pathWithoutLocale = stripBase(Astro.url.pathname).replace(/^\/(zh-Hant|zh|en|ko|th|hi|fr|de|es)(\/|$)/, '/');
+
+const baseHref = (loc: string) => {
+  const localized = loc === 'ja'
+    ? pathWithoutLocale
+    : `/${loc}${pathWithoutLocale === '/' ? '/' : pathWithoutLocale}`;
+  return new URL(base + localized, siteUrl).href;
+};
+
+const hreflangs = [
+  ...LANGS.map(l => ({ code: l.htmlLang, href: baseHref(l.code) })),
+  { code: 'zh-CN', href: baseHref('zh') },
+  { code: 'x-default', href: baseHref('ja') },
+];
+
+// LodgingBusiness schema (ported from villa-view/app/layout.jsx)
+const lodgingSchema = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://villaokinawa.com/#lodging",
+  name: "VILLA VIEW",
+  alternateName: ["沖縄 海が見える貸切ヴィラ VILLA VIEW", "Okinawa Ocean View Villa"],
+  description: "全室から太平洋を一望。沖縄南城の高台に佇むプライベートヴィラ。最大10名一棟貸切。",
+  url: "https://villaokinawa.com",
+  telephone: "+81-98-894-2474",
+  email: "info.serena.breeze@gmail.com",
+  priceRange: "¥¥¥",
+  currenciesAccepted: "JPY",
+  paymentAccepted: ["Credit Card", "Cash"],
+  image: [
+    "https://villaokinawa.com/images/hero-scenery.jpg",
+    "https://villaokinawa.com/images/hero-night.jpg",
+    "https://villaokinawa.com/images/guestroom/bedroom-oceanview.jpg",
+    "https://villaokinawa.com/images/yogastudio/living-room-oceanview.jpg",
+    "https://villaokinawa.com/images/bbq/IMG_7211.jpg",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "1663-9 Tsukishiro",
+    addressLocality: "Nanjo",
+    addressRegion: "Okinawa",
+    postalCode: "901-1407",
+    addressCountry: "JP",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 26.162946,
+    longitude: 127.7936485,
+  },
+  hasMap: "https://www.google.com/maps/search/?api=1&query=26.162946,127.7936485",
+  checkinTime: "15:00",
+  checkoutTime: "11:00",
+  numberOfRooms: 4,
+  petsAllowed: false,
+  smokingAllowed: false,
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Ocean View", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Free WiFi", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
+    { "@type": "LocationFeatureSpecification", name: "BBQ Terrace", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Yoga Studio", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Coffee Lounge", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Therapy Room", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Mini Bar", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Kitchen", value: true },
+  ],
+  potentialAction: {
+    "@type": "ReserveAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://villaokinawa.com/booking",
+      inLanguage: ["ja", "en", "zh", "ko"],
+      actionPlatform: ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"],
+    },
+    result: { "@type": "LodgingReservation", name: "Reserve VILLA VIEW" },
+  },
+  containsPlace: [
+    {
+      "@type": "Accommodation",
+      name: "VillaVIEW Suite",
+      occupancy: { "@type": "QuantitativeValue", maxValue: 10 },
+      bed: [
+        { "@type": "BedDetails", typeOfBed: "Double", numberOfBeds: 1 },
+        { "@type": "BedDetails", typeOfBed: "Single", numberOfBeds: 4 },
+        { "@type": "BedDetails", typeOfBed: "Sofa Bed", numberOfBeds: 1 },
+      ],
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Ocean View", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Private Bathroom", value: true },
+      ],
+    },
+  ],
+  makesOffer: {
+    "@type": "Offer",
+    name: "公式予約特典 ─ 会員限定 10% OFF",
+    priceCurrency: "JPY",
+    price: "48000",
+    priceValidUntil: "2027-12-31",
+    availability: "https://schema.org/InStock",
+    url: "https://villaokinawa.com/booking",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    bestRating: "5",
+    worstRating: "1",
+    reviewCount: "20",
+    ratingCount: "20",
+  },
+};
+
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((b: { name: string; path: string }, i: number) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: b.name,
+    item: new URL(withBase(b.path), siteUrl).href,
+  })),
+} : {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://villaokinawa.com" },
+    { "@type": "ListItem", position: 2, name: "Reservation", item: "https://villaokinawa.com/booking" },
+  ],
+};
+
+const allSchemas = [lodgingSchema, breadcrumbSchema, ...(schemas ?? [])].filter(Boolean);
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="author" content="VILLA VIEW" />
+    <meta name="geo.region" content="JP-47" />
+    <meta name="geo.placename" content="Nanjo, Okinawa" />
+    <meta name="geo.position" content="26.162946;127.7936485" />
+    <meta name="keywords" content="沖縄 貸切ヴィラ, 沖縄 海が見える, オーシャンビュー, 南城市 一棟貸し, Okinawa ocean view villa, Okinawa private villa, 冲绳海景别墅, VILLA VIEW" />
+
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href={withBase('/favicon.ico')} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+
+    <!-- Preload hero -->
+    <link rel="preload" as="image" href={withBase('/images/hero-scenery.jpg')} fetchpriority="high" />
+    <link rel="dns-prefetch" href="https://beds24.com" />
+    <link rel="dns-prefetch" href="https://api.beds24.com" />
+    <link rel="dns-prefetch" href="https://smartinn-api-proxy.leoroy225.workers.dev" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+
+    <!-- hreflang for multilingual SEO -->
+    {hreflangs.map(h => (
+      <link rel="alternate" hreflang={h.code} href={h.href} />
+    ))}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta property="og:image:alt" content="VILLA VIEW Okinawa - Ocean View Villa" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={ogLocaleMap[pageLang]} />
+    {ogLocaleAlts.map(alt => (
+      <meta property="og:locale:alternate" content={alt} />
+    ))}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="VILLA VIEW Okinawa" />
+
+    <!-- Schema.org JSON-LD -->
+    {allSchemas.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <!-- Browser-language auto-redirect on first visit (homepage only) -->
+    <script is:inline define:vars={{ base }}>
+      (function () {
+        try {
+          var path = location.pathname;
+          var home = base + '/';
+          if (path !== home && path !== base && path !== home + 'index.html') return;
+          var SUPPORTED = ['ja','en','zh','zh-Hant','ko','th','hi','fr','de','es'];
+          var stored = null;
+          try { stored = localStorage.getItem('vv-lang'); } catch (e) {}
+          if (stored && SUPPORTED.indexOf(stored) !== -1) {
+            if (stored !== 'ja') location.replace(home + stored + '/');
+            return;
+          }
+          var nav = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
+          if (/^zh-(tw|hk|mo|hant)/.test(nav) || nav.indexOf('zh-hant') === 0) {
+            location.replace(home + 'zh-Hant/');
+          } else if (nav.indexOf('zh') === 0) {
+            location.replace(home + 'zh/');
+          } else if (nav.indexOf('ko') === 0) {
+            location.replace(home + 'ko/');
+          } else if (nav.indexOf('th') === 0) {
+            location.replace(home + 'th/');
+          } else if (nav.indexOf('hi') === 0) {
+            location.replace(home + 'hi/');
+          } else if (nav.indexOf('fr') === 0) {
+            location.replace(home + 'fr/');
+          } else if (nav.indexOf('de') === 0) {
+            location.replace(home + 'de/');
+          } else if (nav.indexOf('es') === 0) {
+            location.replace(home + 'es/');
+          } else if (nav.indexOf('en') === 0) {
+            location.replace(home + 'en/');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    {!noHeader && <Header />}
+    <main>
+      <slot />
+    </main>
+    {!noFooter && <Footer />}
+  </body>
+</html>

@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PolicyContent from '../../components/PolicyContent.astro';
+import { getLangFromPath, useT } from '../../i18n/utils';
+import { tokushoho, pickPolicy } from '../../lib/policy-content';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+const body = pickPolicy(tokushoho, lang);
+---
+<Layout title={t('page.title.tokushoho')}>
+  <PolicyContent title={t('policy.tokushoho.title')} body={body} />
+</Layout>

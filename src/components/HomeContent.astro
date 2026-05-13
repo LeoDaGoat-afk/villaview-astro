@@ -1,0 +1,670 @@
+---
+import { getLangFromPath, useT, localizedPath, withBase } from '../i18n/utils';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+
+// Pick row by lang: 0=en, 1=ja, 2=zh, otherwise fall back to en
+const pickIdx = (() => {
+  if (lang === 'ja') return 1;
+  if (lang === 'zh' || lang === 'zh-Hant') return 2;
+  return 0;
+})();
+const p = (s: string) => s.split('|')[pickIdx] ?? s.split('|')[0];
+
+const heroSlides = [
+  '/images/hero-scenery.jpg',
+  '/images/hero-night.jpg',
+  '/images/view2.jpg',
+  '/images/night-view.jpg',
+];
+
+const facilities = [
+  { img: '/images/guestroom/bedroom-oceanview.jpg', titleKey: 'facility.room.title',    descKey: 'facility.room.desc' },
+  { img: '/images/coffee/coffeearea2.jpg',           titleKey: 'facility.coffee.title',  descKey: 'facility.coffee.desc' },
+  { img: '/images/yogastudio/IMG_4715.jpg',          titleKey: 'facility.yoga.title',    descKey: 'facility.yoga.desc' },
+  { img: '/images/bbq/IMG_7211.jpg',                 titleKey: 'facility.bbq.title',     descKey: 'facility.bbq.desc' },
+  { img: '/images/therapy/IMG_5915.jpg',             titleKey: 'facility.therapy.title', descKey: 'facility.therapy.desc' },
+  { img: '/images/minibar/ballparty.jpg',            titleKey: 'facility.minibar.title', descKey: 'facility.minibar.desc' },
+];
+
+const restaurants: [string, string, string, number][] = [
+  ['CAFE&BAR GarageLife|カフェ＆バー ガレージライフ|GarageLife', 'American · Burgers|アメリカン・バーガー|美式汉堡', '+81 80-3998-5885', 4.7],
+  ['Okinawa Soba Maruchi|沖縄そば まるち|冲绳荞麦 Maruchi', 'Okinawa Soba|沖縄そば|冲绳荞麦面', '+81 98-917-5850', 4.4],
+  ['Laurel|ローレル|Laurel 墨西哥', 'Mexican · Tacos|メキシカン・タコス|墨西哥菜·塔可', '+81 98-917-6084', 4.8],
+  ['Kakinohana Soba|柿の花そば|柿花荞麦面', 'Japanese · Soba|沖縄そば|日式荞麦面', '+81 70-8506-0238', 4.6],
+  ['modica|モディカ|modica 巧克力', 'Chocolate · Coffee|チョコレート・コーヒー|巧克力·咖啡', '+81 80-6494-7309', 4.6],
+  ['France Shokudo 1663|フランス食堂1663|法式食堂1663', 'French · Italian|フレンチ・イタリアン|法式·意式', '', 0],
+];
+
+const attractions: [string, string, number, string, string][] = [
+  ['Sefa Utaki|斎場御嶽|斋场御嶽', 'UNESCO Heritage|世界遺産|世界遗产', 4.3, '/images/attractions/sefa-utaki.jpg', 'Most sacred Ryukyu site.|琉球最高聖地。|琉球最神圣之地。'],
+  ['Nanjo Museum|南城美術館|南城美术馆', 'Contemporary Art|現代アート|当代艺术', 4.2, '/images/attractions/nanjo-museum.jpg', 'Hilltop art museum with ocean views.|丘の上の美術館。海景。|山丘上的美术馆，海景。'],
+  ['Gyokusendo Cave|玉泉洞|玉泉洞', 'Natural Wonder|自然の驚異|自然奇观', 4.4, '/images/attractions/gyokusendo.jpg', "One of Japan's largest limestone caves.|日本最大級鍾乳洞。|日本最大石灰岩洞。"],
+  ['Valley of Gangala|ガンガラーの谷|Gangala山谷', 'Guided Tour|ガイドツアー|自然导览', 4.4, '/images/attractions/gangala.jpg', 'Mystical valley with ancient caves.|神秘の谷。|远古洞穴森林。'],
+  ['Cape Chinen Park|知念岬公園|知念岬公园', 'Scenic Viewpoint|絶景スポット|绝美观景', 4.4, '/images/attractions/chinen-cape.jpg', 'Best sunrise spot in Okinawa.|沖縄屈指の日の出スポット。|冲绳最佳日出观景点。'],
+  ['Nirai Kanai Bridge|ニライカナイ橋|Nirai Kanai大桥', 'Scenic Drive|絶景ドライブ|绝美兜风', 4.4, '/images/attractions/niraikanai.jpg', 'S-curve bridge descending toward the ocean.|海に向かうS字カーブ。|通往大海的S形弯桥。'],
+];
+
+const beaches: [string, string, number, string][] = [
+  ['Kudaka Island|久高島|久高岛', 'Sacred Island|神の島|神之岛', 4.6, '/images/attractions/kudaka-ferry.jpg'],
+  ['Ojima Island|奥武島|奥武岛', 'Cat Island|猫の島|猫之岛', 4.4, '/images/attractions/ojima.jpg'],
+  ['Mibaru Beach|みーばるビーチ|美巴鲁海滩', 'Natural Beach|天然ビーチ|天然海滩', 4.2, '/images/attractions/mibaru.jpg'],
+  ['Hyakuna Beach|百名ビーチ|百名海滩', 'Secluded|穴場|私密海滩', 4.3, '/images/attractions/hyakuna-beach.jpg'],
+  ['Azama Sun Sun Beach|あざまサンサンビーチ|安座真阳光海滩', 'Family Beach|ファミリー|家庭海滩', 4.1, '/images/attractions/azama.jpg'],
+];
+
+const bookingHref = localizedPath('/booking/', lang);
+const guestHref = localizedPath('/guest-service/', lang);
+---
+
+<!-- HERO -->
+<section class="vv-hero">
+  <div class="vv-hero-slides">
+    {heroSlides.map((src, i) => (
+      <img
+        src={withBase(src)}
+        alt="VILLA VIEW Okinawa"
+        class:list={['vv-hero-img', i === 0 ? 'active' : '']}
+        data-idx={i}
+        loading={i === 0 ? 'eager' : 'lazy'}
+      />
+    ))}
+  </div>
+  <div class="vv-hero-overlay"></div>
+  <div class="vv-hero-content">
+    <p class="vv-hero-eyebrow">{t('hero.eyebrow')}</p>
+    <h1 class="vv-hero-title">{t('hero.title')}</h1>
+    <div class="vv-hero-divider"></div>
+    <p class="vv-hero-lead">{t('hero.lead')}</p>
+    <a href={bookingHref} class="vv-hero-cta">{t('hero.cta')}</a>
+    <p class="vv-hero-rating">{t('hero.rating')}</p>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section class="vv-section vv-section-cream">
+  <div class="vv-container vv-text-center">
+    <p class="eyebrow">{t('concept.eyebrow')}</p>
+    <h2 class="section-h2">{t('concept.title')}</h2>
+    <div class="vv-divider-gold-center"></div>
+    <p class="section-lead vv-mx-auto">{t('concept.body')}</p>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="vv-section">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('facilities.eyebrow')}</p>
+      <h2 class="section-h2">{t('facilities.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+      <p class="section-lead vv-mx-auto">{t('facilities.lead')}</p>
+    </div>
+    <div class="vv-grid-3">
+      {facilities.map(f => (
+        <article class="vv-fac-card">
+          <div class="vv-fac-img-wrap">
+            <img src={withBase(f.img)} alt={t(f.titleKey)} loading="lazy" />
+          </div>
+          <div class="vv-fac-body">
+            <h3>{t(f.titleKey)}</h3>
+            <p>{t(f.descKey)}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="vv-section vv-section-cream">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('deals.eyebrow')}</p>
+      <h2 class="section-h2">{t('deals.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+      <p class="section-lead vv-mx-auto">{t('deals.lead')}</p>
+    </div>
+    <div class="vv-grid-2">
+      <article class="vv-deal-card">
+        <img src={withBase('/images/lawson.jpg')} alt="LAWSON" loading="lazy" />
+        <div class="vv-deal-body">
+          <h3>{t('deals.lawson.title')}</h3>
+          <p>{t('deals.lawson.body')}</p>
+        </div>
+      </article>
+      <article class="vv-deal-card vv-deal-card-primary">
+        <div class="vv-deal-body">
+          <h3>{t('deals.direct.title')}</h3>
+          <p>{t('deals.direct.body')}</p>
+          <a class="btn-outline-light" href={bookingHref}>{t('deals.cta')}</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DINING -->
+<section class="vv-section">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('dining.eyebrow')}</p>
+      <h2 class="section-h2">{t('dining.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+      <p class="section-lead vv-mx-auto">{t('dining.lead')}</p>
+    </div>
+    <div class="vv-dining-grid">
+      {restaurants.map(([name, cuisine, phone, rating]) => (
+        <div class="vv-dining-card">
+          <h4>{p(name)}</h4>
+          <p class="vv-dining-cuisine">{p(cuisine)}</p>
+          {rating > 0 && (
+            <p class="vv-dining-rating">★ {rating}</p>
+          )}
+          {phone && (
+            <a class="vv-dining-phone" href={`tel:${phone.replace(/[^0-9+]/g,'')}`}>{phone}</a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<section class="vv-section vv-section-cream">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('exp.eyebrow')}</p>
+      <h2 class="section-h2">{t('exp.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+      <p class="section-lead vv-mx-auto">{t('exp.lead')}</p>
+    </div>
+
+    <h3 class="vv-sub-eyebrow">{t('exp.attractions')}</h3>
+    <div class="vv-grid-3">
+      {attractions.map(([name, tag, rating, img, desc]) => (
+        <article class="vv-att-card">
+          <img src={withBase(img)} alt={p(name)} loading="lazy" />
+          <div class="vv-att-body">
+            <p class="vv-att-tag">{p(tag)}</p>
+            <h4>{p(name)}</h4>
+            <p class="vv-att-rating">★ {rating}</p>
+            <p class="vv-att-desc">{p(desc)}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h3 class="vv-sub-eyebrow" style="margin-top: 60px;">{t('exp.beaches')}</h3>
+    <div class="vv-grid-3">
+      {beaches.map(([name, tag, rating, img]) => (
+        <article class="vv-att-card">
+          <img src={withBase(img)} alt={p(name)} loading="lazy" />
+          <div class="vv-att-body">
+            <p class="vv-att-tag">{p(tag)}</p>
+            <h4>{p(name)}</h4>
+            <p class="vv-att-rating">★ {rating}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CHECK-IN -->
+<section class="vv-section vv-section-dark">
+  <div class="vv-container vv-text-center">
+    <p class="eyebrow eyebrow-light">{t('checkin.title')}</p>
+    <h2 class="section-h2 section-h2-light">{t('checkin.title')}</h2>
+    <div class="vv-divider-gold-center"></div>
+    <div class="vv-checkin-grid">
+      <div class="vv-checkin-cell">
+        <p class="vv-checkin-num">15<span>:00</span></p>
+        <p class="vv-checkin-label">{t('checkin.in').split(':')[0]}</p>
+      </div>
+      <div class="vv-checkin-cell">
+        <p class="vv-checkin-num">11<span>:00</span></p>
+        <p class="vv-checkin-label">{t('checkin.out').split(':')[0]}</p>
+      </div>
+      <div class="vv-checkin-cell">
+        <p class="vv-checkin-num">10</p>
+        <p class="vv-checkin-label">{t('checkin.max').split(':')[0]}</p>
+      </div>
+    </div>
+    <a href={guestHref} class="btn-outline-light vv-checkin-cta">{t('checkin.online')}</a>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="vv-section">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('access.eyebrow')}</p>
+      <h2 class="section-h2">{t('access.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+    </div>
+    <div class="vv-access-grid">
+      <div class="vv-access-info">
+        <p class="vv-access-addr">{t('access.address')}</p>
+        <ul>
+          <li>{t('access.detail1')}</li>
+          <li>{t('access.detail2')}</li>
+          <li>{t('access.detail3')}</li>
+        </ul>
+        <p><a class="vv-access-tel" href="tel:+81988942474">{t('access.tel')}</a></p>
+        <a href="https://www.google.com/maps/search/?api=1&query=26.162946,127.7936485" target="_blank" rel="noopener noreferrer" class="btn-outline">{t('access.map')}</a>
+      </div>
+      <div class="vv-access-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3581.5!2d127.7936485!3d26.162946!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA5JzQ2LjYiTiAxMjfCsDQ3JzM3LjEiRQ!5e0!3m2!1sja!2sjp"
+          title="VILLA VIEW Map"
+          width="100%"
+          height="380"
+          style="border: 0; border-radius: 12px;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vv-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .vv-section {
+    padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+  }
+  .vv-section-cream { background: var(--color-cream-dark); }
+  .vv-section-dark {
+    background: var(--color-primary-darker);
+    color: #fff;
+  }
+  .vv-text-center { text-align: center; }
+  .vv-mx-auto { margin-left: auto; margin-right: auto; }
+  .vv-section-head { margin-bottom: clamp(40px, 6vw, 70px); }
+
+  .vv-divider-gold-center {
+    width: 48px;
+    height: 1px;
+    background: var(--color-accent);
+    margin: 18px auto;
+  }
+  .eyebrow-light {
+    color: rgba(255,255,255,0.8);
+  }
+  .section-h2-light {
+    color: #fff;
+  }
+  .vv-sub-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    text-align: center;
+    margin: 32px 0 24px;
+  }
+
+  /* HERO */
+  .vv-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    color: #fff;
+  }
+  .vv-hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+  .vv-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .vv-hero-img.active { opacity: 1; }
+  .vv-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10, 30, 40, 0.35), rgba(10, 30, 40, 0.55));
+  }
+  .vv-hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .vv-hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 28px;
+    animation: fade-up 1s ease 0.3s both;
+  }
+  .vv-hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 3px;
+    margin: 0 0 18px;
+    max-width: 900px;
+    white-space: pre-line;
+    animation: fade-up 1s ease 0.5s both;
+  }
+  .vv-hero-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 18px auto;
+    animation: fade-up 1s ease 0.7s both;
+  }
+  .vv-hero-lead {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.9;
+    max-width: 560px;
+    line-height: 1.8;
+    margin: 0 0 36px;
+    animation: fade-up 1s ease 0.9s both;
+  }
+  .vv-hero-cta {
+    display: inline-block;
+    padding: 14px 40px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    animation: fade-up 1s ease 1.1s both;
+  }
+  .vv-hero-cta:hover { background: #fff; color: var(--color-primary-dark); }
+  .vv-hero-rating {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-top: 28px;
+    animation: fade-up 1s ease 1.3s both;
+  }
+
+  /* Grids */
+  .vv-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .vv-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  /* Facility card */
+  .vv-fac-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-cream-darker);
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+  .vv-fac-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
+  .vv-fac-img-wrap {
+    height: 220px;
+    overflow: hidden;
+  }
+  .vv-fac-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .vv-fac-card:hover .vv-fac-img-wrap img { transform: scale(1.05); }
+  .vv-fac-body { padding: 22px 24px; }
+  .vv-fac-body h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    color: var(--color-ink);
+  }
+  .vv-fac-body p {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Deal card */
+  .vv-deal-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-cream-darker);
+    display: flex;
+    flex-direction: column;
+  }
+  .vv-deal-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+  .vv-deal-body { padding: 28px 30px; }
+  .vv-deal-body h3 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .vv-deal-body p {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin: 0 0 18px;
+  }
+  .vv-deal-card-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #fff;
+    justify-content: center;
+  }
+  .vv-deal-card-primary .vv-deal-body h3 { color: #fff; }
+  .vv-deal-card-primary .vv-deal-body p { color: rgba(255,255,255,0.85); }
+
+  /* Dining */
+  .vv-dining-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .vv-dining-card {
+    padding: 22px 24px;
+    background: var(--color-cream);
+    border: 1px solid var(--color-cream-darker);
+    border-radius: 10px;
+  }
+  .vv-dining-card h4 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 6px;
+  }
+  .vv-dining-cuisine {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-muted);
+    margin: 0 0 8px;
+  }
+  .vv-dining-rating {
+    font-family: var(--font-sans);
+    color: var(--color-accent);
+    font-size: 12px;
+    margin: 0 0 6px;
+  }
+  .vv-dining-phone {
+    font-family: var(--font-sans);
+    color: var(--color-primary);
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  /* Attractions */
+  .vv-att-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-cream-darker);
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+  .vv-att-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+  }
+  .vv-att-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .vv-att-body { padding: 18px 22px; }
+  .vv-att-tag {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 6px;
+  }
+  .vv-att-body h4 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 6px;
+  }
+  .vv-att-rating {
+    font-family: var(--font-sans);
+    color: var(--color-accent);
+    font-size: 12px;
+    margin: 0 0 8px;
+  }
+  .vv-att-desc {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Check-in */
+  .vv-checkin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 720px;
+    margin: 40px auto 28px;
+  }
+  .vv-checkin-cell { padding: 14px; }
+  .vv-checkin-num {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+  .vv-checkin-num span {
+    font-size: 0.5em;
+    opacity: 0.6;
+  }
+  .vv-checkin-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin: 0;
+  }
+  .vv-checkin-cta { margin-top: 8px; }
+
+  /* Access */
+  .vv-access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 36px;
+    align-items: start;
+  }
+  .vv-access-info p {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    line-height: 1.9;
+    margin: 0 0 10px;
+  }
+  .vv-access-addr {
+    font-size: 14px;
+    line-height: 1.9;
+    white-space: pre-line;
+  }
+  .vv-access-info ul {
+    padding: 0;
+    margin: 14px 0 22px;
+    list-style: none;
+  }
+  .vv-access-info ul li {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    padding: 4px 0;
+    letter-spacing: 1px;
+  }
+  .vv-access-tel {
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  @media (max-width: 768px) {
+    .vv-access-grid {
+      grid-template-columns: 1fr;
+    }
+    .vv-checkin-grid { gap: 16px; }
+  }
+</style>
+
+<script>
+  // Hero slider rotation
+  const slides = document.querySelectorAll<HTMLImageElement>('.vv-hero-img');
+  if (slides.length > 1) {
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 5000);
+  }
+</script>
