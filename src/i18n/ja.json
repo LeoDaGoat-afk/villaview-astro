@@ -3,9 +3,13 @@
   "site.tagline": "沖縄 海が見える貸切ヴィラ",
 
   "nav.home": "トップ",
+  "nav.facilities": "施設",
+  "nav.attractions": "周辺",
+  "nav.checkin": "チェックイン",
+  "nav.access": "アクセス",
   "nav.booking": "ご予約",
-  "nav.contact": "お問い合わせ",
   "nav.faq": "よくあるご質問",
+  "nav.contact": "お問い合わせ",
 
   "lang.label": "言語",
 

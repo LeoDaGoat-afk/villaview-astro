@@ -3,9 +3,13 @@
   "site.tagline": "Private Ocean View Villa Okinawa",
 
   "nav.home": "Home",
+  "nav.facilities": "Facilities",
+  "nav.attractions": "Nearby",
+  "nav.checkin": "Check-in",
+  "nav.access": "Access",
   "nav.booking": "Reserve",
-  "nav.contact": "Contact",
   "nav.faq": "FAQ",
+  "nav.contact": "Contact",
 
   "lang.label": "Language",
 

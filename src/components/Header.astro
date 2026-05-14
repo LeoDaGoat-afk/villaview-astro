@@ -8,6 +8,10 @@ const t = useT(lang);
 const homeHref = localizedPath('/', lang);
 const navLinks = [
   { href: homeHref, label: t('nav.home') },
+  { href: `${homeHref}#facilities`, label: t('nav.facilities') },
+  { href: `${homeHref}#attractions`, label: t('nav.attractions') },
+  { href: `${homeHref}#checkin`, label: t('nav.checkin') },
+  { href: `${homeHref}#access`, label: t('nav.access') },
   { href: localizedPath('/booking/', lang), label: t('nav.booking') },
   { href: localizedPath('/faq/', lang), label: t('nav.faq') },
   { href: localizedPath('/contact/', lang), label: t('nav.contact') },
@@ -112,21 +116,27 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   }
   .vv-nav-desktop {
     display: flex;
-    gap: 28px;
+    gap: 18px;
     align-items: center;
     margin-left: auto;
+    margin-right: 16px;
   }
   .vv-nav-link {
     color: #fff;
     text-decoration: none;
     font-family: var(--font-sans);
     font-size: 11px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 300;
     padding: 6px 0;
     position: relative;
     transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  @media (max-width: 1200px) {
+    .vv-nav-desktop { gap: 14px; }
+    .vv-nav-link { font-size: 10.5px; letter-spacing: 1.5px; }
   }
   .vv-nav-link::after {
     content: '';

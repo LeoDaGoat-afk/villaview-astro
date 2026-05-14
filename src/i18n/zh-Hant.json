@@ -3,9 +3,13 @@
   "site.tagline": "沖繩海景度假別墅",
 
   "nav.home": "首頁",
+  "nav.facilities": "設施",
+  "nav.attractions": "周邊",
+  "nav.checkin": "入住",
+  "nav.access": "交通",
   "nav.booking": "預訂",
-  "nav.contact": "聯絡",
   "nav.faq": "常見問題",
+  "nav.contact": "聯絡",
 
   "lang.label": "語言",
 

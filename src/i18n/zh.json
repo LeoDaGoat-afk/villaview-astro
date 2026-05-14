@@ -3,9 +3,13 @@
   "site.tagline": "冲绳海景度假别墅",
 
   "nav.home": "首页",
+  "nav.facilities": "设施",
+  "nav.attractions": "周边",
+  "nav.checkin": "入住",
+  "nav.access": "交通",
   "nav.booking": "预订",
-  "nav.contact": "联系",
   "nav.faq": "常见问题",
+  "nav.contact": "联系",
 
   "lang.label": "语言",
 
