@@ -1,0 +1,16 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import FaqContent from '../../../components/FaqContent.astro';
+import { getLangFromPath, useT } from '../../../i18n/utils';
+import { faqSchema } from '../../../lib/faq-data';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+const breadcrumbs = [
+  { name: t('nav.home'), path: '/' },
+  { name: t('nav.faq'), path: '/faq/' },
+];
+---
+<Layout title={t('page.title.faq')} breadcrumbs={breadcrumbs} schemas={[faqSchema(lang)]}>
+  <FaqContent />
+</Layout>

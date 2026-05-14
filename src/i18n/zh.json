@@ -5,6 +5,7 @@
   "nav.home": "首页",
   "nav.booking": "预订",
   "nav.contact": "联系",
+  "nav.faq": "常见问题",
 
   "lang.label": "语言",
 
@@ -24,6 +25,7 @@
   "page.title.privacy": "隐私政策 | VILLA VIEW",
   "page.title.terms": "服务条款及取消政策 | VILLA VIEW",
   "page.title.contact": "联系我们 | VILLA VIEW",
+  "page.title.faq": "常见问题 | VILLA VIEW",
   "page.title.tokushoho": "特定商业交易法标示 | VILLA VIEW",
   "page.title.success": "感谢您的预订 | VILLA VIEW",
   "page.title.guest": "在线办理入住 | VILLA VIEW",

@@ -5,6 +5,7 @@
   "nav.home": "Home",
   "nav.booking": "Reserve",
   "nav.contact": "Contact",
+  "nav.faq": "FAQ",
 
   "lang.label": "Language",
 
@@ -24,6 +25,7 @@
   "page.title.privacy": "Privacy Policy | VILLA VIEW",
   "page.title.terms": "Terms & Cancellation Policy | VILLA VIEW",
   "page.title.contact": "Contact | VILLA VIEW",
+  "page.title.faq": "FAQ | VILLA VIEW",
   "page.title.tokushoho": "Commercial Transactions Act Disclosure | VILLA VIEW",
   "page.title.success": "Thank You for Your Reservation | VILLA VIEW",
   "page.title.guest": "Online Check-In | VILLA VIEW",
