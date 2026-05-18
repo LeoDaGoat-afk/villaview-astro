@@ -36,12 +36,13 @@ const dict = T[lang] ?? T.ja;
   <div class="bw-grp">
     <div class="bw-cal-header">
       <button type="button" id="bw-prev" class="bw-cal-nav" aria-label="Prev month">◀</button>
-      <div class="bw-cal-legend">
-        <span><span class="bw-cal-dot bw-cal-avail"></span>{dict.legendAvailable}</span>
-        <span><span class="bw-cal-dot bw-cal-booked"></span>{dict.legendBooked}</span>
-        <span><span class="bw-cal-dot bw-cal-selected"></span>{dict.legendSelected}</span>
-      </div>
+      <div id="bw-cal-range" class="bw-cal-range">—</div>
       <button type="button" id="bw-next" class="bw-cal-nav" aria-label="Next month">▶</button>
+    </div>
+    <div class="bw-cal-legend">
+      <span><span class="bw-cal-dot bw-cal-avail"></span>{dict.legendAvailable}</span>
+      <span><span class="bw-cal-dot bw-cal-booked"></span>{dict.legendBooked}</span>
+      <span><span class="bw-cal-dot bw-cal-selected"></span>{dict.legendSelected}</span>
     </div>
     <div id="bw-calendar" class="bw-cal-months">Loading…</div>
     <div id="bw-hint" class="bw-cal-hint">{dict.selectStartHint}</div>
@@ -236,7 +237,7 @@ const dict = T[lang] ?? T.ja;
       const start = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2,'0')}-01`;
       const end = new Date(m.getFullYear(), m.getMonth() + 2, 0).toISOString().slice(0,10);
       try {
-        const res = await fetch(`${PROXY_BASE}/beds24/proxy/inventory/rooms/calendar?roomId=${ROOM_ID}&startDate=${start}&endDate=${end}&includeNumAvail=true`);
+        const res = await fetch(`${PROXY_BASE}/beds24/proxy/inventory/rooms/calendar?roomId=${ROOM_ID}&startDate=${start}&endDate=${end}&includeNumAvail=true&includePrices=true`);
         const data = await res.json();
         const cal = (data && data.data && data.data[0] && data.data[0].calendar) || [];
         const map = new Map();
@@ -245,7 +246,7 @@ const dict = T[lang] ?? T.ja;
           const tt = new Date(seg.to);
           for (let d = new Date(f); d <= tt; d.setDate(d.getDate() + 1)) {
             const key = d.toISOString().slice(0,10);
-            map.set(key, seg.numAvail);
+            map.set(key, { numAvail: seg.numAvail, price: seg.price1 });
           }
         }
         state.availability = map;
@@ -253,14 +254,29 @@ const dict = T[lang] ?? T.ja;
       renderCalendar();
     }
 
+    function fmtPriceShort(n) {
+      if (n == null) return '';
+      if (n >= 10000) return '¥' + Math.round(n / 1000) + 'k';
+      return '¥' + Math.round(n / 100) / 10 + 'k';
+    }
+
     function renderCalendar() {
       const today = todayISO();
       const m1 = state.displayMonth;
-      const m2 = new Date(m1.getFullYear(), m1.getMonth() + 1, 1);
+      const isMobile = window.innerWidth <= 700;
+      const months = isMobile ? [m1] : [m1, new Date(m1.getFullYear(), m1.getMonth() + 1, 1)];
       const wds = weekdays();
 
+      // Header range label
+      const rangeEl = document.getElementById('bw-cal-range');
+      if (rangeEl) {
+        rangeEl.textContent = isMobile
+          ? monthLabel(m1)
+          : `${monthLabel(months[0])}  —  ${monthLabel(months[1])}`;
+      }
+
       let html = '';
-      for (const m of [m1, m2]) {
+      for (const m of months) {
         const grid = buildMonthGrid(m.getFullYear(), m.getMonth());
         html += `<div class="bw-cal-month">`;
         html += `<div class="bw-cal-month-title">${monthLabel(m)}</div>`;
@@ -269,8 +285,10 @@ const dict = T[lang] ?? T.ja;
         for (const cell of grid) {
           if (!cell) { html += '<div class="bw-cal-cell empty"></div>'; continue; }
           const isPast = cell.iso < today;
-          const avail = state.availability.get(cell.iso);
-          const isBooked = avail !== undefined && avail === 0;
+          const info = state.availability.get(cell.iso);
+          const numAvail = info ? info.numAvail : undefined;
+          const price = info ? info.price : null;
+          const isBooked = numAvail !== undefined && numAvail === 0;
           const isArrival = cell.iso === state.arrival;
           const isDeparture = cell.iso === state.departure;
           const inRange = state.arrival && state.departure && cell.iso > state.arrival && cell.iso < state.departure;
@@ -281,7 +299,8 @@ const dict = T[lang] ?? T.ja;
           else if (inRange) cls += ' inrange';
           else cls += ' avail';
           const disabled = isPast || isBooked ? 'disabled' : '';
-          html += `<button type="button" class="${cls}" data-iso="${cell.iso}" ${disabled}>${cell.day}</button>`;
+          const priceLabel = (!isPast && !isBooked && price) ? `<span class="bw-cal-price">${fmtPriceShort(price)}</span>` : '';
+          html += `<button type="button" class="${cls}" data-iso="${cell.iso}" ${disabled}><span class="bw-cal-day">${cell.day}</span>${priceLabel}</button>`;
         }
         html += `</div></div>`;
       }
@@ -469,6 +488,16 @@ const dict = T[lang] ?? T.ja;
       fetchAvailability();
     });
 
+    // Re-render on resize crossing the mobile breakpoint
+    let lastMobile = window.innerWidth <= 700;
+    window.addEventListener('resize', () => {
+      const nowMobile = window.innerWidth <= 700;
+      if (nowMobile !== lastMobile) {
+        lastMobile = nowMobile;
+        renderCalendar();
+      }
+    });
+
     // Init
     fetchAvailability();
     fetchPricing();
@@ -559,23 +588,37 @@ const dict = T[lang] ?? T.ja;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+  .bw-cal-range {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 1px;
   }
   .bw-cal-nav {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid var(--color-cream-darker);
     background: #fff;
     cursor: pointer;
     color: var(--color-primary);
+    font-size: 14px;
+    flex-shrink: 0;
   }
   .bw-cal-nav:hover { background: var(--color-primary); color: #fff; }
   .bw-cal-legend {
     display: flex;
-    gap: 14px;
+    justify-content: center;
+    gap: 18px;
     font-size: 12px;
     color: var(--color-muted);
+    margin-bottom: 14px;
+    flex-wrap: wrap;
   }
   .bw-cal-dot {
     display: inline-block;
@@ -589,67 +632,96 @@ const dict = T[lang] ?? T.ja;
   .bw-cal-booked { background: #e8a8a0; border: 1px solid #c97770; }
   .bw-cal-selected { background: var(--color-primary); }
 
-  .bw-cal-months {
+  :global(.bw-cal-months) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
-  @media (max-width: 700px) { .bw-cal-months { grid-template-columns: 1fr; } }
-  .bw-cal-month-title {
+  @media (max-width: 700px) {
+    :global(.bw-cal-months) { grid-template-columns: 1fr; gap: 0; }
+  }
+  :global(.bw-cal-month-title) {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: var(--color-primary);
     letter-spacing: 1px;
   }
-  .bw-cal-weekdays {
+  @media (max-width: 700px) {
+    :global(.bw-cal-month-title) { display: none; }
+  }
+  :global(.bw-cal-weekdays) {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    margin-bottom: 4px;
+    gap: 4px;
+    margin-bottom: 6px;
   }
-  .bw-cal-wkd {
+  :global(.bw-cal-wkd) {
     text-align: center;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--color-muted-light);
-    padding: 4px 0;
+    padding: 6px 0;
     letter-spacing: 1px;
+    font-weight: 500;
   }
-  .bw-cal-grid {
+  :global(.bw-cal-grid) {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
+    gap: 4px;
   }
-  .bw-cal-cell {
+  :global(.bw-cal-cell) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     aspect-ratio: 1 / 1;
+    min-height: 44px;
+    padding: 2px;
     border: 1px solid transparent;
     background: none;
     font-family: inherit;
-    font-size: 13px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all .15s;
     color: var(--color-ink);
+    line-height: 1.1;
   }
-  .bw-cal-cell.empty { visibility: hidden; }
-  .bw-cal-cell.past { color: #c8c4bd; cursor: not-allowed; background: #f5f4f1; }
-  .bw-cal-cell.avail { background: #fff; border-color: #d4cfc4; }
-  .bw-cal-cell.avail:hover { background: #eaf0f3; border-color: var(--color-primary); }
-  .bw-cal-cell.booked {
+  :global(.bw-cal-day) {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  :global(.bw-cal-price) {
+    font-size: 9px;
+    color: var(--color-muted);
+    margin-top: 2px;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    :global(.bw-cal-cell) { min-height: 52px; border-radius: 6px; }
+    :global(.bw-cal-day) { font-size: 15px; }
+    :global(.bw-cal-price) { font-size: 10px; }
+  }
+  :global(.bw-cal-cell.empty) { visibility: hidden; }
+  :global(.bw-cal-cell.past) { color: #c8c4bd; cursor: not-allowed; background: #f5f4f1; }
+  :global(.bw-cal-cell.avail) { background: #fff; border-color: #d4cfc4; }
+  :global(.bw-cal-cell.avail:hover) { background: #eaf0f3; border-color: var(--color-primary); }
+  :global(.bw-cal-cell.booked) {
     color: #fff;
     background: #e8a8a0;
     cursor: not-allowed;
     border-color: #c97770;
-    text-decoration: line-through;
   }
-  .bw-cal-cell.selected {
+  :global(.bw-cal-cell.booked .bw-cal-day) { text-decoration: line-through; }
+  :global(.bw-cal-cell.selected) {
     background: var(--color-primary);
     color: #fff;
     border-color: var(--color-primary);
     font-weight: 600;
   }
-  .bw-cal-cell.inrange {
+  :global(.bw-cal-cell.selected .bw-cal-price) { color: rgba(255,255,255,.85); }
+  :global(.bw-cal-cell.inrange) {
     background: #d2e0e6;
     border-color: #d2e0e6;
   }
