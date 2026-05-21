@@ -1,7 +1,6 @@
 {
   "site.name": "VILLA VIEW",
   "site.tagline": "Private Ocean View Villa Okinawa",
-
   "nav.home": "Home",
   "nav.facilities": "Facilities",
   "nav.attractions": "Nearby",
@@ -10,9 +9,7 @@
   "nav.booking": "Reserve",
   "nav.faq": "FAQ",
   "nav.contact": "Contact",
-
   "lang.label": "Language",
-
   "footer.copyright": "© 2026 VILLA VIEW. All Rights Reserved.",
   "footer.privacy": "Privacy",
   "footer.terms": "Terms",
@@ -21,7 +18,6 @@
   "footer.address": "1663-9 Tsukishiro, Nanjo, Okinawa 901-1407, Japan",
   "footer.tel": "+81 98-894-2474",
   "footer.email": "info.serena.breeze@gmail.com",
-
   "page.title.home": "VILLA VIEW Okinawa - Private Ocean View Villa in Nanjo",
   "page.desc.home": "Panoramic Pacific views from every room. Private hilltop villa in Nanjo, Okinawa. Whole-house rental for up to 10 guests. Yoga studio & BBQ terrace. Save up to 25% with direct booking.",
   "page.title.booking": "Reservation | VILLA VIEW",
@@ -33,21 +29,17 @@
   "page.title.tokushoho": "Commercial Transactions Act Disclosure | VILLA VIEW",
   "page.title.success": "Thank You for Your Reservation | VILLA VIEW",
   "page.title.guest": "Online Check-In | VILLA VIEW",
-
   "hero.eyebrow": "OCEAN RETREAT IN OKINAWA",
   "hero.title": "Where the sky meets the sea, and time stands still.",
   "hero.lead": "A private villa perched above the Pacific. Uninterrupted ocean views. Absolute serenity.",
-  "hero.cta": "Check Availability",
+  "hero.cta": "Official Site Special Rate",
   "hero.rating": "5.0 ★ Perfect Score · 20 Reviews",
-
   "concept.eyebrow": "CONCEPT",
   "concept.title": "Minimal Luxury, Maximum Horizon",
   "concept.body": "Strip away the unnecessary. Let the ocean fill every sense. At VILLA VIEW, the architecture frames nature — panoramic Pacific views from every room, warm wood underfoot, salt air on the breeze.",
-
   "facilities.eyebrow": "FACILITIES",
   "facilities.title": "Explore Our Spaces",
   "facilities.lead": "Six unique spaces designed for relaxation, wellness, and inspiration.",
-
   "facility.room.title": "Ocean View Room",
   "facility.room.desc": "Panoramic Pacific views, warm hardwood floors, floor-to-ceiling windows, double bed.",
   "facility.coffee.title": "Coffee Area",
@@ -60,7 +52,6 @@
   "facility.therapy.desc": "Massage, aromatherapy, and holistic treatments using local Okinawan botanicals.",
   "facility.minibar.title": "Mini Bar",
   "facility.minibar.desc": "Handcrafted cocktails, premium Okinawan awamori, and tropical juices.",
-
   "deals.eyebrow": "EXCLUSIVE DEALS",
   "deals.title": "Book Direct, Save More",
   "deals.lead": "Exclusive perks only when you book through our official website.",
@@ -69,17 +60,14 @@
   "deals.direct.title": "Book Direct & Save",
   "deals.direct.body": "Book directly on our website and save up to 25% off!",
   "deals.cta": "Book Now",
-
   "dining.eyebrow": "NEARBY DINING",
   "dining.title": "Local Flavors Around the Villa",
   "dining.lead": "Explore the vibrant culinary scene minutes from VILLA VIEW.",
-
   "exp.eyebrow": "NEARBY",
   "exp.title": "Explore the Area",
   "exp.lead": "Sacred sites, art, island hopping, and pristine beaches — all within easy reach.",
   "exp.attractions": "Attractions & Culture",
   "exp.beaches": "Beaches & Islands",
-
   "access.eyebrow": "ACCESS",
   "access.title": "Getting Here",
   "access.address": "1663-9 Tsukishiro, Nanjo, Okinawa 901-1407, Japan",
@@ -88,19 +76,16 @@
   "access.detail2": "Free parking",
   "access.detail3": "Airport transfer on request",
   "access.map": "View on Google Maps",
-
   "checkin.title": "Check-in Details",
   "checkin.in": "Check-in: 15:00",
   "checkin.out": "Check-out: 11:00",
   "checkin.max": "Max guests: 10",
   "checkin.online": "Online Check-in",
-
   "booking.heading": "Reservation",
   "booking.lead": "Select your dates and number of guests to book easily",
   "booking.badge.bestPrice": "Best Price Guarantee",
   "booking.badge.noFees": "No Fees",
   "booking.badge.instant": "Instant Confirmation",
-
   "policy.heading": "Booking Policies",
   "policy.cancelLabel": "Cancellation: ",
   "policy.cancelText": "Free up to 7 days / 6–2 days 50% / 1 day 80% / Day-of 100%",
@@ -111,12 +96,10 @@
   "policy.termsLink": "Full Terms & Cancellation Policy",
   "policy.privacyLink": "Privacy Policy",
   "policy.contactLink": "Contact",
-
   "policy.privacy.title": "Privacy Policy",
   "policy.terms.title": "Terms & Cancellation Policy",
   "policy.contact.title": "Contact Us",
   "policy.tokushoho.title": "Commercial Transactions Act Disclosure",
-
   "success.title": "Thank You for Your Reservation",
   "success.sub": "Your booking has been successfully completed",
   "success.msg1": "A confirmation email has been sent to your registered email address.",
@@ -128,7 +111,6 @@
   "success.cta1": "Online Check-In",
   "success.cta2": "Back to Home",
   "success.contact": "Please feel free to contact us if you have any questions",
-
   "guest.title": "Online Check-In",
   "guest.sub": "Enter your Booking ID to check in",
   "guest.tab.checkin": "Check In",
@@ -143,7 +125,6 @@
   "guest.cta.out": "Check Out",
   "guest.thx": "Thank You!",
   "guest.notReady": "Online check-in coming soon. For booking confirmation or changes, contact info.serena.breeze@gmail.com.",
-
   "common.backHome": "Back to Home",
   "common.contactBlock.title": "Contact",
   "common.contactBlock.name": "VILLA VIEW",

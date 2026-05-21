@@ -1,7 +1,6 @@
 {
   "site.name": "VILLA VIEW",
   "site.tagline": "沖縄 海が見える貸切ヴィラ",
-
   "nav.home": "トップ",
   "nav.facilities": "施設",
   "nav.attractions": "周辺",
@@ -10,9 +9,7 @@
   "nav.booking": "ご予約",
   "nav.faq": "よくあるご質問",
   "nav.contact": "お問い合わせ",
-
   "lang.label": "言語",
-
   "footer.copyright": "© 2026 VILLA VIEW. All Rights Reserved.",
   "footer.privacy": "プライバシーポリシー",
   "footer.terms": "利用規約",
@@ -21,7 +18,6 @@
   "footer.address": "〒901-1407 沖縄県南城市つきしろ1663-9",
   "footer.tel": "+81 98-894-2474",
   "footer.email": "info.serena.breeze@gmail.com",
-
   "page.title.home": "沖縄 海が見える貸切ヴィラ VILLA VIEW｜全室オーシャンビュー・南城市",
   "page.desc.home": "全室から太平洋を一望。沖縄南城の高台に佇むプライベートヴィラ。最大10名一棟貸切。ヨガスタジオ・BBQテラス完備。公式予約で最大25%OFF。",
   "page.title.booking": "ご予約 | VILLA VIEW",
@@ -33,21 +29,17 @@
   "page.title.tokushoho": "特定商取引法に基づく表記 | VILLA VIEW",
   "page.title.success": "ご予約ありがとうございます | VILLA VIEW",
   "page.title.guest": "オンラインチェックイン | VILLA VIEW",
-
   "hero.eyebrow": "OCEAN RETREAT IN OKINAWA",
   "hero.title": "空と海が出会う場所で、時が止まる。",
   "hero.lead": "太平洋を見渡すプライベートヴィラ。遮るもののない絶景と、究極の静寂。",
-  "hero.cta": "空室を確認",
+  "hero.cta": "公式サイト特価予約",
   "hero.rating": "5.0 ★ 満点評価 · 20件のレビュー",
-
   "concept.eyebrow": "コンセプト",
   "concept.title": "ミニマルラグジュアリー、最大の地平線",
   "concept.body": "余計なものを削ぎ落とし、海に五感を委ねる。VILLA VIEWでは建築が自然を額縁のように切り取ります。すべての部屋から太平洋のパノラマ、足元には温もりのある木、潮風が頬を撫でる。",
-
   "facilities.eyebrow": "施設案内",
   "facilities.title": "くつろぎの空間を巡る",
   "facilities.lead": "リラクゼーション、ウェルネス、インスピレーションのための6つのユニークな空間。",
-
   "facility.room.title": "オーシャンビュー客室",
   "facility.room.desc": "太平洋を望むパノラマビュー。温かみのある床、天井まで届く窓、ダブルベッド完備。",
   "facility.coffee.title": "コーヒーエリア",
@@ -60,7 +52,6 @@
   "facility.therapy.desc": "マッサージ、アロマ、沖縄のボタニカルを使ったホリスティックトリートメント。",
   "facility.minibar.title": "ミニバー",
   "facility.minibar.desc": "手作りカクテル、プレミアム泡盛、トロピカルジュースで夕暮れを。",
-
   "deals.eyebrow": "公式特典",
   "deals.title": "公式予約でお得に",
   "deals.lead": "公式サイト限定の特典をご用意しています。",
@@ -69,17 +60,14 @@
   "deals.direct.title": "直接予約がお得",
   "deals.direct.body": "公式サイトから直接ご予約で最大25%OFF！",
   "deals.cta": "今すぐ予約",
-
   "dining.eyebrow": "周辺グルメ",
   "dining.title": "ヴィラ周辺のローカルグルメ",
   "dining.lead": "VILLA VIEWから数分で沖縄の食文化を堪能。",
-
   "exp.eyebrow": "周辺おすすめ",
   "exp.title": "ヴィラの先へ",
   "exp.lead": "聖地、アート、離島巡り、美しいビーチ。すべてがすぐそこに。",
   "exp.attractions": "観光・文化",
   "exp.beaches": "ビーチ・離島",
-
   "access.eyebrow": "アクセス",
   "access.title": "アクセス方法",
   "access.address": "〒901-1407 沖縄県南城市つきしろ1663-9",
@@ -88,19 +76,16 @@
   "access.detail2": "無料駐車場完備",
   "access.detail3": "空港送迎ご相談ください",
   "access.map": "Googleマップで表示",
-
   "checkin.title": "チェックイン情報",
   "checkin.in": "チェックイン: 15:00",
   "checkin.out": "チェックアウト: 11:00",
   "checkin.max": "最大宿泊人数: 10名",
   "checkin.online": "オンラインチェックイン",
-
   "booking.heading": "ご予約",
   "booking.lead": "日程とゲスト人数を選んでかんたんにご予約いただけます",
   "booking.badge.bestPrice": "最低価格保証",
   "booking.badge.noFees": "手数料なし",
   "booking.badge.instant": "即時予約確定",
-
   "policy.heading": "ご予約に関する規約",
   "policy.cancelLabel": "キャンセルポリシー: ",
   "policy.cancelText": "宿泊日の7日前まで無料 / 6〜2日前 50% / 前日 80% / 当日 100%",
@@ -111,12 +96,10 @@
   "policy.termsLink": "利用規約・キャンセルポリシー全文",
   "policy.privacyLink": "プライバシーポリシー",
   "policy.contactLink": "お問い合わせ",
-
   "policy.privacy.title": "プライバシーポリシー",
   "policy.terms.title": "利用規約・キャンセルポリシー",
   "policy.contact.title": "お問い合わせ",
   "policy.tokushoho.title": "特定商取引法に基づく表記",
-
   "success.title": "ご予約ありがとうございます",
   "success.sub": "予約が正常に完了しました",
   "success.msg1": "ご予約確認メールを登録メールアドレスにお送りしました。",
@@ -128,7 +111,6 @@
   "success.cta1": "オンラインチェックインへ",
   "success.cta2": "ホームに戻る",
   "success.contact": "ご不明な点がございましたらお気軽にご連絡ください",
-
   "guest.title": "オンラインチェックイン",
   "guest.sub": "予約番号を入力してチェックイン",
   "guest.tab.checkin": "チェックイン",
@@ -143,7 +125,6 @@
   "guest.cta.out": "チェックアウトする",
   "guest.thx": "ありがとうございます！",
   "guest.notReady": "オンラインチェックイン機能は近日公開です。ご予約の確認や変更は info.serena.breeze@gmail.com までご連絡ください。",
-
   "common.backHome": "ホームに戻る",
   "common.contactBlock.title": "お問い合わせ先",
   "common.contactBlock.name": "VILLA VIEW",
