@@ -54,7 +54,11 @@ const beaches: [string, string, number, string][] = [
   ['Azama Sun Sun Beach|あざまサンサンビーチ|安座真阳光海滩', 'Family Beach|ファミリー|家庭海滩', 4.1, '/images/attractions/azama.jpg'],
 ];
 
-const bookingHref = localizedPath('/booking/', lang);
+const beds24LangMap: Record<string, string> = {
+  'zh-Hant': 'zh-Hant', ja: 'ja', en: 'en', zh: 'zh',
+  ko: 'ko', th: 'th', hi: 'hi', fr: 'fr', de: 'de', es: 'es',
+};
+const bookingHref = `https://beds24.com/booking2.php?propid=322452&lang=${beds24LangMap[lang] ?? 'ja'}&numnight=1`;
 const guestHref = localizedPath('/guest-service/', lang);
 ---
 

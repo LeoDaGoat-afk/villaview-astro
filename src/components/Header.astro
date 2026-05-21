@@ -6,13 +6,21 @@ const lang = getLangFromPath(currentPath);
 const t = useT(lang);
 
 const homeHref = localizedPath('/', lang);
+// Beds24 takes most of our lang codes as-is; map the few it differs on.
+const beds24LangMap: Record<string, string> = {
+  'zh-Hant': 'zh-Hant', ja: 'ja', en: 'en', zh: 'zh',
+  ko: 'ko', th: 'th', hi: 'hi', fr: 'fr', de: 'de', es: 'es',
+};
+const beds24Lang = beds24LangMap[lang] ?? 'ja';
+const bookingHref = `https://beds24.com/booking2.php?propid=322452&lang=${beds24Lang}&numnight=1`;
+
 const navLinks = [
   { href: homeHref, label: t('nav.home') },
   { href: `${homeHref}#facilities`, label: t('nav.facilities') },
   { href: `${homeHref}#attractions`, label: t('nav.attractions') },
   { href: `${homeHref}#checkin`, label: t('nav.checkin') },
   { href: `${homeHref}#access`, label: t('nav.access') },
-  { href: localizedPath('/booking/', lang), label: t('nav.booking') },
+  { href: bookingHref, label: t('nav.booking') },
   { href: localizedPath('/faq/', lang), label: t('nav.faq') },
   { href: localizedPath('/contact/', lang), label: t('nav.contact') },
 ];
