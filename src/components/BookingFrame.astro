@@ -1,112 +1,39 @@
 ---
-// Full-screen Beds24 iframe booking page. NOT wrapped in Layout — header /
-// footer / carousel etc. are injected INSIDE the Beds24 iframe via
-// /embed/beds24-body-top.js (registered in Beds24 admin "Body Top HTML").
-// The wrapper page itself is just an iframe + SEO meta.
+import Layout from '../layouts/Layout.astro';
+import { useT, getLangFromPath } from '../i18n/utils';
 
-interface Props {
-  lang: string;
-}
-
-const { lang } = Astro.props;
+const pageLang = getLangFromPath(Astro.url.pathname);
+const t = useT(pageLang);
 const propid = '322452';
-const beds24Url = `https://beds24.com/booking2.php?propid=${propid}&lang=${lang}&numnight=1`;
+const beds24Url = `https://beds24.com/booking2.php?propid=${propid}&lang=${pageLang}&numnight=1`;
 
-const META: Record<string, { title: string; desc: string }> = {
-  ja:   { title: 'ご予約 | VILLA VIEW',           desc: 'VILLA VIEW 公式予約。沖縄南城の海を望むプライベートヴィラ。空室カレンダー・実時間料金・即時確定。' },
-  en:   { title: 'Reserve | VILLA VIEW',          desc: 'Book VILLA VIEW direct. Private ocean-view villa in Nanjo, Okinawa. Live availability and rates, instant confirmation.' },
-  zh:   { title: '预订 | VILLA VIEW',             desc: 'VILLA VIEW 官网预订。冲绳南城海景私人别墅。实时空房日历与价格，即时确认。' },
-  'zh-Hant': { title: '預訂 | VILLA VIEW',        desc: 'VILLA VIEW 官網預訂。沖繩南城海景私人別墅。即時空房日曆與價格，即時確認。' },
-  ko:   { title: '예약 | VILLA VIEW',             desc: 'VILLA VIEW 공식 예약. 오키나와 난조 오션뷰 프라이빗 빌라. 실시간 객실 캘린더와 요금, 즉시 확정.' },
-  th:   { title: 'จอง | VILLA VIEW',              desc: 'จอง VILLA VIEW โดยตรง วิลล่าวิวทะเลส่วนตัวที่นันโจ โอกินาว่า ปฏิทินห้องว่างและราคาแบบเรียลไทม์' },
-  fr:   { title: 'Réservation | VILLA VIEW',      desc: 'Réservez VILLA VIEW directement. Villa privée vue mer à Nanjo, Okinawa. Disponibilités et tarifs en direct, confirmation immédiate.' },
-  de:   { title: 'Reservierung | VILLA VIEW',     desc: 'VILLA VIEW direkt buchen. Private Villa mit Meerblick in Nanjo, Okinawa. Live-Verfügbarkeit und Tarife, sofortige Bestätigung.' },
-  es:   { title: 'Reserva | VILLA VIEW',          desc: 'Reserve VILLA VIEW directamente. Villa privada con vista al mar en Nanjo, Okinawa. Disponibilidad y tarifas en vivo, confirmación inmediata.' },
-  hi:   { title: 'आरक्षण | VILLA VIEW',           desc: 'VILLA VIEW सीधे बुक करें। ओकिनावा के नांजो में निजी ओशन-व्यू विला। लाइव उपलब्धता और दरें, तत्काल पुष्टि।' },
+const lodgingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'VILLA VIEW',
+  url: 'https://villaokinawa.com',
+  telephone: '+81-98-894-2474',
+  image: ['https://villaokinawa.com/images/hero-scenery.jpg'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1663-9 Tsukishiro',
+    addressLocality: 'Nanjo',
+    addressRegion: 'Okinawa',
+    postalCode: '901-1407',
+    addressCountry: 'JP',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 26.162946, longitude: 127.7936485 },
+  checkinTime: '15:00',
+  checkoutTime: '11:00',
+  priceRange: '¥¥¥',
 };
-const meta = META[lang] ?? META.ja;
-
-const ogImage = 'https://villaokinawa.com/images/hero-scenery.jpg';
-const canonical = lang === 'ja' ? 'https://villaokinawa.com/booking/' : `https://villaokinawa.com/${lang}/booking/`;
 ---
-<!DOCTYPE html>
-<html lang={lang}>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{meta.title}</title>
-  <meta name="description" content={meta.desc} />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
-
-  <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="ja"      href="https://villaokinawa.com/booking/" />
-  <link rel="alternate" hreflang="en"      href="https://villaokinawa.com/en/booking/" />
-  <link rel="alternate" hreflang="zh-Hans" href="https://villaokinawa.com/zh/booking/" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://villaokinawa.com/zh-Hant/booking/" />
-  <link rel="alternate" hreflang="ko"      href="https://villaokinawa.com/ko/booking/" />
-  <link rel="alternate" hreflang="th"      href="https://villaokinawa.com/th/booking/" />
-  <link rel="alternate" hreflang="fr"      href="https://villaokinawa.com/fr/booking/" />
-  <link rel="alternate" hreflang="de"      href="https://villaokinawa.com/de/booking/" />
-  <link rel="alternate" hreflang="es"      href="https://villaokinawa.com/es/booking/" />
-  <link rel="alternate" hreflang="hi"      href="https://villaokinawa.com/hi/booking/" />
-  <link rel="alternate" hreflang="x-default" href="https://villaokinawa.com/booking/" />
-
-  <meta property="og:type"        content="hotel" />
-  <meta property="og:site_name"   content="VILLA VIEW" />
-  <meta property="og:title"       content={meta.title} />
-  <meta property="og:description" content={meta.desc} />
-  <meta property="og:image"       content={ogImage} />
-  <meta property="og:url"         content={canonical} />
-  <meta name="twitter:card"  content="summary_large_image" />
-  <meta name="twitter:title" content={meta.title} />
-  <meta name="twitter:image" content={ogImage} />
-
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <link rel="preconnect" href="https://beds24.com" crossorigin />
-  <link rel="dns-prefetch" href="https://api.beds24.com" />
-
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'LodgingBusiness',
-    name: 'VILLA VIEW',
-    url: 'https://villaokinawa.com',
-    telephone: '+81-98-894-2474',
-    image: [ogImage],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '1663-9 Tsukishiro',
-      addressLocality: 'Nanjo',
-      addressRegion: 'Okinawa',
-      postalCode: '901-1407',
-      addressCountry: 'JP',
-    },
-    geo: { '@type': 'GeoCoordinates', latitude: 26.162946, longitude: 127.7936485 },
-    checkinTime: '15:00',
-    checkoutTime: '11:00',
-    priceRange: '¥¥¥',
-    potentialAction: {
-      '@type': 'ReserveAction',
-      target: { '@type': 'EntryPoint', urlTemplate: canonical, actionPlatform: ['http://schema.org/MobileWebPlatform','http://schema.org/DesktopWebPlatform'] },
-      result: { '@type': 'LodgingReservation', name: 'Reserve VILLA VIEW' },
-    },
-  })} />
-
-  <style is:global>
-    html, body { margin: 0; padding: 0; height: 100%; background: #fff; }
-    body { overflow: hidden; }
-    iframe#booking-frame {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-  </style>
-</head>
-<body>
+<Layout
+  title={t('page.title.booking')}
+  description={t('page.desc.booking')}
+  noFooter
+  schemas={[lodgingSchema]}
+>
   <iframe
     id="booking-frame"
     src={beds24Url}
@@ -116,8 +43,8 @@ const canonical = lang === 'ja' ? 'https://villaokinawa.com/booking/' : `https:/
   ></iframe>
 
   <script is:inline>
-    // Forward query params from the wrapper URL into the Beds24 iframe so that
-    // Google Hotel Ads / utm_* / pre-filled dates land in Beds24's booking flow.
+    // Forward URL query params from this wrapper into the Beds24 iframe so
+    // Google Hotel Ads / utm_* / pre-filled dates land in the booking flow.
     (function () {
       var el = document.getElementById('booking-frame');
       if (!el || typeof URL === 'undefined' || typeof URLSearchParams === 'undefined') return;
@@ -141,5 +68,19 @@ const canonical = lang === 'ja' ? 'https://villaokinawa.com/booking/' : `https:/
       } catch (e) {}
     })();
   </script>
-</body>
-</html>
+</Layout>
+
+<style is:global>
+  iframe#booking-frame {
+    display: block;
+    width: 100%;
+    /* Below the site header. Header.astro is sticky/fixed at ~64-80px depending on viewport. */
+    height: calc(100vh - 80px);
+    min-height: 700px;
+    border: 0;
+    background: #fff;
+  }
+  @media (max-width: 768px) {
+    iframe#booking-frame { height: calc(100vh - 64px); min-height: 600px; }
+  }
+</style>
