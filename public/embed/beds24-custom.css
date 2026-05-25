@@ -1,0 +1,232 @@
+/* VILLA VIEW — Beds24 booking page brand injection.
+   Hosted at https://villaokinawa.com/embed/beds24-custom.css
+   Brand: ocean blue (#2a5a6e) + warm sand (#c8b98a) + cream (#faf9f7).
+*/
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap");
+
+:root {
+  --vv-primary: #2a5a6e;
+  --vv-primary-dark: #1a3a4a;
+  --vv-primary-darker: #0c1e26;
+  --vv-accent: #c8b98a;
+  --vv-accent-dark: #a89968;
+  --vv-cream: #faf9f7;
+  --vv-cream-dark: #f0ede8;
+  --vv-cream-darker: #e5e2da;
+  --vv-ink: #1a1a1a;
+  --vv-ink-soft: #3a4a4a;
+  --vv-muted: #78716c;
+  --vv-muted-light: #99918a;
+  --vv-border: #e5e2da;
+  --vv-success: #4a8a5a;
+  --vv-busy: #c7c2bd;
+  --vv-font-serif: "Cormorant Garamond", "Noto Serif JP", "Noto Serif SC", serif;
+  --vv-font-sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+/* === Global overrides === */
+html, body { background: var(--vv-cream) !important; color: var(--vv-ink) !important; font-family: var(--vv-font-sans) !important; overflow: visible !important; height: auto !important; margin: 0 !important; }
+a, a:visited { color: var(--vv-primary); text-decoration: none; }
+a:hover { color: var(--vv-primary-dark); }
+h1, h2, h3, h4, h5, h6 { color: var(--vv-ink) !important; font-family: var(--vv-font-serif) !important; font-weight: 400 !important; letter-spacing: 0.5px !important; }
+
+/* === Top header === */
+.vv-header { background: #fff; border-bottom: 1px solid var(--vv-border); padding: 14px 0; width: 100%; position: relative; z-index: 10; }
+.vv-header-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.vv-logo { flex-shrink: 0; text-decoration: none !important; line-height: 1; }
+.vv-logo .vv-logo-main { display: block; font-family: var(--vv-font-serif); font-size: 26px; font-weight: 400; letter-spacing: 6px; color: var(--vv-primary); text-transform: uppercase; }
+.vv-logo .vv-logo-sub { display: block; font-family: var(--vv-font-sans); font-size: 9px; font-weight: 300; letter-spacing: 4px; color: var(--vv-muted); text-transform: uppercase; margin-top: 4px; }
+.vv-nav { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; flex: 1 1 auto; }
+.vv-nav a { color: var(--vv-ink) !important; font-family: var(--vv-font-sans); font-size: 12px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; padding: 8px 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+.vv-nav a:hover { color: var(--vv-primary) !important; border-bottom-color: var(--vv-accent); }
+.vv-lang-switcher { position: relative; flex-shrink: 0; }
+.vv-lang-btn { background: transparent; border: 1px solid var(--vv-border); padding: 6px 14px; font-family: var(--vv-font-sans); font-size: 11px; letter-spacing: 1.5px; color: var(--vv-ink-soft); cursor: pointer; text-transform: uppercase; border-radius: 0; }
+.vv-lang-btn:hover { border-color: var(--vv-primary); color: var(--vv-primary); }
+.vv-lang-menu { position: absolute; right: 0; top: 100%; margin-top: 4px; background: #fff; border: 1px solid var(--vv-border); min-width: 160px; box-shadow: 0 4px 12px rgba(0,0,0,.08); z-index: 100; display: none; }
+.vv-lang-menu.open { display: block; }
+.vv-lang-menu a { display: block; padding: 9px 16px; font-family: var(--vv-font-sans); font-size: 12px; color: var(--vv-ink) !important; letter-spacing: 0.5px; border-bottom: 1px solid var(--vv-cream-dark); }
+.vv-lang-menu a:hover { background: var(--vv-cream); color: var(--vv-primary) !important; }
+.vv-lang-menu a:last-child { border-bottom: none; }
+
+/* === Page hero === */
+.vv-page-hero { position: relative; width: 100%; height: 320px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.vv-page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(12,30,38,.55) 0%, rgba(42,90,110,.4) 100%); z-index: 0; }
+.vv-page-hero-content { position: relative; z-index: 2; text-align: center; color: #fff; padding: 0 24px; }
+.vv-page-hero-eyebrow { font-family: var(--vv-font-sans); font-size: 11px; letter-spacing: 5px; color: rgba(255,255,255,.75); text-transform: uppercase; margin: 0 0 14px; }
+.vv-page-hero h1 { color: #fff !important; font-family: var(--vv-font-serif) !important; font-size: clamp(36px, 5vw, 54px) !important; font-weight: 300 !important; letter-spacing: 6px !important; text-transform: uppercase; margin: 0 !important; }
+.vv-page-hero p { color: rgba(255,255,255,.85); font-family: var(--vv-font-sans); font-size: 13px; letter-spacing: 1px; margin: 16px 0 0; max-width: 640px; }
+
+/* === Direct booking discount banner === */
+.vv-direct-banner { background: linear-gradient(90deg, var(--vv-primary) 0%, var(--vv-primary-dark) 100%); color: #fff; text-align: center; padding: 16px 24px; }
+.vv-direct-banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.vv-direct-badge { background: var(--vv-accent); color: var(--vv-primary-darker); padding: 6px 14px; font-family: var(--vv-font-sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; }
+.vv-direct-msg { font-family: var(--vv-font-sans); font-size: 14px; letter-spacing: 1px; }
+.vv-direct-msg strong { font-weight: 500; color: var(--vv-accent); }
+
+/* === Search bar (fbar) === */
+.vv-fbar { max-width: 1100px; margin: 28px auto 0; padding: 0 24px; }
+.vv-fbar-form { background: #fff; border: 1px solid var(--vv-border); padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; }
+.vv-fbar-row1 { display: grid; grid-template-columns: 1.3fr 1.3fr 0.8fr 1fr 1fr; gap: 14px; align-items: end; }
+.vv-fbar-row2 { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; border-top: 1px dashed var(--vv-border); flex-wrap: wrap; }
+.vv-fbar-cell { display: flex; flex-direction: column; gap: 6px; }
+.vv-fbar-lbl { font-family: var(--vv-font-sans); font-size: 10px; letter-spacing: 3px; color: var(--vv-muted); text-transform: uppercase; font-weight: 500; }
+.vv-fbar input[type=date], .vv-fbar select { border: 1px solid var(--vv-border) !important; border-radius: 0 !important; padding: 11px 12px !important; font-family: var(--vv-font-sans) !important; font-size: 14px !important; color: var(--vv-ink) !important; background: var(--vv-cream) !important; outline: none !important; box-shadow: none !important; height: auto !important; width: 100% !important; }
+.vv-fbar input[type=date]:focus, .vv-fbar select:focus { border-color: var(--vv-primary) !important; background: #fff !important; }
+.vv-fbar-nights { align-items: center; }
+.vv-fbar-nights-val { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; width: 100%; background: transparent; color: var(--vv-primary); border: none; font-family: var(--vv-font-serif); font-size: 22px; font-weight: 400; letter-spacing: 1px; }
+.vv-fbar-note { font-family: var(--vv-font-sans); font-size: 12px; color: var(--vv-muted); margin: 0; padding: 6px 2px 2px; letter-spacing: 0.3px; }
+.vv-fbar-bbq { display: inline-flex; align-items: center; gap: 10px; font-family: var(--vv-font-sans); font-size: 13px; color: var(--vv-ink-soft); cursor: pointer; user-select: none; flex-wrap: wrap; }
+.vv-fbar-bbq input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--vv-primary); cursor: pointer; margin: 0; }
+.vv-fbar-bbq-note { font-style: normal; font-size: 11px; color: var(--vv-muted); letter-spacing: 0.3px; }
+.vv-fbar-go { background: var(--vv-primary) !important; color: #fff !important; border: none !important; padding: 13px 28px !important; font-family: var(--vv-font-sans) !important; font-size: 13px !important; letter-spacing: 3px !important; text-transform: uppercase !important; cursor: pointer !important; transition: background .25s !important; border-radius: 0 !important; }
+.vv-fbar-go:hover { background: var(--vv-primary-dark) !important; }
+
+/* === Access section === */
+.vv-access { max-width: 1200px; margin: 56px auto 0; padding: 0 24px; }
+.vv-access-title { font-family: var(--vv-font-serif); font-size: 30px; font-weight: 400; color: var(--vv-ink); letter-spacing: 2px; margin: 0 0 8px; text-align: center; }
+.vv-access-sub { font-family: var(--vv-font-sans); font-size: 11px; letter-spacing: 4px; color: var(--vv-muted); text-transform: uppercase; text-align: center; margin: 0 0 32px; }
+.vv-access-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: stretch; }
+.vv-access-info { background: #fff; border: 1px solid var(--vv-border); padding: 24px; display: flex; flex-direction: column; gap: 14px; font-family: var(--vv-font-sans); font-size: 14px; color: var(--vv-ink-soft); line-height: 1.7; }
+.vv-access-info strong { color: var(--vv-primary); font-weight: 500; font-size: 15px; letter-spacing: 0.5px; display: block; padding-bottom: 12px; border-bottom: 1px solid var(--vv-border); margin-bottom: 4px; }
+.vv-access-info a { color: var(--vv-primary); }
+.vv-access-map { min-height: 320px; border: 1px solid var(--vv-border); overflow: hidden; }
+.vv-access-map iframe { width: 100%; height: 100%; min-height: 320px; border: 0; display: block; }
+
+/* === Availability + Price calendar === */
+.vv-cal-wrap { max-width: 1100px; margin: 36px auto 0; padding: 0 24px; }
+.vv-cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; gap: 16px; flex-wrap: wrap; }
+.vv-cal-title { font-family: var(--vv-font-serif); font-size: 24px; font-weight: 400; color: var(--vv-ink); letter-spacing: 1px; margin: 0; }
+.vv-cal-legend { display: flex; gap: 18px; font-family: var(--vv-font-sans); font-size: 11px; color: var(--vv-muted); align-items: center; flex-wrap: wrap; }
+.vv-cal-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.vv-cal-legend-sw { width: 14px; height: 14px; border: 1px solid var(--vv-border); display: inline-block; }
+.vv-cal-legend-sw.avail { background: #fff; }
+.vv-cal-legend-sw.busy { background: var(--vv-busy); border-color: var(--vv-busy); }
+.vv-cal-legend-sw.sel { background: var(--vv-primary); border-color: var(--vv-primary); }
+.vv-cal-months { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.vv-cal-month { background: #fff; border: 1px solid var(--vv-border); padding: 18px; }
+.vv-cal-month-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.vv-cal-month-title { font-family: var(--vv-font-serif); font-size: 17px; font-weight: 500; color: var(--vv-primary); letter-spacing: 1.5px; margin: 0; }
+.vv-cal-nav-btn { background: transparent; border: 1px solid var(--vv-border); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--vv-ink-soft); font-size: 14px; font-family: var(--vv-font-sans); transition: border-color .15s, color .15s; padding: 0; }
+.vv-cal-nav-btn:hover:not(:disabled) { border-color: var(--vv-primary); color: var(--vv-primary); }
+.vv-cal-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.vv-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.vv-cal-dow { font-family: var(--vv-font-sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; color: var(--vv-muted); text-transform: uppercase; text-align: center; padding: 6px 0 8px; }
+.vv-cal-dow.sat { color: var(--vv-primary); }
+.vv-cal-dow.sun { color: #b04545; }
+.vv-cal-cell { min-height: 68px; border: 1px solid var(--vv-border); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 6px 2px; cursor: pointer; transition: background .15s, border-color .15s, color .15s; position: relative; }
+.vv-cal-cell:hover:not(.busy):not(.past):not(.empty) { background: var(--vv-cream); border-color: var(--vv-primary); }
+.vv-cal-cell .vv-cal-day { font-family: var(--vv-font-sans); font-size: 13px; font-weight: 500; color: var(--vv-ink); }
+.vv-cal-cell .vv-cal-price { font-family: var(--vv-font-sans); font-size: 11px; color: var(--vv-primary); font-weight: 500; letter-spacing: -0.2px; white-space: nowrap; }
+.vv-cal-cell.past { background: var(--vv-cream-darker); cursor: not-allowed; }
+.vv-cal-cell.past .vv-cal-day { color: var(--vv-muted-light); }
+.vv-cal-cell.past .vv-cal-price { display: none; }
+.vv-cal-cell.busy { background: var(--vv-busy); border-color: var(--vv-busy); cursor: not-allowed; }
+.vv-cal-cell.busy .vv-cal-day { color: var(--vv-muted); }
+.vv-cal-cell.busy .vv-cal-price { font-size: 9px; color: var(--vv-muted); letter-spacing: 1px; }
+.vv-cal-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+.vv-cal-cell.selected, .vv-cal-cell.in-range { background: var(--vv-primary) !important; border-color: var(--vv-primary) !important; }
+.vv-cal-cell.selected .vv-cal-day, .vv-cal-cell.in-range .vv-cal-day { color: #fff !important; font-weight: 600; }
+.vv-cal-cell.selected .vv-cal-price, .vv-cal-cell.in-range .vv-cal-price { color: rgba(255,255,255,.85) !important; }
+.vv-cal-loading { text-align: center; padding: 40px; font-family: var(--vv-font-sans); font-size: 13px; color: var(--vv-muted); letter-spacing: 1px; }
+
+/* === Villa features grid (image cards) === */
+.vv-features { max-width: 1200px; margin: 56px auto 0; padding: 0 24px; }
+.vv-features-title { font-family: var(--vv-font-serif); font-size: 30px; font-weight: 400; color: var(--vv-ink); letter-spacing: 2px; margin: 0 0 8px; text-align: center; }
+.vv-features-sub { font-family: var(--vv-font-sans); font-size: 11px; letter-spacing: 4px; color: var(--vv-muted); text-transform: uppercase; text-align: center; margin: 0 0 32px; }
+.vv-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.vv-feature-card { background: #fff; border: 1px solid var(--vv-border); overflow: hidden; display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s; }
+.vv-feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(42,90,110,.12); }
+.vv-feature-img { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: var(--vv-cream-dark); }
+.vv-feature-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.vv-feature-card:hover .vv-feature-img img { transform: scale(1.05); }
+.vv-feature-body { padding: 18px 20px 22px; }
+.vv-feature-card .vv-feature-lbl { font-family: var(--vv-font-serif); font-size: 18px; font-weight: 500; color: var(--vv-primary); letter-spacing: 1px; margin: 0 0 6px; }
+.vv-feature-card .vv-feature-desc { font-family: var(--vv-font-sans); font-size: 12px; color: var(--vv-muted); line-height: 1.6; margin: 0; }
+
+/* (gallery removed — villaokinawa.com hosts the full gallery via nav link) */
+
+/* === Beds24 native form override (booking flow card) === */
+.card { background: #fff !important; border: 1px solid var(--vv-border) !important; border-radius: 0 !important; box-shadow: none !important; margin: 0 auto 16px !important; max-width: 1100px; }
+.card-header, .card > .card-header { background: var(--vv-primary) !important; color: #fff !important; border: none !important; border-radius: 0 !important; padding: 14px 20px !important; font-family: var(--vv-font-sans) !important; font-weight: 500 !important; letter-spacing: 2px !important; font-size: 14px !important; text-transform: uppercase; }
+.card-header h2, .card-header h3, .card-header h4, .card-header .card-title { color: #fff !important; margin: 0 !important; background: transparent !important; font-family: var(--vv-font-sans) !important; font-size: 14px !important; letter-spacing: 2px !important; }
+.card-body { padding: 20px !important; background: #fff !important; }
+.form-control, .form-select, input[type=text], input[type=email], input[type=tel], input[type=number], input[type=date], select, textarea { border: 1px solid var(--vv-border) !important; border-radius: 0 !important; padding: 10px 12px !important; font-family: var(--vv-font-sans) !important; font-size: 14px !important; background: #fff !important; color: var(--vv-ink) !important; box-shadow: none !important; height: auto !important; }
+.form-control:focus, .form-select:focus, input:focus, select:focus, textarea:focus { outline: none !important; border-color: var(--vv-primary) !important; box-shadow: 0 0 0 2px rgba(42,90,110,.12) !important; }
+.input-group-text { background: var(--vv-primary) !important; color: #fff !important; border: 1px solid var(--vv-primary) !important; border-radius: 0 !important; }
+label, .form-label, .col-form-label { color: var(--vv-ink) !important; font-family: var(--vv-font-sans) !important; font-weight: 500 !important; font-size: 12px !important; letter-spacing: 1px !important; margin-bottom: 5px !important; text-transform: uppercase; }
+.btn, button, input[type=submit], input[type=button] { border-radius: 0 !important; font-family: var(--vv-font-sans) !important; font-weight: 500 !important; letter-spacing: 2px !important; padding: 11px 24px !important; font-size: 13px !important; box-shadow: none !important; text-shadow: none !important; transition: background .25s, border-color .25s !important; text-transform: uppercase; }
+.btn-primary, .btn-success, button[type=submit] { background: var(--vv-primary) !important; border: 1px solid var(--vv-primary) !important; color: #fff !important; }
+.btn-primary:hover, .btn-success:hover, button[type=submit]:hover { background: var(--vv-primary-dark) !important; border-color: var(--vv-primary-dark) !important; }
+.btn-secondary, .btn-default { background: #fff !important; border: 1px solid var(--vv-border) !important; color: var(--vv-ink) !important; }
+.btn-secondary:hover, .btn-default:hover { border-color: var(--vv-primary) !important; color: var(--vv-primary) !important; }
+.text-success { color: var(--vv-success) !important; }
+.alert-success { background: rgba(74,138,90,.08) !important; border-color: var(--vv-success) !important; color: var(--vv-success) !important; border-radius: 0 !important; }
+.alert-danger { background: rgba(192,69,69,.08) !important; border-color: #c04545 !important; color: #c04545 !important; border-radius: 0 !important; }
+
+/* === Footer (with policy block) === */
+.vv-footer { background: var(--vv-primary-darker); color: rgba(255,255,255,.75); padding: 44px 24px 24px; margin-top: 60px; }
+.vv-footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr 1.4fr 1fr; gap: 40px; align-items: start; }
+.vv-footer-brand { font-family: var(--vv-font-serif); font-size: 22px; color: #fff; letter-spacing: 5px; margin: 0 0 12px; text-transform: uppercase; font-weight: 400; }
+.vv-footer-tagline { font-family: var(--vv-font-sans); font-size: 12px; color: rgba(255,255,255,.55); letter-spacing: 1px; line-height: 1.7; margin: 0 0 18px; }
+.vv-footer-contact { font-family: var(--vv-font-sans); font-size: 12px; color: rgba(255,255,255,.75); line-height: 1.8; }
+.vv-footer-contact a { color: var(--vv-accent) !important; }
+.vv-footer-h { font-family: var(--vv-font-sans); font-size: 11px; color: var(--vv-accent); letter-spacing: 3px; text-transform: uppercase; margin: 0 0 14px; font-weight: 500; }
+.vv-pol-summary { font-family: var(--vv-font-sans); font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.6; margin: 0 0 10px; }
+.vv-pol-list { list-style: none; padding: 0; margin: 0 0 10px; font-family: var(--vv-font-sans); font-size: 12px; }
+.vv-pol-list li { display: flex; justify-content: space-between; gap: 14px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.65); }
+.vv-pol-list li:last-child { border-bottom: none; }
+.vv-pol-list li b { color: #fff; font-weight: 500; }
+.vv-pol-note { font-family: var(--vv-font-sans); font-size: 11px; color: rgba(255,255,255,.45); line-height: 1.6; margin: 6px 0 0; }
+.vv-footer-links { list-style: none; padding: 0; margin: 0; font-family: var(--vv-font-sans); font-size: 12px; line-height: 2.1; }
+.vv-footer-links a { color: rgba(255,255,255,.75) !important; }
+.vv-footer-links a:hover { color: #fff !important; }
+.vv-footer-bottom { max-width: 1200px; margin: 28px auto 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); text-align: center; font-family: var(--vv-font-sans); font-size: 11px; color: rgba(255,255,255,.4); letter-spacing: 1px; }
+
+/* === Iframe mode (when embedded in villaokinawa.com/booking/) === */
+html.embed .vv-header, html.embed .vv-footer { display: none; }
+
+/* === Confirmation / checkout steps (hide our search above) === */
+html.vv-no-search .vv-page-hero, html.vv-no-search .vv-direct-banner, html.vv-no-search .vv-fbar, html.vv-no-search .vv-cal-wrap, html.vv-no-search .vv-features, html.vv-no-search .vv-access { display: none !important; }
+
+/* === Hide all Beds24 branding on the page === */
+/* Native footer "Powered by Beds24" link / logos */
+#powered, .powered, .poweredby, .powered-by, [class*="powered"],
+a[href*="beds24.com"][class*="powered"],
+a[href="https://www.beds24.com"], a[href="http://www.beds24.com"],
+.beds24-logo, img[src*="beds24-logo"], img[alt*="Beds24" i],
+/* Native top header bar with property name (we have our own header) */
+#header, .booking-header, .header, body > .container > .row:first-child h1,
+body > .container > h1 {
+  display: none !important;
+}
+/* Beds24 default favicon doesn't render in same iframe — irrelevant. */
+/* Catch-all: any link to beds24.com gets visually hidden if it's a "powered by" style. */
+a[href*="beds24.com"]:not(.vv-keep) {
+  font-size: 0 !important;
+  color: transparent !important;
+  pointer-events: none !important;
+}
+
+/* === Mobile === */
+@media (max-width: 768px) {
+  .vv-header-inner { flex-direction: column; gap: 14px; }
+  .vv-nav { gap: 12px; }
+  .vv-nav a { font-size: 11px; letter-spacing: 1.5px; padding: 4px 0; }
+  .vv-page-hero { height: 240px; }
+  .vv-page-hero h1 { font-size: 32px !important; letter-spacing: 3px !important; }
+  .vv-direct-banner-inner { flex-direction: column; gap: 8px; }
+  .vv-fbar-form { padding: 18px; }
+  .vv-fbar-row1 { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .vv-fbar-row2 { flex-direction: column; align-items: stretch; gap: 14px; }
+  .vv-fbar-go { width: 100%; }
+  .vv-access-grid { grid-template-columns: 1fr; }
+  .vv-access-map { min-height: 240px; }
+  .vv-access-map iframe { min-height: 240px; }
+  .vv-cal-months { grid-template-columns: 1fr; }
+  .vv-cal-cell .vv-cal-price { font-size: 9px; }
+  .vv-features-grid { grid-template-columns: 1fr; }
+  .vv-footer-inner { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (min-width: 769px) and (max-width: 980px) {
+  .vv-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
