@@ -113,8 +113,8 @@ h1, h2, h3, h4, h5, h6 { color: var(--vv-ink) !important; font-family: var(--vv-
 .vv-cal-dow { font-family: var(--vv-font-sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; color: var(--vv-muted); text-transform: uppercase; text-align: center; padding: 6px 0 8px; }
 .vv-cal-dow.sat { color: var(--vv-primary); }
 .vv-cal-dow.sun { color: #b04545; }
-.vv-cal-cell { min-height: 68px; border: 1px solid var(--vv-border); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 6px 2px; cursor: pointer; transition: background .15s, border-color .15s, color .15s; position: relative; }
-.vv-cal-cell:hover:not(.busy):not(.past):not(.empty) { background: var(--vv-cream); border-color: var(--vv-primary); }
+/* Display-only calendar (price/availability reference); not clickable. */
+.vv-cal-cell { min-height: 68px; border: 1px solid var(--vv-border); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 6px 2px; cursor: default; position: relative; }
 .vv-cal-cell .vv-cal-day { font-family: var(--vv-font-sans); font-size: 13px; font-weight: 500; color: var(--vv-ink); }
 .vv-cal-cell .vv-cal-price { font-family: var(--vv-font-sans); font-size: 11px; color: var(--vv-primary); font-weight: 500; letter-spacing: -0.2px; white-space: nowrap; }
 .vv-cal-cell.past { background: var(--vv-cream-darker); cursor: not-allowed; }

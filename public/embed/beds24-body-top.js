@@ -356,15 +356,20 @@
   // ===== Inject DOM (run on body ready) =====
   function inject() {
     if (!document.body) { setTimeout(inject, 50); return; }
-    // Wrap in single container so insertBefore preserves order
+    // Top band ABOVE the native Beds24 content: branded header + hero + banner.
+    // The broken self-made search bar (fbarHTML) is removed entirely.
     var top = document.createElement('div');
     top.className = 'vv-injected-top';
-    // Order: header → hero → banner → calendar → fbar → features → access
-    top.innerHTML = headerHTML + heroHTML + directHTML + calHTML + fbarHTML + featuresHTML + accessHTML;
+    top.innerHTML = headerHTML + heroHTML + directHTML;
     document.body.insertBefore(top, document.body.firstChild);
+    // Custom price calendar + property write-up + access go AFTER the native
+    // Beds24 booking content (then the footer last).
+    var bottom = document.createElement('div');
+    bottom.className = 'vv-injected-bottom';
+    bottom.innerHTML = calHTML + featuresHTML + accessHTML;
+    document.body.appendChild(bottom);
     document.body.appendChild(el(footerHTML));
     wireUp();
-    initFbarDefaults();
     loadCalendar();
   }
 
@@ -595,7 +600,8 @@
       var cell = el('<div class="' + cls + '" data-date="' + key + '" data-avail="' + (avail ? '1' : '0') + '">' +
         '<span class="vv-cal-day">' + dd + '</span>' + priceHTML +
       '</div>');
-      if (!isPast && avail) cell.addEventListener('click', onCellClick);
+      // Calendar is display-only (price/availability reference). Date selection
+      // happens in the native Beds24 date bar above; cells are not clickable.
       grid.appendChild(cell);
     }
     wrap.appendChild(grid);
