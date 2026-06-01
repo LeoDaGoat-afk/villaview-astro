@@ -276,11 +276,6 @@
     '<section class="vv-cal-wrap">' +
       '<div class="vv-cal-header">' +
         '<h2 class="vv-cal-title">' + T.calTitle + '</h2>' +
-        '<div class="vv-cal-legend">' +
-          '<span class="vv-cal-legend-item"><span class="vv-cal-legend-sw avail"></span>' + T.calLegendAvail + '</span>' +
-          '<span class="vv-cal-legend-item"><span class="vv-cal-legend-sw busy"></span>' + T.calLegendBusy + '</span>' +
-          '<span class="vv-cal-legend-item"><span class="vv-cal-legend-sw sel"></span>' + T.calLegendSel + '</span>' +
-        '</div>' +
       '</div>' +
       '<div class="vv-cal-months" id="vv-cal-months">' +
         '<div class="vv-cal-loading">' + T.calLoading + '</div>' +
