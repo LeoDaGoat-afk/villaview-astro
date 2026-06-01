@@ -91,6 +91,7 @@
       f4Lbl: 'BBQ テラス', f4Desc: '夕焼けの海を眺めながら',
       f5Lbl: 'YOGA スタジオ', f5Desc: '海を眺める専用空間',
       f6Lbl: 'フルキッチン', f6Desc: '長期滞在にも対応',
+      amenTitle: '無料の特典', amenParking: '無料駐車場', amenSauna: '無料サウナ', amenWifi: '無料 Wi-Fi',
       footBrand: 'VILLA VIEW', footTag: '沖縄南城・太平洋を独り占めする貸切プライベートヴィラ',
       footQuick: 'クイックリンク', footContact: 'お問い合わせ',
       tel: 'TEL', addr: '〒901-1407 沖縄県南城市つきしろ1663-9',
@@ -126,6 +127,7 @@
       f4Lbl: 'BBQ Terrace', f4Desc: 'Dine into the Okinawan sunset',
       f5Lbl: 'Yoga Studio', f5Desc: 'A dedicated space facing the sea',
       f6Lbl: 'Full Kitchen', f6Desc: 'Perfect for extended stays',
+      amenTitle: 'Included Free', amenParking: 'Free Parking', amenSauna: 'Free Sauna', amenWifi: 'Free Wi-Fi',
       footBrand: 'VILLA VIEW', footTag: 'A private oceanfront villa overlooking the Pacific in Nanjo, Okinawa',
       footQuick: 'Quick Links', footContact: 'Contact',
       tel: 'TEL', addr: '1663-9 Tsukishiro, Nanjo, Okinawa 901-1407, Japan',
@@ -161,6 +163,7 @@
       f4Lbl: 'BBQ 露台', f4Desc: '在夕阳海景中烧烤',
       f5Lbl: '瑜伽室', f5Desc: '面朝大海的专属空间',
       f6Lbl: '全功能厨房', f6Desc: '适合长期居住',
+      amenTitle: '免费设施', amenParking: '免费停车', amenSauna: '免费桑拿', amenWifi: '免费 Wi-Fi',
       footBrand: 'VILLA VIEW', footTag: '冲绳南城・面朝太平洋的私人独栋别墅',
       footQuick: '快速导航', footContact: '联系我们',
       tel: '电话', addr: '日本冲绳县南城市つきしろ 1663-9, 901-1407',
@@ -308,6 +311,18 @@
       '</div>' +
     '</section>';
 
+  // Prominent "free amenities" strip (also configure these in Google Business
+  // Profile so they show in Google Hotel's amenities panel).
+  var amenityHTML =
+    '<section class="vv-amenities">' +
+      '<h3 class="vv-amenities-title">' + T.amenTitle + '</h3>' +
+      '<div class="vv-amenities-row">' +
+        '<span class="vv-amenity"><span class="vv-amenity-ico">P</span>' + T.amenParking + '</span>' +
+        '<span class="vv-amenity"><span class="vv-amenity-ico">≈</span>' + T.amenSauna + '</span>' +
+        '<span class="vv-amenity"><span class="vv-amenity-ico">⌖</span>' + T.amenWifi + '</span>' +
+      '</div>' +
+    '</section>';
+
   // Gallery removed — villaokinawa.com has the full gallery; nav links there.
 
   var footerHTML =
@@ -361,7 +376,7 @@
     // Beds24 booking content (then the footer last).
     var bottom = document.createElement('div');
     bottom.className = 'vv-injected-bottom';
-    bottom.innerHTML = calHTML + featuresHTML + accessHTML;
+    bottom.innerHTML = calHTML + featuresHTML + amenityHTML + accessHTML;
     document.body.appendChild(bottom);
     document.body.appendChild(el(footerHTML));
     wireUp();

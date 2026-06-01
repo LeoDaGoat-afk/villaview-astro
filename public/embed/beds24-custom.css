@@ -230,3 +230,13 @@ a[href*="beds24.com"]:not(.vv-keep) {
 @media (min-width: 769px) and (max-width: 980px) {
   .vv-features-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ============================================================
+   Free-amenities strip (Free Parking · Free Sauna · Free Wi-Fi)
+   ============================================================ */
+.vv-amenities { max-width: 1100px; margin: 8px auto 0; padding: 0 24px; text-align: center; }
+.vv-amenities-title { font-family: var(--vv-font-serif); font-size: 18px; font-weight: 400; letter-spacing: 2px; color: var(--vv-primary); margin: 0 0 16px; }
+.vv-amenities-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.vv-amenity { display: inline-flex; align-items: center; gap: 9px; background: var(--vv-cream-dark, #f7f5f0); border: 1px solid var(--vv-primary); padding: 10px 18px; font-family: var(--vv-font-sans); font-size: 14px; letter-spacing: .5px; color: var(--vv-ink, #1a1a1a); }
+.vv-amenity-ico { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--vv-primary); color: #fff; font-size: 13px; font-weight: 600; flex: 0 0 auto; }
+@media (max-width: 768px){ .vv-amenities-row { flex-direction: column; align-items: stretch; } .vv-amenity { justify-content: center; } }
