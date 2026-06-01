@@ -1,0 +1,4 @@
+# The Beds24 booking page loads these embed files remotely. Keep their cache
+# short so layout/price changes reach guests within minutes, not 4 hours.
+/embed/*
+  Cache-Control: public, max-age=300, must-revalidate
