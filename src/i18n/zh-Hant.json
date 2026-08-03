@@ -131,5 +131,21 @@
   "common.contactBlock.address": "〒901-1407 沖繩縣南城市つきしろ1663-9",
   "common.contactBlock.tel": "TEL：+81 98-894-2474",
   "common.contactBlock.email": "Email：info.serena.breeze@gmail.com",
-  "common.lastUpdated": "最後更新: 2026年5月13日"
+  "common.lastUpdated": "最後更新: 2026年5月13日",
+  "nav.gallery": "設施照片",
+  "gallery.eyebrow": "設施照片",
+  "gallery.title": "參觀屋內",
+  "gallery.lead": "透過照片介紹別墅各處。點擊可放大查看。",
+  "photo.bedroomSea": "參觀屋內",
+  "photo.bedroom": "參觀屋內",
+  "photo.living": "參觀屋內",
+  "photo.terrace": "參觀屋內",
+  "photo.washitsu": "參觀屋內",
+  "photo.hallSea": "參觀屋內",
+  "photo.hall": "參觀屋內",
+  "photo.balcony": "參觀屋內",
+  "photo.bbq": "參觀屋內",
+  "photo.desk": "參觀屋內",
+  "photo.sauna": "參觀屋內",
+  "photo.hallParty": "參觀屋內"
 }

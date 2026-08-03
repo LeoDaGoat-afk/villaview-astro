@@ -131,5 +131,21 @@
   "common.contactBlock.address": "〒901-1407 冲绳县南城市つきしろ1663-9",
   "common.contactBlock.tel": "TEL：+81 98-894-2474",
   "common.contactBlock.email": "Email：info.serena.breeze@gmail.com",
-  "common.lastUpdated": "最后更新: 2026年5月13日"
+  "common.lastUpdated": "最后更新: 2026年5月13日",
+  "nav.gallery": "设施照片",
+  "gallery.eyebrow": "设施照片",
+  "gallery.title": "参观屋内",
+  "gallery.lead": "通过照片介绍别墅各处。点击可放大查看。",
+  "photo.bedroomSea": "参观屋内",
+  "photo.bedroom": "参观屋内",
+  "photo.living": "参观屋内",
+  "photo.terrace": "参观屋内",
+  "photo.washitsu": "参观屋内",
+  "photo.hallSea": "参观屋内",
+  "photo.hall": "参观屋内",
+  "photo.balcony": "参观屋内",
+  "photo.bbq": "参观屋内",
+  "photo.desk": "参观屋内",
+  "photo.sauna": "参观屋内",
+  "photo.hallParty": "参观屋内"
 }
