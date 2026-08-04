@@ -87,7 +87,7 @@
   "booking.badge.instant": "즉시 확정",
   "policy.heading": "예약 관련 규정",
   "policy.cancelLabel": "취소 정책: ",
-  "policy.cancelText": "체크인 7일 전까지 무료 / 6–2일 전 50% / 전일 80% / 당일 100%",
+  "policy.cancelText": "체크인 14일 전까지 무료 / 13–7일 전 30% / 6일–전일 50% / 당일 100%",
   "policy.timesLabel": "체크인/체크아웃: ",
   "policy.timesText": "15:00 / 10:00",
   "policy.rulesLabel": "금지 사항: ",

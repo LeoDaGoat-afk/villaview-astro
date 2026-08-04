@@ -88,7 +88,7 @@
   "booking.badge.instant": "即時予約確定",
   "policy.heading": "ご予約に関する規約",
   "policy.cancelLabel": "キャンセルポリシー: ",
-  "policy.cancelText": "宿泊日の7日前まで無料 / 6〜2日前 50% / 前日 80% / 当日 100%",
+  "policy.cancelText": "宿泊日の14日前まで無料 / 13〜7日前 30% / 6日前〜前日 50% / 当日 100%",
   "policy.timesLabel": "チェックイン/チェックアウト: ",
   "policy.timesText": "15:00 / 10:00",
   "policy.rulesLabel": "禁止事項: ",

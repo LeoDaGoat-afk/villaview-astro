@@ -155,9 +155,9 @@ export const terms: PolicyContent = {
 
 ■ 3. キャンセルポリシー
 公式サイトご予約の場合、キャンセル料は以下の通りです：
-・宿泊日の7日前まで: 無料
-・宿泊日の6〜2日前: 宿泊料金の50%
-・宿泊日の前日: 宿泊料金の80%
+・宿泊日の14日前まで: 無料
+・宿泊日の13〜7日前: 宿泊料金の30%
+・宿泊日の6日前〜前日: 宿泊料金の50%
 ・宿泊当日・無連絡不泊: 宿泊料金の100%
 
 ※ OTA経由のご予約は、各OTAのキャンセル規定に従います。
@@ -210,9 +210,9 @@ VILLA VIEW
 
 ■ 3. Cancellation Policy
 For direct website reservations, cancellation fees are as follows:
-- Up to 7 days before stay: Free
-- 6 to 2 days before: 50% of accommodation fee
-- 1 day before: 80% of accommodation fee
+- Up to 14 days before stay: Free
+- 13 to 7 days before: 30% of accommodation fee
+- 6 days to 1 day before: 50% of accommodation fee
 - Day of stay / no-show: 100% of accommodation fee
 
 * OTA reservations follow the respective OTA's cancellation policy.
@@ -265,9 +265,9 @@ Last updated: May 13, 2026`,
 
 ■ 3. 取消政策
 通过官方网站预订时，取消费用如下：
-・入住日 7 天前：免费
-・入住日 6–2 天前：住宿费用的 50%
-・入住日前一天：住宿费用的 80%
+・入住日 14 天前：免费
+・入住日 13–7 天前：住宿费用的 30%
+・入住日 6 天前–前一天：住宿费用的 50%
 ・入住当日／未到通知：住宿费用的 100%
 
 ※ 通过 OTA 的预订按各 OTA 的取消规定办理。
@@ -456,7 +456,7 @@ https://villaokinawa.com
 
 ■ お支払方法
 クレジットカード決済（Stripe 経由）
-取扱ブランド: Visa / Mastercard / JCB / American Express / Diners Club
+取扱ブランド: Visa / Mastercard
 
 ■ お支払時期
 ご予約時に決済を確定、または宿泊プランの規定に従いチェックイン時に確定。
@@ -469,9 +469,9 @@ https://villaokinawa.com
 宿泊サービスの性質上、商品の返品はお受けできません。
 ご予約のキャンセルは「利用規約・キャンセルポリシー」に準じます。
 公式サイトご予約のキャンセル料は以下のとおりです:
-・宿泊日の7日前まで: 無料
-・宿泊日の6〜2日前: 宿泊料金の50%
-・宿泊日の前日: 宿泊料金の80%
+・宿泊日の14日前まで: 無料
+・宿泊日の13〜7日前: 宿泊料金の30%
+・宿泊日の6日前〜前日: 宿泊料金の50%
 ・宿泊当日・無連絡不泊: 宿泊料金の100%
 
 OTA経由のご予約は各OTAのキャンセル規定に従います。
@@ -521,7 +521,7 @@ Prices are displayed in Japanese Yen (JPY).
 
 ■ Payment Methods
 Credit card payment (via Stripe).
-Accepted: Visa / Mastercard / JCB / American Express / Diners Club
+Accepted: Visa / Mastercard
 
 ■ Payment Timing
 Charged at the time of reservation, or at check-in depending on the plan.
@@ -533,9 +533,9 @@ Service begins on the reserved check-in date for the duration of your stay.
 ■ Returns / Cancellations
 Due to the nature of accommodation services, returns are not accepted.
 Cancellations follow our Terms & Cancellation Policy:
-- Up to 7 days before stay: Free
-- 6 to 2 days before: 50% of accommodation fee
-- 1 day before: 80% of accommodation fee
+- Up to 14 days before stay: Free
+- 13 to 7 days before: 30% of accommodation fee
+- 6 days to 1 day before: 50% of accommodation fee
 - Day of stay / no-show: 100% of accommodation fee
 
 OTA reservations follow the respective OTA's cancellation policy.
@@ -585,7 +585,7 @@ https://villaokinawa.com
 
 ■ 支付方式
 信用卡付款（通过 Stripe）
-受理品牌：Visa / Mastercard / JCB / American Express / Diners Club
+受理品牌：Visa / Mastercard
 
 ■ 支付时期
 预订时确认扣款，或依照住宿方案规定于办理入住时确认。
@@ -597,9 +597,9 @@ https://villaokinawa.com
 ■ 退款・取消
 鉴于住宿服务的性质，恕不受理商品退还。
 取消预订依照《服务条款及取消政策》:
-・入住日 7 天前：免费
-・入住日 6–2 天前：住宿费用的 50%
-・入住日前一天：住宿费用的 80%
+・入住日 14 天前：免费
+・入住日 13–7 天前：住宿费用的 30%
+・入住日 6 天前–前一天：住宿费用的 50%
 ・入住当日／未到通知：住宿费用的 100%
 
 通过 OTA 预订的，依照各 OTA 的取消规定。

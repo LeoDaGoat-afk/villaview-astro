@@ -88,7 +88,7 @@
   "booking.badge.instant": "即時確認",
   "policy.heading": "預訂相關規定",
   "policy.cancelLabel": "取消政策：",
-  "policy.cancelText": "入住日 7 天前免費 / 6–2 天前 50% / 前一天 80% / 當日 100%",
+  "policy.cancelText": "入住日 14 天前免費 / 13–7 天前 30% / 6 天–前一天 50% / 當日 100%",
   "policy.timesLabel": "入住/退房：",
   "policy.timesText": "15:00 / 11:00",
   "policy.rulesLabel": "禁止事項：",

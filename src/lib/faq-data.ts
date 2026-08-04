@@ -191,17 +191,17 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "支払い方法は？", en: "What payment methods are accepted?", zh: "支持哪些支付方式？" },
         a: {
-          ja: "公式サイトでのご予約時にクレジットカード決済（Stripe 経由で安全に処理）。VISA、Mastercard、JCB、AMEX、Apple Pay、Google Pay 等に対応。現金はお取り扱いしておりません。",
-          en: "Credit card at the time of booking via Stripe (secure processing). VISA, Mastercard, JCB, AMEX, Apple Pay, Google Pay, etc. supported. We do not accept cash.",
-          zh: "预订时通过 Stripe 使用信用卡支付（安全处理）。支持 VISA、Mastercard、JCB、AMEX、Apple Pay、Google Pay 等。不接受现金。",
+          ja: "公式サイトでのご予約時にクレジットカード決済（Stripe 経由で安全に処理）。VISA、Mastercard に対応しています。現金はお取り扱いしておりません。",
+          en: "Credit card at the time of booking via Stripe (secure processing). VISA and Mastercard are accepted. We do not accept cash.",
+          zh: "预订时通过 Stripe 使用信用卡支付（安全处理）。支持 VISA、Mastercard。不接受现金。",
         },
       },
       {
         q: { ja: "キャンセルポリシーは？", en: "What is the cancellation policy?", zh: "取消政策是怎样的？" },
         a: {
-          ja: "宿泊日の 7 日前まで無料、6〜2 日前は宿泊料金の 50%、前日は 80%、当日・無連絡不泊は 100% のキャンセル料が発生します。",
-          en: "Free up to 7 days before stay; 50% from 6-2 days before; 80% the day before; 100% on day of stay or no-show.",
-          zh: "入住日 7 天前免费；6-2 天前收取住宿费用的 50%；前一天 80%；当日或未到通知 100%。",
+          ja: "宿泊日の 14 日前まで無料、13〜7 日前は宿泊料金の 30%、6 日前〜前日は 50%、当日・無連絡不泊は 100% のキャンセル料が発生します。",
+          en: "Free up to 14 days before stay; 30% from 13-7 days before; 50% from 6 days to 1 day before; 100% on day of stay or no-show.",
+          zh: "入住日 14 天前免费；13-7 天前收取住宿费用的 30%；6 天前–前一天 50%；当日或未到通知 100%。",
         },
       },
       {
