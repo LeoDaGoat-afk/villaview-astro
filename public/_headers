@@ -1,4 +1,10 @@
 # The Beds24 booking page loads these embed files remotely. Keep their cache
 # short so layout/price changes reach guests within minutes, not 4 hours.
+#
+# 2026-08-04: production was measured serving `max-age=14400` for /embed/*, i.e. the
+# 300s rule below was NOT reaching guests — a corrected file sat live for hours while
+# browsers kept replaying the old one. Switched to no-cache (always revalidate, cheap
+# 304s for a ~30KB file) so a correction can never be stuck behind a stale copy again.
+# Re-measure with: curl -sI https://villaokinawa.com/embed/beds24-body-top.js
 /embed/*
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, no-cache, must-revalidate
