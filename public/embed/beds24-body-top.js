@@ -2,8 +2,12 @@
    Hosted at https://villaokinawa.com/embed/beds24-body-top.js
    Loaded by Beds24 admin → Booking Engine → Property Booking Page → Developer → Body Top.
    Renders branded landing UI (hero, search, price+availability calendar, features, gallery,
-   footer) above Beds24 native flow. Direct rate = master × 0.95 (Beds24 officialsite channel),
-   ~20% cheaper than Booking.com (master × 1.20).
+   footer) above Beds24 native flow. Direct rate = master × 0.95 (Beds24 officialsite channel).
+
+   2026-08-04: removed the "best rate / 20% OFF" banner. The claim was factually wrong
+   (the official site measured 7,089 JPY HIGHER than Booking.com on 2026-08-16, 1 night / 4 guests)
+   and an unsubstantiated cheapest-price claim breaches the Japanese Act against Unjustifiable
+   Premiums and Misleading Representations. Do not reinstate without evidence on file.
 */
 (function () {
   if (window.top !== window.self) document.documentElement.classList.add('embed');
@@ -66,7 +70,6 @@
     ja: {
       navHome: 'トップ', navFacilities: '施設', navAttractions: '周辺', navCheckin: 'チェックイン', navAccess: 'アクセス', navBooking: 'ご予約', navFaq: 'よくあるご質問', navContact: 'お問い合わせ',
       heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: '太平洋を一望する、4寝室・10名様までの貸切ヴィラ',
-      directBadge: '公式サイト最安', directMsg: '直接予約なら Booking.com より <strong>20% OFF</strong>',
       fbarCheckin: 'チェックイン', fbarCheckout: 'チェックアウト', fbarAdults: '大人', fbarChildren: '子供 (6-12歳)', fbarGo: '空き状況を確認',
       fbarNights: '泊数', fbarNightUnit: '泊', fbarBbq: 'BBQ機材を利用する',
       fbarChildNote: '※ 5歳以下無料、6-12歳お一人 ¥2,000追加',
@@ -102,7 +105,6 @@
     en: {
       navHome: 'Home', navFacilities: 'Facilities', navAttractions: 'Nearby', navCheckin: 'Check-in', navAccess: 'Access', navBooking: 'Reserve', navFaq: 'FAQ', navContact: 'Contact',
       heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: 'A private 4-bedroom oceanfront villa for up to 10 guests',
-      directBadge: 'BEST RATE', directMsg: 'Book direct — <strong>20% cheaper</strong> than Booking.com',
       fbarCheckin: 'Check-in', fbarCheckout: 'Check-out', fbarAdults: 'Adults', fbarChildren: 'Children (6-12)', fbarGo: 'Check Availability',
       fbarNights: 'Nights', fbarNightUnit: '', fbarBbq: 'Add BBQ equipment',
       fbarChildNote: '※ Under 5 free · Ages 6-12 add ¥2,000 per child',
@@ -138,7 +140,6 @@
     zh: {
       navHome: '首页', navFacilities: '设施', navAttractions: '周边', navCheckin: '入住', navAccess: '交通', navBooking: '预订', navFaq: '常见问题', navContact: '联系',
       heroEyebrow: '冲绳 · 南城', heroTitle: 'VILLA VIEW', heroSub: '俯瞰太平洋・4 卧室・最多 10 人独栋别墅',
-      directBadge: '官网最低价', directMsg: '官网直订 比 Booking.com 便宜 <strong>20%</strong>',
       fbarCheckin: '入住', fbarCheckout: '退房', fbarAdults: '成人', fbarChildren: '儿童 (6-12岁)', fbarGo: '查空房',
       fbarNights: '晚数', fbarNightUnit: '晚', fbarBbq: '加 BBQ 设备',
       fbarChildNote: '※ 5岁以下免费，6-12岁每人加 ¥2,000',
@@ -225,13 +226,9 @@
       '</div>' +
     '</section>';
 
-  var directHTML =
-    '<div class="vv-direct-banner">' +
-      '<div class="vv-direct-banner-inner">' +
-        '<span class="vv-direct-badge">' + T.directBadge + '</span>' +
-        '<span class="vv-direct-msg">' + T.directMsg + '</span>' +
-      '</div>' +
-    '</div>';
+  // Removed 2026-08-04 — see file header. Kept as an empty string so the render order below
+  // stays untouched. Reinstating requires evidence that the direct rate really is cheaper.
+  var directHTML = '';
 
   var fbarHTML =
     '<section class="vv-fbar">' +
