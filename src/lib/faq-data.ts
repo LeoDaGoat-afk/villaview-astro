@@ -91,19 +91,19 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         },
       },
       {
-        q: { ja: "BBQ テラスを使いたいです", en: "Can I use the BBQ terrace?", zh: "想使用 BBQ 平台" },
+        q: { ja: "バルコニーの BBQ を使いたいです", en: "Can I use the BBQ on the balcony?", zh: "想使用阳台的烧烤区" },
         a: {
-          ja: "21:00 までご利用可能です。コンロは事前に清掃した状態でご用意します。炭・食材はお持ち込みください。",
-          en: "Available until 21:00. We provide a clean empty grill; please bring your own charcoal and ingredients.",
-          zh: "可使用至 21:00。我们提供清洁的烤架，请自带木炭和食材。",
+          ja: "屋根付きのバルコニーで 21:00 までご利用いただけます。ご利用は有料（5,000円）で、炭・網・着火剤・トングをお貸しします。コンロは清掃した状態でご用意します。食材はお持ち込みください。ご希望の場合は事前にお知らせください。",
+          en: "You can use the covered BBQ area on the balcony until 21:00. It costs 5,000 yen and includes charcoal, a grill net, firelighter and tongs. The grill is provided clean. Please bring your own food, and let us know in advance if you would like to use it.",
+          zh: "阳台的带顶烧烤区可使用至 21:00。使用需付费 5,000 日元，含木炭、烤网、助燃剂和夹子。烤架已清洁完毕。食材请自备，如需使用请提前告知我们。",
         },
       },
       {
         q: { ja: "駐車場はありますか？", en: "Is there parking?", zh: "有停车场吗？" },
         a: {
-          ja: "敷地内に 2 台分の無料駐車スペースがございます。",
-          en: "Two free on-site parking spaces.",
-          zh: "场内提供 2 个免费停车位。",
+          ja: "敷地内に 5〜6 台分の無料駐車スペースがございます。",
+          en: "Free on-site parking for 5 to 6 cars.",
+          zh: "场内提供 5〜6 个免费停车位。",
         },
       },
       {
@@ -207,17 +207,17 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "喫煙は可能ですか？", en: "Is smoking allowed?", zh: "可以吸烟吗？" },
         a: {
-          ja: "全室禁煙です（バルコニー含む）。違反時は清掃料として 50,000 円を申し受けます。喫煙は屋外の指定エリアのみとなります。",
-          en: "The entire property is non-smoking (including the balcony). A JPY 50,000 cleaning fee applies for violations. Smoking only in the designated outdoor area.",
-          zh: "全栋禁烟（含阳台）。违反时收取清洁费 50,000 日元。仅可在户外指定区域吸烟。",
+          ja: "館内は全館禁煙です。喫煙用の灰皿はご用意しておりませんので、あらかじめご了承ください。",
+          en: "The entire interior of the house is non-smoking. We do not provide ashtrays anywhere on the property.",
+          zh: "馆内全面禁烟。本馆未设置吸烟用烟灰缸，敬请谅解。",
         },
       },
       {
         q: { ja: "ペットは連れて行けますか？", en: "Are pets allowed?", zh: "可以带宠物吗？" },
         a: {
-          ja: "申し訳ございませんがペット同伴はお断りしております。盲導犬・介助犬は受け入れ可能です。",
-          en: "We do not accept pets, except for service or guide dogs.",
-          zh: "抱歉，本馆不接受携带宠物。导盲犬/服务犬可入住。",
+          ja: "小型犬に限り、1泊 2,000 円でご同伴いただけます。ご同伴の場合は事前にご連絡ください。小型犬以外の動物はお受けしておりません。なお、盲導犬・介助犬は種類を問わずお受けいたします。",
+          en: "Small dogs are welcome for 2,000 yen per night. Please let us know in advance if you are bringing one. We cannot accept animals other than small dogs. Guide dogs and service dogs are always welcome.",
+          zh: "仅可携带小型犬，每晚 2,000 日元。携带宠物时请提前告知我们。小型犬以外的动物恕不接受。导盲犬与服务犬不受此限，均可入住。",
         },
       },
       {

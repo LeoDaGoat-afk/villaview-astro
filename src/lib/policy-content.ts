@@ -169,10 +169,10 @@ export const terms: PolicyContent = {
 
 ■ 5. 禁止事項
 当施設内および周辺において、以下の行為を禁止します：
-・全室禁煙（バルコニー含む）。違反時は清掃料として50,000円を申し受けます。
+・館内での喫煙（館内は全館禁煙です）
 ・大音量での騒音（特に夜22:00以降）
 ・許可のない第三者の入室・宿泊
-・ペットの同伴（介助犬を除く）
+・小型犬以外のペットの同伴（介助犬を除く）
 ・施設・備品の故意の破損
 ・違法行為、公序良俗に反する行為
 
@@ -224,10 +224,10 @@ For direct website reservations, cancellation fees are as follows:
 
 ■ 5. Prohibited Acts
 The following are prohibited within and around our facility:
-- The entire property is non-smoking (including the balcony). A cleaning fee of JPY 50,000 will be charged for violations.
+- Smoking inside the house (the entire interior is non-smoking)
 - Loud noises (especially after 22:00)
 - Unauthorized third-party entry or stay
-- Pets (except service dogs)
+- Animals other than small dogs (except service dogs)
 - Intentional damage to facilities or equipment
 - Illegal acts or acts against public order
 
@@ -279,10 +279,10 @@ Last updated: May 13, 2026`,
 
 ■ 5. 禁止行为
 在本设施内及周边禁止以下行为：
-・全栋禁烟（含阳台）。违反时收取清洁费 50,000 日元。
+・在馆内吸烟（馆内全面禁烟）
 ・大声喧哗（尤其是夜间 22:00 之后）
 ・未经许可的第三人入内或住宿
-・携带宠物（导盲犬除外）
+・携带小型犬以外的宠物（导盲犬除外）
 ・故意损坏设施或物品
 ・违法行为或违反公序良俗的行为
 
@@ -343,7 +343,7 @@ Q. 空港送迎は可能ですか？
 A. リクエストベースで対応しております。事前にご相談ください。
 
 Q. ペット同伴は可能ですか？
-A. 申し訳ございませんが、介助犬を除きペットの同伴はお断りしております。`,
+A. 小型犬に限り、1泊2,000円でご同伴いただけます（事前のご連絡をお願いします）。小型犬以外の動物はお断りしております。介助犬は種類を問わずお受けいたします。`,
   en: `Please feel free to contact VILLA VIEW through the following methods.
 
 ■ Phone
@@ -378,7 +378,7 @@ Q. Is airport pickup available?
 A. Yes, on a request basis. Please consult us in advance.
 
 Q. Are pets allowed?
-A. We regret that pets are not allowed, with the exception of service dogs.`,
+A. Small dogs are welcome for 2,000 yen per night (please tell us in advance). We cannot accept animals other than small dogs. Service dogs are always welcome.`,
   zh: `如有任何咨询，请通过以下方式联系 VILLA VIEW。
 
 ■ 电话
@@ -413,7 +413,7 @@ Q. 是否可以接送机场？
 A. 可按需求安排，请提前协商。
 
 Q. 是否可以携带宠物？
-A. 抱歉，除导盲犬外，本设施不接受携带宠物。`,
+A. 仅可携带小型犬，每晚2,000日元（请提前告知我们）。小型犬以外的动物恕不接受。导盲犬不受此限。`,
 };
 
 export const tokushoho: PolicyContent = {
