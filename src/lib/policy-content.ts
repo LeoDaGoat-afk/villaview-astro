@@ -150,7 +150,7 @@ export const terms: PolicyContent = {
 
 ■ 2. チェックイン／チェックアウト
 ・チェックイン: 15:00以降
-・チェックアウト: 11:00まで
+・チェックアウト: 10:00まで
 ・延長をご希望の場合は事前にご相談ください（別途料金が発生する場合があります）。
 
 ■ 3. キャンセルポリシー
@@ -205,7 +205,7 @@ VILLA VIEW
 
 ■ 2. Check-in / Check-out
 - Check-in: After 15:00
-- Check-out: By 11:00
+- Check-out: By 10:00
 - For extensions, please consult us in advance (additional fees may apply).
 
 ■ 3. Cancellation Policy
@@ -260,7 +260,7 @@ Last updated: May 13, 2026`,
 
 ■ 2. 入住／退房
 ・入住时间：15:00 之后
-・退房时间：11:00 之前
+・退房时间：10:00 之前
 ・如需延长，请提前协商（可能产生额外费用）。
 
 ■ 3. 取消政策

@@ -23,17 +23,17 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "チェックアウト時間は？レイトチェックアウトは可能ですか？", en: "What time is check-out? Is late check-out available?", zh: "退房时间是几点？可以延迟退房吗？" },
         a: {
-          ja: "チェックアウトは 11:00 までです。レイトチェックアウトは事前申請にて別途料金で承ります。",
-          en: "Check-out is by 11:00. Late check-out is available on request for an additional fee.",
-          zh: "退房时间为 11:00 之前。延迟退房需提前申请并支付费用。",
+          ja: "チェックアウトは 10:00 までです。レイトチェックアウトは事前申請にて別途料金で承ります。",
+          en: "Check-out is by 10:00. Late check-out is available on request for an additional fee.",
+          zh: "退房时间为 10:00 之前。延迟退房需提前申请并支付费用。",
         },
       },
       {
-        q: { ja: "鍵はどこで受け取りますか？", en: "Where do I pick up the key?", zh: "在哪里取钥匙？" },
+        q: { ja: "玄関はどうやって開けますか？", en: "How do I unlock the front door?", zh: "大门要如何打开？" },
         a: {
-          ja: "フロントは常駐しておりません。玄関左側のカフェ入口にキーボックスがございます。暗証番号はチェックイン確認メールに記載されています。",
-          en: "There is no on-site front desk. A key box is located at the cafe entrance to the left of the villa entrance. The passcode is in your check-in confirmation email.",
-          zh: "我们没有常驻前台。玄关左侧的咖啡厅入口处有一个钥匙盒。密码已发送到您的入住确认邮件中。",
+          ja: "フロントは常駐しておりません。玄関はプッシュ式の暗証番号錠です。チェックイン当日までにご案内する暗証番号を入力していただくと解錠されます。鍵のお渡しはありませんので、ご返却も不要です。",
+          en: "There is no on-site front desk. The front door has a push-button keypad lock. Enter the access code we send you before your arrival date and the door will unlock. No key is handed over, so there is nothing to return.",
+          zh: "我们没有常驻前台。玄关为按键式密码锁。输入我们在入住当日前告知您的密码即可开锁。不会交付钥匙，因此也无需归还。",
         },
       },
       {
@@ -235,11 +235,11 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     label: { ja: "トラブル", en: "Trouble Shooting", zh: "故障处理" },
     items: [
       {
-        q: { ja: "鍵が開きません", en: "The door won't open", zh: "门打不开" },
+        q: { ja: "玄関が開きません", en: "The front door won't open", zh: "大门打不开" },
         a: {
-          ja: "玄関左側のカフェ入口にキーボックスがございます。暗証番号はチェックイン確認メールに記載されています。それでも開かない場合は 098-894-2474 までご連絡ください。",
-          en: "There is a key box at the cafe entrance to the left of the villa entrance. The passcode is in your check-in confirmation email. If you still cannot enter, please call +81-98-894-2474.",
-          zh: "玄关左侧的咖啡厅入口处有钥匙盒。密码已发送到您的入住确认邮件中。如仍无法打开，请拨打 +81-98-894-2474。",
+          ja: "玄関はプッシュ式の暗証番号錠です。ご案内した暗証番号が正しく入力できているかご確認ください。それでも開かない場合は 098-894-2474 までご連絡ください。",
+          en: "The front door has a push-button keypad lock. Please check that you are entering the access code correctly. If it still does not open, please call +81-98-894-2474.",
+          zh: "玄关为按键式密码锁。请确认密码是否输入正确。如仍无法打开，请拨打 +81-98-894-2474。",
         },
       },
       {
