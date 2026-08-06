@@ -207,9 +207,9 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "喫煙は可能ですか？", en: "Is smoking allowed?", zh: "可以吸烟吗？" },
         a: {
-          ja: "館内は全館禁煙です。喫煙用の灰皿はご用意しておりませんので、あらかじめご了承ください。",
-          en: "The entire interior of the house is non-smoking. We do not provide ashtrays anywhere on the property.",
-          zh: "馆内全面禁烟。本馆未设置吸烟用烟灰缸，敬请谅解。",
+          ja: "館内は全館禁煙です。喫煙用の灰皿はご用意しておりませんので、あらかじめご了承ください。館内での喫煙が判明した場合は、特別清掃料として 50,000 円を申し受けます。",
+          en: "The entire interior of the house is non-smoking. We do not provide ashtrays anywhere on the property. If smoking inside the house is found, a special cleaning fee of JPY 50,000 will be charged.",
+          zh: "馆内全面禁烟。本馆未设置吸烟用烟灰缸，敬请谅解。如发现在馆内吸烟，将收取特别清洁费 50,000 日元。",
         },
       },
       {

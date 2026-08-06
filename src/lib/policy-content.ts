@@ -169,7 +169,7 @@ export const terms: PolicyContent = {
 
 ■ 5. 禁止事項
 当施設内および周辺において、以下の行為を禁止します：
-・館内での喫煙（館内は全館禁煙です）
+・館内での喫煙（館内は全館禁煙です）。違反が判明した場合は、特別清掃料として50,000円を申し受けます。
 ・大音量での騒音（特に夜22:00以降）
 ・許可のない第三者の入室・宿泊
 ・小型犬以外のペットの同伴（介助犬を除く）
@@ -224,7 +224,7 @@ For direct website reservations, cancellation fees are as follows:
 
 ■ 5. Prohibited Acts
 The following are prohibited within and around our facility:
-- Smoking inside the house (the entire interior is non-smoking)
+- Smoking inside the house (the entire interior is non-smoking). A special cleaning fee of JPY 50,000 will be charged if smoking is found.
 - Loud noises (especially after 22:00)
 - Unauthorized third-party entry or stay
 - Animals other than small dogs (except service dogs)
@@ -279,7 +279,7 @@ Last updated: May 13, 2026`,
 
 ■ 5. 禁止行为
 在本设施内及周边禁止以下行为：
-・在馆内吸烟（馆内全面禁烟）
+・在馆内吸烟（馆内全面禁烟）。如发现吸烟，将收取特别清洁费 50,000 日元。
 ・大声喧哗（尤其是夜间 22:00 之后）
 ・未经许可的第三人入内或住宿
 ・携带小型犬以外的宠物（导盲犬除外）
