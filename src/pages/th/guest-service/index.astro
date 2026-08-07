@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import GuestServiceContent from '../../../components/GuestServiceContent.astro';
+import { getLangFromPath, useT } from '../../../i18n/utils';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const t = useT(lang);
+---
+<Layout title={t('page.title.guest')}>
+  <GuestServiceContent />
+</Layout>
