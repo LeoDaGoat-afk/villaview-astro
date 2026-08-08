@@ -69,7 +69,7 @@
   var I18N = {
     ja: {
       navHome: 'トップ', navFacilities: '施設', navAttractions: '周辺', navCheckin: 'チェックイン', navAccess: 'アクセス', navBooking: 'ご予約', navFaq: 'よくあるご質問', navContact: 'お問い合わせ',
-      heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: '太平洋を一望する、4寝室・10名様までの貸切ヴィラ',
+      heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: '太平洋を一望する、4寝室・8名様までの貸切ヴィラ',
       fbarCheckin: 'チェックイン', fbarCheckout: 'チェックアウト', fbarAdults: '大人', fbarChildren: '子供 (6-12歳)', fbarGo: '空き状況を確認',
       fbarNights: '泊数', fbarNightUnit: '泊', fbarBbq: 'BBQ機材を利用する',
       fbarChildNote: '※ 5歳以下無料、6-12歳お一人 ¥2,000追加',
@@ -89,7 +89,7 @@
       polNote: '※ ご連絡なしの不泊は全額のキャンセル料を頂戴いたします。',
       footPolicies: '規約・ポリシー', footPrivacy: 'プライバシーポリシー', footTerms: '利用規約', footTokushoho: '特定商取引法',
       f1Lbl: '4 ベッドルーム', f1Desc: '海を望む寝室を含む4部屋',
-      f2Lbl: '最大10名', f2Desc: 'ファミリー・ご友人グループに',
+      f2Lbl: '最大8名', f2Desc: 'ファミリー・ご友人グループに',
       f3Lbl: '太平洋ビュー', f3Desc: '4室中3室から海を一望',
       f4Lbl: 'BBQ テラス', f4Desc: '夕焼けの海を眺めながら',
       f5Lbl: 'YOGA スタジオ', f5Desc: '海を眺める専用空間',
@@ -104,7 +104,7 @@
     },
     en: {
       navHome: 'Home', navFacilities: 'Facilities', navAttractions: 'Nearby', navCheckin: 'Check-in', navAccess: 'Access', navBooking: 'Reserve', navFaq: 'FAQ', navContact: 'Contact',
-      heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: 'A private 4-bedroom oceanfront villa for up to 10 guests',
+      heroEyebrow: 'OKINAWA · NANJO', heroTitle: 'VILLA VIEW', heroSub: 'A private 4-bedroom oceanfront villa for up to 8 guests',
       fbarCheckin: 'Check-in', fbarCheckout: 'Check-out', fbarAdults: 'Adults', fbarChildren: 'Children (6-12)', fbarGo: 'Check Availability',
       fbarNights: 'Nights', fbarNightUnit: '', fbarBbq: 'Add BBQ equipment',
       fbarChildNote: '※ Under 5 free · Ages 6-12 add ¥2,000 per child',
@@ -124,7 +124,7 @@
       polNote: '※ No-shows without notice are charged 100%.',
       footPolicies: 'Policies', footPrivacy: 'Privacy Policy', footTerms: 'Terms of Use', footTokushoho: 'Commerce Disclosure',
       f1Lbl: '4 Bedrooms', f1Desc: 'Four rooms including an oceanview suite',
-      f2Lbl: 'Up to 10 Guests', f2Desc: 'Ideal for families and groups',
+      f2Lbl: 'Up to 8 Guests', f2Desc: 'Ideal for families and groups',
       f3Lbl: 'Pacific Ocean View', f3Desc: 'Visible from 3 of the 4 bedrooms',
       f4Lbl: 'BBQ Terrace', f4Desc: 'Dine into the Okinawan sunset',
       f5Lbl: 'Yoga Studio', f5Desc: 'A dedicated space facing the sea',
@@ -139,7 +139,7 @@
     },
     zh: {
       navHome: '首页', navFacilities: '设施', navAttractions: '周边', navCheckin: '入住', navAccess: '交通', navBooking: '预订', navFaq: '常见问题', navContact: '联系',
-      heroEyebrow: '冲绳 · 南城', heroTitle: 'VILLA VIEW', heroSub: '俯瞰太平洋・4 卧室・最多 10 人独栋别墅',
+      heroEyebrow: '冲绳 · 南城', heroTitle: 'VILLA VIEW', heroSub: '俯瞰太平洋・4 卧室・最多 8 人独栋别墅',
       fbarCheckin: '入住', fbarCheckout: '退房', fbarAdults: '成人', fbarChildren: '儿童 (6-12岁)', fbarGo: '查空房',
       fbarNights: '晚数', fbarNightUnit: '晚', fbarBbq: '加 BBQ 设备',
       fbarChildNote: '※ 5岁以下免费，6-12岁每人加 ¥2,000',
@@ -159,7 +159,7 @@
       polNote: '※ 未提前通知的未到店将收取100%退订费。',
       footPolicies: '条款与政策', footPrivacy: '隐私政策', footTerms: '使用条款', footTokushoho: '特定商业交易',
       f1Lbl: '4 间卧室', f1Desc: '含一间海景套房，共四室',
-      f2Lbl: '最多 10 人', f2Desc: '适合家庭与朋友聚会',
+      f2Lbl: '最多 8 人', f2Desc: '适合家庭与朋友聚会',
       f3Lbl: '太平洋海景', f3Desc: '四间卧室中三间能看到大海',
       f4Lbl: 'BBQ 露台', f4Desc: '在夕阳海景中烧烤',
       f5Lbl: '瑜伽室', f5Desc: '面朝大海的专属空间',
