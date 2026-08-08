@@ -28,7 +28,7 @@ export const privacy: PolicyContent = {
 当施設は、以下の場合を除き、個人情報を第三者に提供しません。
 ・お客様の同意がある場合
 ・法令に基づく場合（旅館業法・警察照会等）
-・予約管理システム（Beds24）など、サービス提供に必要な業務委託先への提供
+・予約管理システム（Beds24）、および当施設の予約・運営管理システムの開発・運用委託先など、サービス提供に必要な業務委託先への提供
 
 ■ 4. 安全管理
 個人情報への不正アクセス、紛失、破壊、改ざん、漏えいを防止するため、適切な安全対策を実施します。
@@ -47,7 +47,7 @@ VILLA VIEW
 メール: info.serena.breeze@gmail.com
 
 制定日: 2026年4月1日
-最終改定日: 2026年5月13日`,
+最終改定日: 2026年8月8日`,
   en: `VILLA VIEW ("the Property") considers the protection of your personal information our highest priority and handles it appropriately based on the following policy.
 
 ■ 1. Personal Information Collected
@@ -73,7 +73,7 @@ We use collected personal information for the following purposes:
 We will not disclose personal information to third parties except in the following cases:
 - With your consent
 - When required by law (hotel business law, police inquiries, etc.)
-- To necessary service providers such as our reservation system (Beds24)
+- To necessary service providers, such as our reservation system (Beds24) and the contractor that develops and operates our reservation and property management system
 
 ■ 4. Security Management
 We implement appropriate security measures to prevent unauthorized access, loss, destruction, alteration, or leakage of personal information.
@@ -92,7 +92,7 @@ Phone: +81 98-894-2474
 Email: info.serena.breeze@gmail.com
 
 Established: April 1, 2026
-Last updated: May 13, 2026`,
+Last updated: August 8, 2026`,
   zh: `VILLA VIEW（以下简称"本设施"）将客户的个人信息保护视为最重要的事项，并根据以下方针进行妥善处理。
 
 ■ 1. 收集的个人信息
@@ -118,7 +118,7 @@ Last updated: May 13, 2026`,
 除以下情况外，本设施不会向第三方提供个人信息：
 ・取得客户本人同意
 ・基于法律法规（旅馆业法、警察查询等）
-・必要的业务委托方（如预订管理系统 Beds24）
+・必要的业务委托方（如预订管理系统 Beds24，以及本设施预订与运营管理系统的开发运维委托方）
 
 ■ 4. 安全管理
 为防止个人信息被未经授权的访问、丢失、破坏、篡改或泄露，本设施采取适当的安全管理措施。
@@ -137,7 +137,7 @@ VILLA VIEW
 邮箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最后修订：2026年5月13日`,
+最后修订：2026年8月8日`,
   zhHant: `VILLA VIEW（以下簡稱「本設施」）將客戶的個人資料保護視為最重要的事項，並依照以下方針妥善處理。
 
 ■ 1. 蒐集的個人資料
@@ -163,7 +163,7 @@ VILLA VIEW
 除以下情況外，本設施不會向第三方提供個人資料：
 ・取得客戶本人同意
 ・依據法令規定（旅館業法、警方查詢等）
-・必要的業務委外廠商（如預訂管理系統 Beds24）
+・必要的業務委外廠商（如預訂管理系統 Beds24，以及本設施訂房與營運管理系統的開發維運委外廠商）
 
 ■ 4. 安全管理
 為防止個人資料遭未經授權的存取、遺失、毀損、竄改或外洩，本設施採取適當的安全管理措施。
@@ -182,7 +182,7 @@ VILLA VIEW
 電子信箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最後修訂：2026年5月13日`,
+最後修訂：2026年8月8日`,
 };
 
 export const terms: PolicyContent = {
