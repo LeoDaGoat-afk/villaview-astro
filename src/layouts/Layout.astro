@@ -141,15 +141,15 @@ const lodgingSchema = {
       ],
     },
   ],
-  makesOffer: {
-    "@type": "Offer",
-    name: "公式予約特典 ─ 会員限定 10% OFF",
-    priceCurrency: "JPY",
-    price: "48000",
-    priceValidUntil: "2027-12-31",
-    availability: "https://schema.org/InStock",
-    url: "https://villaokinawa.com/booking",
-  },
+  // makesOffer（「公式予約特典 ─ 会員限定 10% OFF」／price 48000）は
+  // 2026-08-08 に削除した（アキラさん判断）。
+  //   - 「会員限定 10% OFF」という特典は現時点で実在しない。
+  //     黒＋黄が合意した「直接予約は清掃費 15,000円→7,500円（実質約10%安）」は
+  //     これから作る設計であって、現行の特典ではない。
+  //   - price 48000 は Beds24 の rackRate 由来。実売は 54,450円〜で乖離していた。
+  // 実在しない特典・実勢と異なる価格の掲示は景表法上のリスクになるため撤去。
+  // 正式に特典を作った時点で、条件（対象者・適用範囲・期間）とあわせて記載すること。
+  // 価格帯は priceRange: "¥¥¥" で引き続き示している。
   // aggregateRating（星5.0・20件）は 2026-08-08 に削除した。
   // 数字自体は本物で、Googleマップのクチコミ 5.0／20件 と完全一致していた。
   // だが Google の構造化データ規約（review-snippet）に3点とも抵触する:
