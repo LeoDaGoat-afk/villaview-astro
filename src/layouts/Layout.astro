@@ -150,14 +150,17 @@ const lodgingSchema = {
     availability: "https://schema.org/InStock",
     url: "https://villaokinawa.com/booking",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    bestRating: "5",
-    worstRating: "1",
-    reviewCount: "20",
-    ratingCount: "20",
-  },
+  // aggregateRating（星5.0・20件）は 2026-08-08 に削除した。
+  // 数字自体は本物で、Googleマップのクチコミ 5.0／20件 と完全一致していた。
+  // だが Google の構造化データ規約（review-snippet）に3点とも抵触する:
+  //   1. "Don't aggregate reviews or ratings from other websites."
+  //      → Googleマップの評価を自社サイトのマークアップへ転記していた
+  //   2. 自社（Organization/LodgingBusiness）が自社の評価を管理する形は
+  //      star review feature の対象外（ineligible）
+  //   3. "review content you mark up are readily available to users from the
+  //      marked-up page" → その20件は villaokinawa.com 上に存在しない
+  // 星は表示されないうえ警告のリスクがあり、景表法上も出所が不明のため削除。
+  // 復活させるなら、自社サイト上に実際のレビュー掲載欄を設け、その集計値を出すこと。
 };
 
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
