@@ -147,5 +147,11 @@
   "photo.bbq": "参观屋内",
   "photo.desk": "参观屋内",
   "photo.sauna": "参观屋内",
-  "photo.hallParty": "参观屋内"
+  "photo.hallParty": "参观屋内",
+  "page.title.404": "未找到页面 | VILLA VIEW",
+  "page.desc.404": "您访问的页面可能已被移动或删除。",
+  "nf.heading": "未找到页面",
+  "nf.body": "您访问的页面可能已被移动或删除。请点击下方按钮返回首页。",
+  "nf.cta.home": "返回首页",
+  "nf.cta.booking": "前往预订"
 }

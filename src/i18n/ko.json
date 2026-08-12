@@ -130,5 +130,11 @@
   "photo.bbq": "발코니의 바비큐 설비",
   "photo.desk": "책상이 있는 자리",
   "photo.sauna": "사우나 돔이 있는 방",
-  "photo.hallParty": "1층 홀에 모인 모습"
+  "photo.hallParty": "1층 홀에 모인 모습",
+  "page.title.404": "페이지를 찾을 수 없습니다 | VILLA VIEW",
+  "page.desc.404": "찾으시는 페이지가 이동되었거나 삭제되었을 수 있습니다.",
+  "nf.heading": "페이지를 찾을 수 없습니다",
+  "nf.body": "찾으시는 페이지가 이동되었거나 삭제되었을 수 있습니다. 아래 버튼을 눌러 메인 페이지로 돌아가 주세요.",
+  "nf.cta.home": "메인 페이지로",
+  "nf.cta.booking": "예약 페이지로"
 }

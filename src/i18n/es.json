@@ -130,5 +130,11 @@
   "photo.bbq": "La barbacoa en el balcón",
   "photo.desk": "El rincón de trabajo",
   "photo.sauna": "La sala de la cúpula de sauna",
-  "photo.hallParty": "Huéspedes reunidos en la sala de la planta baja"
+  "photo.hallParty": "Huéspedes reunidos en la sala de la planta baja",
+  "page.title.404": "Página no encontrada | VILLA VIEW",
+  "page.desc.404": "Es posible que la página que busca se haya movido o eliminado.",
+  "nf.heading": "Página no encontrada",
+  "nf.body": "Es posible que la página que busca se haya movido o eliminado. Utilice el botón de abajo para volver a la página principal.",
+  "nf.cta.home": "Ir a la página principal",
+  "nf.cta.booking": "Ir a la reserva"
 }

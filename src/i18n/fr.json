@@ -130,5 +130,11 @@
   "photo.bbq": "Le matériel de barbecue sur le balcon",
   "photo.desk": "Le coin bureau",
   "photo.sauna": "La pièce au dôme sauna",
-  "photo.hallParty": "Des invités réunis dans la salle du rez-de-chaussée"
+  "photo.hallParty": "Des invités réunis dans la salle du rez-de-chaussée",
+  "page.title.404": "Page introuvable | VILLA VIEW",
+  "page.desc.404": "La page que vous recherchez a peut-être été déplacée ou supprimée.",
+  "nf.heading": "Page introuvable",
+  "nf.body": "La page que vous recherchez a peut-être été déplacée ou supprimée. Veuillez utiliser le bouton ci-dessous pour revenir à la page d'accueil.",
+  "nf.cta.home": "Retour à l'accueil",
+  "nf.cta.booking": "Vers la réservation"
 }

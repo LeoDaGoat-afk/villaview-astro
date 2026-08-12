@@ -130,5 +130,11 @@
   "photo.bbq": "Die Grillausstattung auf dem Balkon",
   "photo.desk": "Die Schreibtischecke",
   "photo.sauna": "Der Raum mit der Saunakuppel",
-  "photo.hallParty": "Gäste versammelt im Saal im Erdgeschoss"
+  "photo.hallParty": "Gäste versammelt im Saal im Erdgeschoss",
+  "page.title.404": "Seite nicht gefunden | VILLA VIEW",
+  "page.desc.404": "Die gesuchte Seite wurde möglicherweise verschoben oder entfernt.",
+  "nf.heading": "Seite nicht gefunden",
+  "nf.body": "Die gesuchte Seite wurde möglicherweise verschoben oder entfernt. Bitte kehren Sie über die Schaltfläche unten zur Startseite zurück.",
+  "nf.cta.home": "Zur Startseite",
+  "nf.cta.booking": "Zur Buchung"
 }

@@ -147,5 +147,11 @@
   "photo.bbq": "Barbecue setup on the balcony",
   "photo.desk": "The desk corner",
   "photo.sauna": "The room with the sauna dome",
-  "photo.hallParty": "Guests gathered in the ground-floor hall"
+  "photo.hallParty": "Guests gathered in the ground-floor hall",
+  "page.title.404": "Page not found | VILLA VIEW",
+  "page.desc.404": "The page you are looking for may have been moved or removed.",
+  "nf.heading": "Page not found",
+  "nf.body": "The page you are looking for may have been moved or removed. Please use the button below to return to the top page.",
+  "nf.cta.home": "Back to top page",
+  "nf.cta.booking": "Go to booking"
 }
