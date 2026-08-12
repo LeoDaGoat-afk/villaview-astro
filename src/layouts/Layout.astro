@@ -107,11 +107,16 @@ const lodgingSchema = {
     { "@type": "LocationFeatureSpecification", name: "Ocean View", value: true },
     { "@type": "LocationFeatureSpecification", name: "Free WiFi", value: true },
     { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
-    { "@type": "LocationFeatureSpecification", name: "BBQ Terrace", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Yoga Studio", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Coffee Lounge", value: true },
+    // 2026-08-12 実態に合わせて是正（旧サイトの表記が残っていた）:
+    //   BBQ Terrace → BBQができるのは南向き・屋根付きのバルコニー。テラスは北向き・屋根なし
+    //   Yoga Studio → 実体は1階のホール。ヨガや体操にも使えるが専用スタジオではない
+    //   Coffee Lounge → 実体は1階のカフェスペース
+    //   Mini Bar → 提供していないため削除
+    { "@type": "LocationFeatureSpecification", name: "Covered BBQ Balcony", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Multipurpose Hall", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Cafe Space", value: true },
     { "@type": "LocationFeatureSpecification", name: "Therapy Room", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Mini Bar", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Sauna", value: true },
     { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
     { "@type": "LocationFeatureSpecification", name: "Kitchen", value: true },
   ],
@@ -129,7 +134,9 @@ const lodgingSchema = {
     {
       "@type": "Accommodation",
       name: "VillaVIEW Suite",
-      occupancy: { "@type": "QuantitativeValue", maxValue: 10 },
+      // 2026-08-12 修正：10 → 8。定員は8名（9名以上は要相談）。
+      // 2026-08-03 にサイト14か所を8名へ統一した際、この構造化データだけ漏れていた。
+      occupancy: { "@type": "QuantitativeValue", maxValue: 8 },
       bed: [
         { "@type": "BedDetails", typeOfBed: "Double", numberOfBeds: 1 },
         { "@type": "BedDetails", typeOfBed: "Single", numberOfBeds: 4 },
