@@ -191,7 +191,8 @@ export const terms: PolicyContent = {
 ■ 1. 予約
 ・ご予約は、当施設公式サイト、Beds24、または提携OTA（Booking.com、Airbnb、Trip.com 等）を通じて受け付けます。
 ・ご予約完了後、確認メールを送信します。
-・宿泊代金は、ご予約時または現地にてお支払いいただきます。
+・公式サイトからのご予約は、ご予約時にクレジットカードで全額をお支払いいただきます。現地でのお支払いは承っておりません。
+・OTA経由のご予約は、各OTAが定めるお支払方法に従います。
 
 ■ 2. チェックイン／チェックアウト
 ・チェックイン: 15:00以降
@@ -240,13 +241,14 @@ VILLA VIEW
 メール: info.serena.breeze@gmail.com
 
 制定日: 2026年4月1日
-最終改定日: 2026年5月13日`,
+最終改定日: 2026年8月14日`,
   en: `These Terms of Service ("Terms") govern your use of the accommodation services provided by VILLA VIEW ("the Property"). By making a reservation, you agree to these Terms.
 
 ■ 1. Reservations
 - Reservations are accepted through our official website, Beds24, or partner OTAs (Booking.com, Airbnb, Trip.com, etc.).
 - A confirmation email will be sent upon completion of your reservation.
-- Payment is due at the time of booking or upon arrival.
+- For reservations made through our official website, the full amount is charged to your credit card at the time of booking. Payment on arrival is not available.
+- For reservations made through an OTA, payment follows the method specified by that OTA.
 
 ■ 2. Check-in / Check-out
 - Check-in: After 15:00
@@ -295,13 +297,14 @@ Phone: +81 98-894-2474
 Email: info.serena.breeze@gmail.com
 
 Established: April 1, 2026
-Last updated: May 13, 2026`,
+Last updated: August 14, 2026`,
   zh: `本服务条款（以下"本条款"）规定了 VILLA VIEW（以下"本设施"）提供的住宿服务的使用条件。完成预订即视为您同意本条款。
 
 ■ 1. 预订
 ・本设施通过官方网站、Beds24 及合作 OTA（Booking.com、Airbnb、携程等）受理预订。
 ・预订完成后将发送确认邮件。
-・住宿费用在预订时或抵达时支付。
+・通过官方网站预订时，须于预订时以信用卡支付全额。本设施不接受现场支付。
+・通过 OTA 预订时，依照各 OTA 规定的支付方式。
 
 ■ 2. 入住／退房
 ・入住时间：15:00 之后
@@ -350,13 +353,14 @@ VILLA VIEW
 邮箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最后修订：2026年5月13日`,
+最后修订：2026年8月14日`,
   zhHant: `本服務條款（以下稱「本條款」）規定 VILLA VIEW（以下稱「本設施」）所提供住宿服務的使用條件。完成預訂即視為您同意本條款。
 
 ■ 1. 預訂
 ・本設施透過官方網站、Beds24 及合作 OTA（Booking.com、Airbnb、Trip.com 等）受理預訂。
 ・預訂完成後將寄送確認郵件。
-・住宿費用於預訂時或抵達時支付。
+・透過官方網站預訂時，須於預訂時以信用卡支付全額。本設施不接受現場付款。
+・透過 OTA 預訂時，依照各 OTA 規定的付款方式。
 
 ■ 2. 入住／退房
 ・入住時間：15:00 之後
@@ -405,7 +409,7 @@ VILLA VIEW
 電子信箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最後修訂：2026年5月13日`,
+最後修訂：2026年8月14日`,
 };
 
 export const contact: PolicyContent = {
@@ -585,17 +589,24 @@ https://villaokinawa.com
 通貨は日本円（JPY）にて表示します。
 
 ■ 商品代金以外に必要な料金
+・清掃費: 1滞在につき 15,000円（消費税込・定額）。宿泊料金とは別に加算されます。
+・BBQ利用料: 5,000円（ご希望の方のみ・炭、網、着火剤、トングの貸出）
 ・入湯税・宿泊税（該当地域・プランの場合）
 ・延長利用、追加サービス等に伴う料金（事前にご案内）
 ・規約違反時の清掃料・損害賠償（利用規約に準ずる）
+
+■ 申込期間の定め
+特定の申込期間の定めはありません。
+公式サイトの予約カレンダーに空室が表示されている日程について、随時ご予約を受け付けます。
 
 ■ お支払方法
 クレジットカード決済（Stripe 経由）
 取扱ブランド: Visa / Mastercard
 
 ■ お支払時期
-ご予約時に決済を確定、または宿泊プランの規定に従いチェックイン時に確定。
-詳細はご予約画面の表示に従います。
+ご予約時に、宿泊料金および清掃費の全額をクレジットカードにて決済いただきます。
+現地でのお支払いは承っておりません。
+お支払いが確認できない場合、ご予約は自動的にキャンセルとなります。
 
 ■ サービス提供時期
 ご予約のチェックイン日より、予約された期間。
@@ -616,7 +627,7 @@ OTA経由のご予約は各OTAのキャンセル規定に従います。
 
 ■ 表記の制定
 制定日: 2026年4月1日
-最終改定日: 2026年5月13日`,
+最終改定日: 2026年8月14日`,
   en: `In accordance with Article 11 of the Specified Commercial Transactions Act of Japan, the following information is disclosed.
 
 ■ Business Name
@@ -650,17 +661,24 @@ As displayed on each room and plan page (consumption tax included).
 Prices are displayed in Japanese Yen (JPY).
 
 ■ Additional Fees
+- Cleaning fee: JPY 15,000 per stay (flat rate, consumption tax included). Charged in addition to the room rate.
+- BBQ fee: JPY 5,000 (optional; includes charcoal, grill net, firelighter and tongs)
 - Bath tax / accommodation tax (where applicable)
 - Extension fees, optional services (notified in advance)
 - Cleaning / damage fees in case of policy violations (per Terms)
+
+■ Application Period
+There is no limited application period.
+Reservations are accepted at any time for dates shown as available on the booking calendar of our official website.
 
 ■ Payment Methods
 Credit card payment (via Stripe).
 Accepted: Visa / Mastercard
 
 ■ Payment Timing
-Charged at the time of reservation, or at check-in depending on the plan.
-Details follow the indication on the reservation screen.
+The full amount, including the room rate and the cleaning fee, is charged to your credit card at the time of reservation.
+Payment on arrival is not available.
+If payment cannot be confirmed, the reservation is cancelled automatically.
 
 ■ Service Delivery
 Service begins on the reserved check-in date for the duration of your stay.
@@ -680,7 +698,7 @@ Latest versions of major browsers (Chrome / Safari / Firefox / Edge) recommended
 
 ■ Disclosure Dates
 Established: April 1, 2026
-Last updated: May 13, 2026`,
+Last updated: August 14, 2026`,
   zh: `根据日本《特定商业交易法》第11条，特此公示以下信息。
 
 ■ 销售事业者
@@ -714,17 +732,24 @@ https://villaokinawa.com
 价格以日元（JPY）显示。
 
 ■ 商品款项之外的必要费用
+・清洁费：每次入住 15,000 日元（含消费税・定额）。与住宿费用分开另行计收。
+・烧烤使用费：5,000 日元（仅限需要的客人・含木炭、烤网、助燃剂、夹子的租借）
 ・入汤税、住宿税（适用地区或方案）
 ・延长使用、追加服务等费用（事先告知）
 ・违反规定时的清洁费及损害赔偿（依据服务条款）
+
+■ 申请期间的规定
+没有特定的申请期间限制。
+官方网站预订日历上显示有空房的日期，均可随时预订。
 
 ■ 支付方式
 信用卡付款（通过 Stripe）
 受理品牌：Visa / Mastercard
 
 ■ 支付时期
-预订时确认扣款，或依照住宿方案规定于办理入住时确认。
-详情以预订页面显示为准。
+预订时以信用卡支付住宿费用及清洁费的全额。
+本设施不接受现场支付。
+若无法确认付款，预订将被自动取消。
 
 ■ 服务提供时期
 自所预订的入住日起，按预订期间提供。
@@ -744,7 +769,7 @@ https://villaokinawa.com
 
 ■ 公示日期
 制定日期：2026年4月1日
-最后修订：2026年5月13日`,
+最后修订：2026年8月14日`,
   zhHant: `依據日本《特定商業交易法》第11條，謹此公示以下事項。
 
 ■ 銷售事業者
@@ -778,17 +803,24 @@ https://villaokinawa.com
 價格以日圓（JPY）顯示。
 
 ■ 商品價金以外的必要費用
+・清潔費：每次入住 15,000 日圓（含消費稅・定額）。與住宿費用分開另行計收。
+・烤肉使用費：5,000 日圓（僅限需要的客人・含木炭、烤網、助燃劑、夾子的租借）
 ・入湯稅、住宿稅（適用地區或方案）
 ・延長使用、追加服務等費用（事先告知）
 ・違反規定時的清潔費及損害賠償（依據服務條款）
+
+■ 申請期間的規定
+沒有特定的申請期間限制。
+官方網站預訂日曆上顯示有空房的日期，均可隨時預訂。
 
 ■ 付款方式
 信用卡付款（透過 Stripe）
 受理卡別：Visa / Mastercard
 
 ■ 付款時期
-於預訂時確認扣款，或依住宿方案規定於辦理入住時確認。
-詳情以預訂頁面顯示為準。
+於預訂時以信用卡支付住宿費用及清潔費的全額。
+本設施不接受現場付款。
+若無法確認付款，預訂將被自動取消。
 
 ■ 服務提供時期
 自所預訂的入住日起，依預訂期間提供。
@@ -808,7 +840,7 @@ https://villaokinawa.com
 
 ■ 公示日期
 制定日期：2026年4月1日
-最後修訂：2026年5月13日`,
+最後修訂：2026年8月14日`,
 };
 
 export function pickPolicy(content: PolicyContent, lang: string): string {
