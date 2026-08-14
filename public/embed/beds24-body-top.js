@@ -73,13 +73,13 @@
       fbarCheckin: 'チェックイン', fbarCheckout: 'チェックアウト', fbarAdults: '大人', fbarChildren: '子供 (6-12歳)', fbarGo: '空き状況を確認',
       fbarNights: '泊数', fbarNightUnit: '泊', fbarBbq: 'BBQ機材を利用する',
       fbarChildNote: '※ 5歳以下無料、6-12歳お一人 ¥2,000追加',
-      fbarBbqNote: '※ 別料金 ¥5,000（ご希望の方のみ）',
+      fbarBbqNote: '※ 別料金 ¥5,000（現金または銀行振込）',
       calTitle: '料金・空室カレンダー', calLegendAvail: '空室あり', calLegendBusy: '満室', calLegendSel: '選択中',
       calBusy: '満室', calLoading: '読み込み中…', calErr: 'カレンダーを読み込めませんでした',
       featTitle: '広々と多機能なヴィラ', featSub: 'SPACIOUS · MULTI-FUNCTIONAL',
       accessTitle: 'アクセス', accessSub: 'OKINAWA · NANJO',
       accessAddr: '〒901-1407 沖縄県南城市つきしろ1663-9',
-      accessAirport: '那覇空港から車で約30〜40分',
+      accessAirport: '那覇空港から車で約40分',
       accessMonorail: 'ゆいレール 那覇空港駅 → タクシー / レンタカー',
       accessParking: '無料駐車場あり',
       polTitle: 'キャンセル規定', polSummary: '14日前まで無料 / 13〜7日前30% / 6日前〜前日50% / 当日100%',
@@ -108,13 +108,13 @@
       fbarCheckin: 'Check-in', fbarCheckout: 'Check-out', fbarAdults: 'Adults', fbarChildren: 'Children (6-12)', fbarGo: 'Check Availability',
       fbarNights: 'Nights', fbarNightUnit: '', fbarBbq: 'Add BBQ equipment',
       fbarChildNote: '※ Under 5 free · Ages 6-12 add ¥2,000 per child',
-      fbarBbqNote: '※ Optional extra — ¥5,000',
+      fbarBbqNote: '※ Optional extra — ¥5,000 (cash or bank transfer)',
       calTitle: 'Rates & Availability', calLegendAvail: 'Available', calLegendBusy: 'Booked', calLegendSel: 'Selected',
       calBusy: 'Booked', calLoading: 'Loading…', calErr: 'Unable to load calendar',
       featTitle: 'Spacious & Multi-functional', featSub: 'WHOLE-HOUSE PRIVATE VILLA',
       accessTitle: 'Access', accessSub: 'OKINAWA · NANJO',
       accessAddr: '1663-9 Tsukishiro, Nanjo, Okinawa 901-1407, Japan',
-      accessAirport: 'About 30–40 min by car from Naha Airport',
+      accessAirport: 'About 40 min by car from Naha Airport',
       accessMonorail: 'Yui Rail to Naha Airport, then taxi / rental car',
       accessParking: 'Free on-site parking',
       polTitle: 'Cancellation Policy', polSummary: 'Free up to 14 days / 13–7 days 30% / 6 days–1 day 50% / Day-of 100%',
@@ -143,13 +143,13 @@
       fbarCheckin: '入住', fbarCheckout: '退房', fbarAdults: '成人', fbarChildren: '儿童 (6-12岁)', fbarGo: '查空房',
       fbarNights: '晚数', fbarNightUnit: '晚', fbarBbq: '加 BBQ 设备',
       fbarChildNote: '※ 5岁以下免费，6-12岁每人加 ¥2,000',
-      fbarBbqNote: '※ 另收费 ¥5,000（仅限需要的客人）',
+      fbarBbqNote: '※ 另收费 ¥5,000（现金或银行转账）',
       calTitle: '价格 & 空房日历', calLegendAvail: '可订', calLegendBusy: '满房', calLegendSel: '已选',
       calBusy: '满', calLoading: '加载中…', calErr: '日历加载失败',
       featTitle: '宽敞多功能别墅', featSub: '整栋出租 · 独家私享',
       accessTitle: '交通指南', accessSub: 'OKINAWA · NANJO',
       accessAddr: '日本冲绳县南城市つきしろ 1663-9, 901-1407',
-      accessAirport: '那霸机场出发开车约 30〜40 分钟',
+      accessAirport: '那霸机场出发开车约 40 分钟',
       accessMonorail: 'Yui 单轨抵那霸机场后转出租 / 租车',
       accessParking: '免费停车',
       polTitle: '退订规定', polSummary: '14天前免费 / 13–7天前30% / 6天前–前1日50% / 当日100%',
@@ -458,9 +458,9 @@
 
     // BBQ option: passed as a guest note so the hotel sees the request.
     if (d.get('bbq')) {
-      var noteText = (LANG === 'ja') ? 'BBQ機材利用希望 (別料金 ¥5,000)'
-        : (LANG === 'zh') ? 'BBQ 设备使用申请（另收费 ¥5,000）'
-        : 'BBQ equipment requested (optional extra ¥5,000)';
+      var noteText = (LANG === 'ja') ? 'BBQ機材利用希望 (別料金 ¥5,000・現金または銀行振込)'
+        : (LANG === 'zh') ? 'BBQ 设备使用申请（另收费 ¥5,000・现金或银行转账）'
+        : 'BBQ equipment requested (optional extra ¥5,000, cash or bank transfer)';
       p.set('notes', noteText);
     }
 

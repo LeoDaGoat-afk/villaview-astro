@@ -426,11 +426,11 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 沖縄県南城市つきしろ1663-9
-那覇空港から車で約30〜40分
+那覇空港から車で約40分
 
 ■ ご予約に関するお問い合わせ
 公式サイトのご予約ページよりお手続きください。
-予約番号をお持ちの方は、オンラインチェックインページからご予約状況を確認できます。
+ご予約の確認・変更は、予約番号を添えて上記メールアドレスまでご連絡ください。
 
 ■ よくあるお問い合わせ
 
@@ -444,7 +444,7 @@ Q. 駐車場はありますか？
 A. 無料駐車場を完備しております。
 
 Q. 空港送迎は可能ですか？
-A. 送迎は行っておりません。レンタカーまたはタクシーでお越しください。那覇空港から車で約30〜40分です。
+A. 送迎は行っておりません。レンタカーまたはタクシーでお越しください。那覇空港から車で約40分です。
 
 Q. ペット同伴は可能ですか？
 A. 小型犬に限り、1泊2,000円でご同伴いただけます（事前のご連絡をお願いします）。小型犬以外の動物はお断りしております。介助犬は種類を問わずお受けいたします。`,
@@ -461,11 +461,11 @@ info.serena.breeze@gmail.com
 ■ Location
 1663-9 Tsukishiro, Nanjo
 Okinawa 901-1407, Japan
-Approx. 30–40 minutes by car from Naha Airport
+Approx. 40 minutes by car from Naha Airport
 
 ■ Booking Inquiries
 Please use the reservation page on our official website.
-If you have a booking ID, you can check your reservation status via the online check-in page.
+To check or change a reservation, please email us with your booking ID.
 
 ■ Frequently Asked Questions
 
@@ -479,7 +479,7 @@ Q. Is there parking?
 A. Yes, free parking is available.
 
 Q. Is airport pickup available?
-A. We do not offer airport transfers. Please come by rental car or taxi. It is about 30–40 minutes by car from Naha Airport.
+A. We do not offer airport transfers. Please come by rental car or taxi. It is about 40 minutes by car from Naha Airport.
 
 Q. Are pets allowed?
 A. Small dogs are welcome for 2,000 yen per night (please tell us in advance). We cannot accept animals other than small dogs. Service dogs are always welcome.`,
@@ -496,11 +496,11 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 冲绳县南城市つきしろ1663-9
-距那霸机场约 30〜40 分钟车程
+距那霸机场约 40 分钟车程
 
 ■ 关于预订的咨询
 请通过官方网站的预订页面办理。
-如已有预订编号，可在在线办理入住页面查询预订状态。
+如需查询或变更预订，请附上预订编号发送邮件至上述邮箱。
 
 ■ 常见问题
 
@@ -514,7 +514,7 @@ Q. 是否有停车场？
 A. 提供免费停车场。
 
 Q. 是否可以接送机场？
-A. 本设施不提供接送服务。请自驾租车或搭乘出租车前来。从那霸机场开车约 30〜40 分钟。
+A. 本设施不提供接送服务。请自驾租车或搭乘出租车前来。从那霸机场开车约 40 分钟。
 
 Q. 是否可以携带宠物？
 A. 仅可携带小型犬，每晚2,000日元（请提前告知我们）。小型犬以外的动物恕不接受。导盲犬不受此限。`,
@@ -531,11 +531,11 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 沖繩縣南城市つきしろ1663-9
-距那霸機場約 30〜40 分鐘車程
+距那霸機場約 40 分鐘車程
 
 ■ 關於預訂的諮詢
 請透過官方網站的預訂頁面辦理。
-如已有預訂編號，可於線上入住登記頁面查詢預訂狀態。
+如需查詢或變更預訂，請附上預訂編號寄送電子郵件至上述信箱。
 
 ■ 常見問題
 
@@ -549,7 +549,7 @@ Q. 是否有停車場？
 A. 提供免費停車場。
 
 Q. 是否提供機場接送？
-A. 本設施不提供接送服務。請自行租車或搭乘計程車前來。從那霸機場開車約 30〜40 分鐘。
+A. 本設施不提供接送服務。請自行租車或搭乘計程車前來。從那霸機場開車約 40 分鐘。
 
 Q. 是否可以攜帶寵物？
 A. 僅可攜帶小型犬，每晚2,000日圓（請提前告知我們）。小型犬以外的動物恕不接受。導盲犬不受此限。`,
@@ -590,7 +590,7 @@ https://villaokinawa.com
 
 ■ 商品代金以外に必要な料金
 ・清掃費: 1滞在につき 15,000円（消費税込・定額）。宿泊料金とは別に加算されます。
-・BBQ利用料: 5,000円（ご希望の方のみ・炭、網、着火剤、トングの貸出）
+・BBQ利用料: 5,000円（ご希望の方のみ・炭、網、着火剤、トングの貸出）。宿泊料金とは別に、現金または銀行振込でお支払いいただきます。
 ・入湯税・宿泊税（該当地域・プランの場合）
 ・延長利用、追加サービス等に伴う料金（事前にご案内）
 ・規約違反時の清掃料・損害賠償（利用規約に準ずる）
@@ -600,8 +600,9 @@ https://villaokinawa.com
 公式サイトの予約カレンダーに空室が表示されている日程について、随時ご予約を受け付けます。
 
 ■ お支払方法
-クレジットカード決済（Stripe 経由）
+宿泊料金・清掃費: クレジットカード決済（Stripe 経由）
 取扱ブランド: Visa / Mastercard
+BBQ利用料: 現金または銀行振込
 
 ■ お支払時期
 ご予約時に、宿泊料金および清掃費の全額をクレジットカードにて決済いただきます。
@@ -662,7 +663,7 @@ Prices are displayed in Japanese Yen (JPY).
 
 ■ Additional Fees
 - Cleaning fee: JPY 15,000 per stay (flat rate, consumption tax included). Charged in addition to the room rate.
-- BBQ fee: JPY 5,000 (optional; includes charcoal, grill net, firelighter and tongs)
+- BBQ fee: JPY 5,000 (optional; includes charcoal, grill net, firelighter and tongs). Settled separately from the room rate, by cash or bank transfer.
 - Bath tax / accommodation tax (where applicable)
 - Extension fees, optional services (notified in advance)
 - Cleaning / damage fees in case of policy violations (per Terms)
@@ -672,8 +673,9 @@ There is no limited application period.
 Reservations are accepted at any time for dates shown as available on the booking calendar of our official website.
 
 ■ Payment Methods
-Credit card payment (via Stripe).
+Room rate and cleaning fee: credit card payment (via Stripe).
 Accepted: Visa / Mastercard
+BBQ fee: cash or bank transfer
 
 ■ Payment Timing
 The full amount, including the room rate and the cleaning fee, is charged to your credit card at the time of reservation.
@@ -733,7 +735,7 @@ https://villaokinawa.com
 
 ■ 商品款项之外的必要费用
 ・清洁费：每次入住 15,000 日元（含消费税・定额）。与住宿费用分开另行计收。
-・烧烤使用费：5,000 日元（仅限需要的客人・含木炭、烤网、助燃剂、夹子的租借）
+・烧烤使用费：5,000 日元（仅限需要的客人・含木炭、烤网、助燃剂、夹子的租借）。与住宿费用分开，以现金或银行转账支付。
 ・入汤税、住宿税（适用地区或方案）
 ・延长使用、追加服务等费用（事先告知）
 ・违反规定时的清洁费及损害赔偿（依据服务条款）
@@ -743,8 +745,9 @@ https://villaokinawa.com
 官方网站预订日历上显示有空房的日期，均可随时预订。
 
 ■ 支付方式
-信用卡付款（通过 Stripe）
+住宿费用及清洁费：信用卡付款（通过 Stripe）
 受理品牌：Visa / Mastercard
+烧烤使用费：现金或银行转账
 
 ■ 支付时期
 预订时以信用卡支付住宿费用及清洁费的全额。
@@ -804,7 +807,7 @@ https://villaokinawa.com
 
 ■ 商品價金以外的必要費用
 ・清潔費：每次入住 15,000 日圓（含消費稅・定額）。與住宿費用分開另行計收。
-・烤肉使用費：5,000 日圓（僅限需要的客人・含木炭、烤網、助燃劑、夾子的租借）
+・烤肉使用費：5,000 日圓（僅限需要的客人・含木炭、烤網、助燃劑、夾子的租借）。與住宿費用分開，以現金或銀行轉帳支付。
 ・入湯稅、住宿稅（適用地區或方案）
 ・延長使用、追加服務等費用（事先告知）
 ・違反規定時的清潔費及損害賠償（依據服務條款）
@@ -814,8 +817,9 @@ https://villaokinawa.com
 官方網站預訂日曆上顯示有空房的日期，均可隨時預訂。
 
 ■ 付款方式
-信用卡付款（透過 Stripe）
+住宿費用及清潔費：信用卡付款（透過 Stripe）
 受理卡別：Visa / Mastercard
+烤肉使用費：現金或銀行轉帳
 
 ■ 付款時期
 於預訂時以信用卡支付住宿費用及清潔費的全額。

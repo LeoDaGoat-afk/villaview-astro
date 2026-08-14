@@ -47,8 +47,8 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "到着前にやることはありますか？", en: "Is there anything I should do before arrival?", zh: "到达前需要做什么吗？" },
         a: {
-          ja: "公式サイトの「チェックイン」セクションでオンラインチェックインをお願いします（人数分のゲスト登録・身分証アップロード）。スムーズなお迎えのため、到着予定時刻もご記入ください。",
-          en: "Please complete online check-in (guest registration + ID upload) via the Check-In section on our website. Please also note your estimated arrival time.",
+          ja: "ご到着の3日前までに、ご宿泊人数と到着予定時刻をメールでお知らせください。玄関の暗証番号は、ご到着日の前日までにメールでお送りします。",
+          en: "Please email us the number of guests and your estimated arrival time at least 3 days before you arrive. We will send the front-door access code by email the day before your arrival.",
           zh: "请于到达前在官网「办理入住」板块完成在线办理入住（旅客登记 + 证件上传）。请同时填写预计到达时间。",
         },
       },
@@ -93,9 +93,9 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "バルコニーの BBQ を使いたいです", en: "Can I use the BBQ on the balcony?", zh: "想使用阳台的烧烤区" },
         a: {
-          ja: "屋根付きのバルコニーで 21:00 までご利用いただけます。ご利用は有料（5,000円）で、炭・網・着火剤・トングをお貸しします。コンロは清掃した状態でご用意します。食材はお持ち込みください。ご希望の場合は事前にお知らせください。",
-          en: "You can use the covered BBQ area on the balcony until 21:00. It costs 5,000 yen and includes charcoal, a grill net, firelighter and tongs. The grill is provided clean. Please bring your own food, and let us know in advance if you would like to use it.",
-          zh: "阳台的带顶烧烤区可使用至 21:00。使用需付费 5,000 日元，含木炭、烤网、助燃剂和夹子。烤架已清洁完毕。食材请自备，如需使用请提前告知我们。",
+          ja: "屋根付きのバルコニーで 21:00 までご利用いただけます。ご利用は有料（5,000円・現金または銀行振込）で、炭・網・着火剤・トングをお貸しします。コンロは清掃した状態でご用意します。食材はお持ち込みください。ご希望の場合は事前にお知らせください。",
+          en: "You can use the covered BBQ area on the balcony until 21:00. It costs 5,000 yen, payable by cash or bank transfer, and includes charcoal, a grill net, firelighter and tongs. The grill is provided clean. Please bring your own food, and let us know in advance if you would like to use it.",
+          zh: "阳台的带顶烧烤区可使用至 21:00。使用需付费 5,000 日元（现金或银行转账），含木炭、烤网、助燃剂和夹子。烤架已清洁完毕。食材请自备，如需使用请提前告知我们。",
         },
       },
       {
@@ -191,9 +191,9 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "支払い方法は？", en: "What payment methods are accepted?", zh: "支持哪些支付方式？" },
         a: {
-          ja: "公式サイトでのご予約時にクレジットカード決済（Stripe 経由で安全に処理）。VISA、Mastercard に対応しています。現金はお取り扱いしておりません。",
-          en: "Credit card at the time of booking via Stripe (secure processing). VISA and Mastercard are accepted. We do not accept cash.",
-          zh: "预订时通过 Stripe 使用信用卡支付（安全处理）。支持 VISA、Mastercard。不接受现金。",
+          ja: "宿泊料金と清掃費は、公式サイトでのご予約時にクレジットカードで全額をお支払いいただきます（Stripe 経由で安全に処理）。VISA、Mastercard に対応しています。宿泊料金の現地払いは承っておりません。BBQ利用料（5,000円）のみ、現金または銀行振込で別途申し受けます。",
+          en: "The room rate and the cleaning fee are charged in full to your credit card at the time of booking via Stripe (secure processing). VISA and Mastercard are accepted. We cannot accept payment for the stay on arrival. Only the BBQ fee (5,000 yen) is settled separately, by cash or bank transfer.",
+          zh: "住宿费用及清洁费于预订时通过 Stripe 以信用卡一次付清（安全处理）。支持 VISA、Mastercard。住宿费用不接受现场支付。仅烧烤使用费（5,000 日元）另行以现金或银行转账结算。",
         },
       },
       {
