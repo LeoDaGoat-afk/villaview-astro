@@ -426,7 +426,7 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 沖縄県南城市つきしろ1663-9
-那覇空港から車で約30分
+那覇空港から車で約30〜40分
 
 ■ ご予約に関するお問い合わせ
 公式サイトのご予約ページよりお手続きください。
@@ -444,7 +444,7 @@ Q. 駐車場はありますか？
 A. 無料駐車場を完備しております。
 
 Q. 空港送迎は可能ですか？
-A. リクエストベースで対応しております。事前にご相談ください。
+A. 送迎は行っておりません。レンタカーまたはタクシーでお越しください。那覇空港から車で約30〜40分です。
 
 Q. ペット同伴は可能ですか？
 A. 小型犬に限り、1泊2,000円でご同伴いただけます（事前のご連絡をお願いします）。小型犬以外の動物はお断りしております。介助犬は種類を問わずお受けいたします。`,
@@ -461,7 +461,7 @@ info.serena.breeze@gmail.com
 ■ Location
 1663-9 Tsukishiro, Nanjo
 Okinawa 901-1407, Japan
-Approx. 30 minutes by car from Naha Airport
+Approx. 30–40 minutes by car from Naha Airport
 
 ■ Booking Inquiries
 Please use the reservation page on our official website.
@@ -479,7 +479,7 @@ Q. Is there parking?
 A. Yes, free parking is available.
 
 Q. Is airport pickup available?
-A. Yes, on a request basis. Please consult us in advance.
+A. We do not offer airport transfers. Please come by rental car or taxi. It is about 30–40 minutes by car from Naha Airport.
 
 Q. Are pets allowed?
 A. Small dogs are welcome for 2,000 yen per night (please tell us in advance). We cannot accept animals other than small dogs. Service dogs are always welcome.`,
@@ -496,7 +496,7 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 冲绳县南城市つきしろ1663-9
-距那霸机场约 30 分钟车程
+距那霸机场约 30〜40 分钟车程
 
 ■ 关于预订的咨询
 请通过官方网站的预订页面办理。
@@ -514,7 +514,7 @@ Q. 是否有停车场？
 A. 提供免费停车场。
 
 Q. 是否可以接送机场？
-A. 可按需求安排，请提前协商。
+A. 本设施不提供接送服务。请自驾租车或搭乘出租车前来。从那霸机场开车约 30〜40 分钟。
 
 Q. 是否可以携带宠物？
 A. 仅可携带小型犬，每晚2,000日元（请提前告知我们）。小型犬以外的动物恕不接受。导盲犬不受此限。`,
@@ -531,7 +531,7 @@ info.serena.breeze@gmail.com
 ■ 所在地
 〒901-1407
 沖繩縣南城市つきしろ1663-9
-距那霸機場約 30 分鐘車程
+距那霸機場約 30〜40 分鐘車程
 
 ■ 關於預訂的諮詢
 請透過官方網站的預訂頁面辦理。
@@ -549,7 +549,7 @@ Q. 是否有停車場？
 A. 提供免費停車場。
 
 Q. 是否提供機場接送？
-A. 可依需求安排，請提前洽詢。
+A. 本設施不提供接送服務。請自行租車或搭乘計程車前來。從那霸機場開車約 30〜40 分鐘。
 
 Q. 是否可以攜帶寵物？
 A. 僅可攜帶小型犬，每晚2,000日圓（請提前告知我們）。小型犬以外的動物恕不接受。導盲犬不受此限。`,
