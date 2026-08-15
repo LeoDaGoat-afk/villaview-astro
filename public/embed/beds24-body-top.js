@@ -2,7 +2,11 @@
    Hosted at https://villaokinawa.com/embed/beds24-body-top.js
    Loaded by Beds24 admin → Booking Engine → Property Booking Page → Developer → Body Top.
    Renders branded landing UI (hero, search, price+availability calendar, features, gallery,
-   footer) above Beds24 native flow. Direct rate = master × 0.95 (Beds24 officialsite channel).
+   footer) above Beds24 native flow. Direct rate = master × 0.82 (Beds24 officialsite channel).
+
+   ⚠️ OFFICIAL_MULTIPLIER below duplicates the Beds24 price rule id4 (officialsite).
+   Changing the rate in Beds24 alone leaves this calendar showing the old price while the
+   booking form shows the new one — two different prices on the same page. Always change both.
 
    2026-08-04: removed the "best rate / 20% OFF" banner. The claim was factually wrong
    (the official site measured 7,089 JPY HIGHER than Booking.com on 2026-08-16, 1 night / 4 guests)
@@ -21,8 +25,9 @@
   var PROXY = 'https://smartinn-api-proxy.leoroy225.workers.dev';
   var PROPID = 322452;
   var ROOMID = 674526;
-  var OFFICIAL_MULTIPLIER = 0.95;       // master → officialsite calendar price
-  // Saving vs Booking = 1 - (M*0.95)/(M*1.20) = 20.83%
+  // 2026-08-15: 0.95 → 0.82。Beds24 の価格ルール id4 (officialsite) と同じ値にすること。
+  // 直販を全チャネル最安にするための改定（Booking.com の実質 0.8415 を下回る水準）。
+  var OFFICIAL_MULTIPLIER = 0.82;       // master → officialsite calendar price
 
   // Inject brand CSS
   var link = document.createElement('link');
