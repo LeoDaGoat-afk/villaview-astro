@@ -1,7 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Zen+Old+Mincho:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme {
+  /* --- 誌面パレット（2026-08-15 確定・施設写真から採色）--------------------
+     刷新後のブロックはこの6色だけで組む。上の既存トークンは未刷新ブロック用。 */
+  --color-paper: #f7f5f0;   /* 紙白 ─ 地の色 */
+  --color-fukamidori: #2c3a31; /* 深緑 ─ 文字（ホールとカフェの壁） */
+  --color-shu: #b4433a;     /* 朱 ─ 細罫・数字の強調（和室の壁） */
+  --color-umiao: #2e5f7a;   /* 海青 ─ 図版（view2 の湾の中間調） */
+  --color-mitsu: #c08a4e;   /* 蜜 ─ 区切り線（床材とデッキ材）。罫線専用 */
+  /* 蜜を文字色に使うと紙白の上で 2.76:1 しかなく WCAG AA に届かない（2026-08-15 QAパス実測）。
+     文字に使う蜜はこちらの濃い版を使う＝5.09:1 */
+  --color-mitsu-ink: #8c5f2c;
+  --color-sumi: #14140f;    /* 墨 ─ 夜のブロックの地 */
+
+  --font-mincho: "Zen Old Mincho", "Noto Serif JP", serif;   /* 和文見出し */
+  --font-gothic: "Zen Kaku Gothic New", sans-serif;          /* 和文本文 */
+  --font-kicker: "Cormorant Garamond", serif;                /* 欧文キッカー（italic で使う） */
+  --font-number: "Bodoni Moda", "Cormorant Garamond", serif; /* 数字 */
+
   --color-primary: #2a5a6e;
   --color-primary-dark: #1a3a4a;
   --color-primary-darker: #0c1e26;
@@ -14,7 +31,9 @@
   --color-muted: #78716C;
   --color-muted-light: #99918a;
 
-  --font-serif: "Cormorant Garamond", "Noto Serif JP", "Noto Serif SC", serif;
+  /* 2026-08-17 Cormorant Garamond を外した。数字がオールドスタイル（小文字サイズ）で「1」が I に見えるため。
+     欧文キッカーだけは従来どおり --font-kicker（Cormorant Garamond Italic）を使う。 */
+  --font-serif: "Zen Old Mincho", "Noto Serif JP", "Noto Serif SC", serif;
   --font-sans: "Zen Kaku Gothic New", sans-serif;
 }
 
@@ -51,8 +70,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 5px;
+  font-size: 14px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--color-primary);
   font-weight: 500;
@@ -72,10 +91,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 .section-lead {
   font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--color-muted);
-  line-height: 1.8;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-ink-soft);
+  line-height: 1.9;
+  letter-spacing: 0.03em;
   max-width: 680px;
 }
 

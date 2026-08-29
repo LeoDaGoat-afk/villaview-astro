@@ -12,11 +12,25 @@ const pickIdx = (() => {
 })();
 const p = (s: string) => s.split('|')[pickIdx] ?? s.split('|')[0];
 
-const heroSlides = [
-  '/images/hero-scenery.jpg',
-  '/images/hero-night.jpg',
-  '/images/view2.jpg',
-  '/images/night-view.jpg',
+// Hero slides: photos hold for 5s, videos play through at their natural length
+// (durationFallback is only used when video.duration cannot be read).
+type HeroSlide = {
+  src: string;
+  type: 'image' | 'video';
+  poster?: string;
+  durationFallback?: number;
+  // 尺の短いクリップ用の追い足し時間。クリップが終わったあと、この分だけ
+  // 最後のコマのまま残ってから溶け始める（フェード中なので静止には見えない）。
+  extraHoldMs?: number;
+};
+const heroSlides: HeroSlide[] = [
+  { src: '/images/hero-bedroom.jpg', type: 'image' },
+  { src: '/images/hero-drone-1.mp4', type: 'video', poster: '/images/hero-drone-1-poster.jpg', durationFallback: 7.1 },
+  { src: '/images/hero-bar.jpg',     type: 'image' },
+  { src: '/images/hero-cafe.jpg',    type: 'image' },
+  { src: '/images/hero-drone-2.mp4', type: 'video', poster: '/images/hero-drone-2-poster.jpg', durationFallback: 5.8, extraHoldMs: 1800 },
+  { src: '/images/hero-hall.jpg',    type: 'image' },
+  { src: '/images/night-view.jpg',   type: 'image' },
 ];
 
 const facilities = [
@@ -80,14 +94,31 @@ const guestHref = localizedPath('/guest-service/', lang);
 <!-- HERO -->
 <section class="vv-hero">
   <div class="vv-hero-slides">
-    {heroSlides.map((src, i) => (
-      <img
-        src={withBase(src)}
-        alt="VILLA VIEW Okinawa"
-        class:list={['vv-hero-img', i === 0 ? 'active' : '']}
-        data-idx={i}
-        loading={i === 0 ? 'eager' : 'lazy'}
-      />
+    {heroSlides.map((slide, i) => (
+      slide.type === 'video' ? (
+        <video
+          src={withBase(slide.src)}
+          poster={slide.poster ? withBase(slide.poster) : undefined}
+          class:list={['vv-hero-media', 'vv-hero-video', i === 0 ? 'active' : '']}
+          data-idx={i}
+          data-duration={slide.durationFallback}
+          data-extra-hold={slide.extraHoldMs}
+          preload="none"
+          muted
+          playsinline
+          aria-hidden="true"
+          tabindex="-1"
+        />
+      ) : (
+        <img
+          src={withBase(slide.src)}
+          alt="VILLA VIEW Okinawa"
+          class:list={['vv-hero-media', 'vv-hero-img', i === 0 ? 'active' : '']}
+          data-idx={i}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+        />
+      )
     ))}
   </div>
   <div class="vv-hero-overlay"></div>
@@ -102,12 +133,16 @@ const guestHref = localizedPath('/guest-service/', lang);
 </section>
 
 <!-- CONCEPT -->
-<section class="vv-section vv-section-cream">
-  <div class="vv-container vv-text-center">
+<section class="vv-section vv-concept-sec" id="vv-concept-sec">
+  <div class="vv-concept-bg" aria-hidden="true">
+    <img src={withBase('/images/concept-bg.jpg')} alt="" loading="lazy" id="vv-concept-img" />
+  </div>
+  <div class="vv-concept-veil" aria-hidden="true"></div>
+  <div class="vv-container vv-concept">
     <p class="eyebrow">{t('concept.eyebrow')}</p>
     <h2 class="section-h2">{t('concept.title')}</h2>
-    <div class="vv-divider-gold-center"></div>
-    <p class="section-lead vv-mx-auto">{t('concept.body')}</p>
+    <div class="vv-divider-gold-left"></div>
+    <p class="section-lead">{t('concept.body')}</p>
   </div>
 </section>
 
@@ -339,6 +374,68 @@ const guestHref = localizedPath('/guest-service/', lang);
     background: var(--color-accent);
     margin: 18px auto;
   }
+
+  /* ── 2番ブロック「この宿について」：左揃え＋写真の背景（2026-08-17 アキラさん指示）──
+     背景は「アートボード 1.jpg」を上6%・下25%でトリミングしたもの。
+     スクロールに合わせて写真がゆっくり下へ送られ、下のほうが見えてくる。 */
+  .vv-concept-sec {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* 写真は 1440x621 の原寸。拡大すると眠くなるので等倍のまま右に寄せ、左に紙白の余白を残す。
+     縦だけスクロールに合わせて送る（拡大は一切しない）。 */
+  .vv-concept-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: clamp(24px, 8%, 200px);   /* ← 左の余白 */
+    overflow: hidden;
+    z-index: -2;
+  }
+  .vv-concept-bg img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1440px;              /* 原寸＝等倍。これ以上引き伸ばさない */
+    max-width: none;
+    height: auto;
+    will-change: transform;
+  }
+  @media (max-width: 900px) {
+    /* 狭い画面では原寸だと右端しか映らないので、幅に合わせて縮小する（縮小は眠くならない） */
+    .vv-concept-bg { left: 0; }
+    .vv-concept-bg img { width: 100%; }
+  }
+  /* 左半分だけ紙白をかぶせて文字を読ませる。右の海はそのまま見せる */
+  .vv-concept-veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* 写真の左端（画面幅の8%の位置）は必ず不透明の下に隠す。
+       26%まで紙白そのままで置き、そこから86%まで長くかけて落とすので境目が出ない。 */
+    background:
+      linear-gradient(100deg,
+        rgba(247, 245, 240, 1.00) 0%,
+        rgba(247, 245, 240, 1.00) 26%,
+        rgba(247, 245, 240, 0.92) 38%,
+        rgba(247, 245, 240, 0.70) 50%,
+        rgba(247, 245, 240, 0.40) 62%,
+        rgba(247, 245, 240, 0.14) 74%,
+        rgba(247, 245, 240, 0.00) 86%);
+  }
+  .vv-concept { text-align: left; position: relative; }
+  .vv-concept .section-h2 { letter-spacing: 0.06em; line-height: 1.45; }
+  .vv-concept .section-lead { max-width: 30em; }
+  /* 覆いの濃い側からはみ出さない幅に抑える（写真の明るい窓に文字を重ねない） */
+  .vv-concept .section-h2 { max-width: 14em; }
+  .vv-divider-gold-left {
+    width: 48px;
+    height: 1px;
+    background: var(--color-accent);
+    margin: 22px 0 26px;
+  }
   .eyebrow-light {
     color: rgba(255,255,255,0.8);
   }
@@ -368,24 +465,61 @@ const guestHref = localizedPath('/guest-service/', lang);
     position: absolute;
     inset: 0;
   }
-  .vv-hero-img {
+  .vv-hero-media {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 1.5s ease;
+    transition: opacity 3s ease;
+    will-change: opacity;
   }
-  .vv-hero-img.active { opacity: 1; }
+  .vv-hero-media.active { opacity: 1; }
+  /* Photos only: a very slow, very slight push-in. Videos already move on their own. */
+  .vv-hero-img {
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: opacity 3s ease, transform 9s linear;
+  }
+  .vv-hero-img.vv-hero-zoom { transform: scale(1.18); }
+  /* Used for one frame to snap the scale back without animating it */
+  .vv-hero-media.vv-hero-noanim { transition: none; }
+  /* 縦長の画面に横長写真を cover で入れると、天井と床という何も写っていない帯が
+     画面の4割を占め、海やバーが中央の細い帯に潰れる。少し寄せて主題を大きく見せる。 */
+  @media (max-width: 768px) {
+    .vv-hero-img { transform: scale(1.28); }
+    .vv-hero-img.vv-hero-zoom { transform: scale(1.46); }
+    .vv-hero-video { transform: scale(1.14); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vv-hero-media { transition: none; }
+    .vv-hero-img,
+    .vv-hero-img.vv-hero-zoom { transform: none; transition: none; }
+  }
   .vv-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(10, 30, 40, 0.35), rgba(10, 30, 40, 0.55));
+    /* 全面を一律に暗くすると室内写真の深緑と木目が沈む。
+       ヘッダーとCTAの周りだけ締めて、写真が見える帯は薄く抜く。 */
+    background:
+      /* 文字の背後だけを楕円で締める。7枚のうち一番明るいドローン映像でも読めるように。 */
+      radial-gradient(ellipse 78% 58% at 50% 47%,
+        rgba(6, 20, 28, 0.58) 0%,
+        rgba(6, 20, 28, 0.34) 48%,
+        rgba(6, 20, 28, 0.00) 100%),
+      /* 上端はヘッダーの白文字、下端はCTAの座りを守るためだけに締める */
+      linear-gradient(to bottom,
+        rgba(8, 26, 34, 0.52) 0%,
+        rgba(8, 26, 34, 0.14) 22%,
+        rgba(8, 26, 34, 0.14) 72%,
+        rgba(8, 26, 34, 0.50) 100%);
   }
   .vv-hero-content {
     position: relative;
     z-index: 2;
+    /* 膜を薄くしたので、文字の影で背景から浮かせて可読性を保つ */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.60), 0 2px 18px rgba(0, 0, 0, 0.45);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -424,8 +558,8 @@ const guestHref = localizedPath('/guest-service/', lang);
   .vv-hero-lead {
     font-family: var(--font-sans);
     font-size: 14px;
-    font-weight: 300;
-    opacity: 0.9;
+    font-weight: 400;
+    opacity: 1;
     max-width: 560px;
     line-height: 1.8;
     margin: 0 0 36px;
@@ -482,7 +616,8 @@ const guestHref = localizedPath('/guest-service/', lang);
     font-family: var(--font-sans);
     font-size: 11px;
     letter-spacing: 2px;
-    opacity: 0.7;
+    /* クチコミ 9.4/10 は成約材料。読めない濃さにしない */
+    opacity: 0.88;
     margin-top: 28px;
     animation: fade-up 1s ease 1.3s both;
   }
@@ -810,15 +945,146 @@ const guestHref = localizedPath('/guest-service/', lang);
 </style>
 
 <script>
-  // Hero slider rotation
-  const slides = document.querySelectorAll<HTMLImageElement>('.vv-hero-img');
-  if (slides.length > 1) {
-    let idx = 0;
-    setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-    }, 5000);
+  // 2番ブロックの背景写真を、スクロールに合わせてゆっくり下へ送る。
+  // ブロックが画面を通過する間に object-position を 0% → 100% まで動かすだけ。
+  // 位置の更新は rAF に載せ、スクロールごとの計算はしない。
+  {
+    const sec = document.getElementById('vv-concept-sec');
+    const img = document.getElementById('vv-concept-img') as HTMLImageElement | null;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (sec && img && !still) {
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const r = sec.getBoundingClientRect();
+        const span = window.innerHeight + r.height;
+        if (span <= 0) return;
+        // 画面下から入ってきて、画面上へ抜けるまでを 0→1 に写す
+        const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / span));
+        // 写真の高さとブロックの高さの差＝送れる量。等倍のまま、その範囲だけ動かす。
+        const travel = Math.max(0, img.offsetHeight - r.height);
+        img.style.transform = `translateY(${(-p * travel).toFixed(1)}px)`;
+      };
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      };
+      update();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+    }
+  }
+
+  // Hero slider rotation: photos hold 5s, videos play through at their real length.
+  {
+    const PHOTO_MS = 5000;
+    const FADE_MS = 3000; // must match the opacity transition in the CSS above
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = Boolean((navigator as any)?.connection?.saveData);
+
+    let slides = Array.from(document.querySelectorAll<HTMLElement>('.vv-hero-media'));
+    // Data-saver users get the photos only; the videos are never fetched.
+    if (saveData) slides = slides.filter(el => el.tagName !== 'VIDEO');
+
+    const isVideo = (el: HTMLElement): el is HTMLVideoElement => el.tagName === 'VIDEO';
+
+    if (slides.length > 0 && (reduceMotion || saveData)) {
+      // Show the first slide and stop. Videos stay paused on their poster.
+      slides.forEach((el, i) => el.classList.toggle('active', i === 0));
+    }
+
+    if (slides.length > 1 && !reduceMotion) {
+      let idx = 0;
+      let timer = 0;
+
+      // How long a slide stays before the crossfade to the next one STARTS.
+      // Photos: the full PHOTO_MS.
+      // Videos: the clip length minus the crossfade, so the dissolve finishes exactly
+      //   as the clip ends. The clip is never trimmed — its tail plays underneath the
+      //   dissolve — and it never wraps back to its opening frames (`loop` is off).
+      const durationOf = (el: HTMLElement): number => {
+        if (!isVideo(el)) return PHOTO_MS;
+        const secs = (Number.isFinite(el.duration) && el.duration > 0)
+          ? el.duration
+          : parseFloat(el.dataset.duration ?? '');
+        if (!Number.isFinite(secs) || secs <= 0) return PHOTO_MS;
+        const extra = parseFloat(el.dataset.extraHold ?? '');
+        const hold = Number.isFinite(extra) ? extra : 0;
+        return Math.max(1200, secs * 1000 - FADE_MS + hold);
+      };
+
+      // Only ever warm up the slide that plays next, so the videos are not
+      // pulled down on first paint.
+      const prefetch = (el: HTMLElement) => {
+        if (!isVideo(el) || el.preload === 'auto') return;
+        el.preload = 'auto';
+        el.load();
+      };
+
+      const schedule = (el: HTMLElement) => {
+        clearTimeout(timer);
+        timer = window.setTimeout(next, durationOf(el));
+      };
+
+      const activate = (el: HTMLElement) => {
+        el.classList.add('active');
+        if (isVideo(el)) {
+          try { el.currentTime = 0; } catch {}
+          el.play()?.catch(() => {});
+          if (!Number.isFinite(el.duration) || el.duration <= 0) {
+            // Metadata was not ready: re-time once the real length is known.
+            el.addEventListener('loadedmetadata', () => {
+              if (slides[idx] === el) schedule(el);
+            }, { once: true });
+          }
+        } else {
+          el.classList.add('vv-hero-zoom');
+        }
+      };
+
+      const deactivate = (el: HTMLElement) => {
+        el.classList.remove('active');
+        if (isVideo(el)) {
+          // Do NOT pause or rewind here. The clip is still on screen for the whole
+          // cross-dissolve, and it has exactly FADE_MS of footage left to play.
+          // Rewinding now put frame 0 back on screen while it was still visible —
+          // that was the flash of the opening shot at the end of every clip.
+          window.setTimeout(() => {
+            if (el.classList.contains('active')) return;
+            el.pause();
+            try { el.currentTime = 0; } catch {}
+          }, FADE_MS + 100);
+          return;
+        }
+        // Snap the scale back only after the cross-dissolve has finished,
+        // so the same push-in can replay on the next cycle.
+        window.setTimeout(() => {
+          if (el.classList.contains('active')) return;
+          el.classList.add('vv-hero-noanim');
+          el.classList.remove('vv-hero-zoom');
+          void el.offsetWidth; // force reflow so the reset is not animated
+          el.classList.remove('vv-hero-noanim');
+        }, FADE_MS + 100);
+      };
+
+      const next = () => {
+        const prev = slides[idx];
+        idx = (idx + 1) % slides.length;
+        const cur = slides[idx];
+        activate(cur);
+        deactivate(prev);
+        prefetch(slides[(idx + 1) % slides.length]);
+        schedule(cur);
+      };
+
+      // First slide is already marked active server-side; start its push-in.
+      activate(slides[0]);
+      schedule(slides[0]);
+      // Delay the first warm-up so it does not compete with the hero image.
+      window.setTimeout(() => prefetch(slides[1]), 1200);
+    }
   }
   // Lightbox
   const lightbox = document.getElementById('vv-lightbox');
