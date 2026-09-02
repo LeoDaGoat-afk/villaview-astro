@@ -1,5 +1,5 @@
 ---
-import { getLangFromPath, useT, localizedPath, LANGS } from '../i18n/utils';
+import { getLangFromPath, useT, localizedPath, LANGS, withBase } from '../i18n/utils';
 
 const currentPath = Astro.url.pathname;
 const lang = getLangFromPath(currentPath);
@@ -29,9 +29,27 @@ const navLinks = [
 const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
 ---
 
+<!-- ロゴはヘッダーの中に入れない。帯に飲み込まれると背景と反転しなくなるため、
+     るうふ杉之家と同じく独立した固定要素にして、帯より手前へ置く。 -->
+<section class="vv-logo-fixed">
+  <a href={homeHref} aria-label="VILLA VIEW">
+    <img src={withBase('/images/logo-full-white.png')} alt="VILLA VIEW" width="115" height="92" />
+  </a>
+</section>
+
+<!-- 左サイドの縦の細い線（るうふ杉之家 .util_bar の実測＝幅1px・上下に余白）。
+     ロゴ列とコンテンツ列を分ける罫。背景写真の上に乗るので、ロゴと同じく反転させる。 -->
+<div class="vv-side-rule" aria-hidden="true"></div>
+
+<!-- ロゴの下のメニューボタン（るうふ実測＝35×35 の中に 1px の横線2本）。
+     デスクトップでも左サイドに出す。 -->
+<button type="button" class="vv-side-burger" aria-label="メニュー" aria-expanded="false" aria-controls="vv-mobile-menu">
+  <span class="l1"></span>
+  <span class="l2"></span>
+</button>
+
 <header id="vv-header" role="banner">
   <div class="vv-header-inner">
-    <a href={homeHref} class="vv-logo" aria-label="VILLA VIEW">VILLA VIEW</a>
 
     <nav class="vv-nav-desktop" role="navigation">
       {navLinks.map(link => (
@@ -92,6 +110,61 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
 </header>
 
 <style>
+  /* ── 左サイドの縦罫 ──────────────────────────────
+     るうふ杉之家の実測値（1440px幅）：幅1px／x=179／y=73／高さ747px
+     ＝ 画面左から約12.4%の位置に、上下に余白を残して1本引く。 */
+  .vv-side-rule {
+    position: fixed;
+    top: 72px;
+    left: 179px;
+    width: var(--rule-w, 0.25px);
+    height: calc(100vh - 145px);
+    background: #fff;
+    mix-blend-mode: difference;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* ── ロゴの下のメニューボタン ────────────────────
+     るうふ実測：35×35 の中に 1px の横線2本（間隔6px）。 */
+  .vv-side-burger {
+    position: fixed;
+    /* ロゴの左右中央に揃える。ロゴの左端 ＋ ロゴ幅の半分 − ボタン幅の半分。
+       ロゴの幅を変えても中央が保たれるよう計算で出す。 */
+    left: calc(clamp(20px, 4vw, 36px) + (var(--logo-w, 115px) / 2) - 17.5px);
+    top: 200px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    mix-blend-mode: difference;
+    z-index: 1010;
+  }
+  .vv-side-burger .l1,
+  .vv-side-burger .l2 {
+    position: absolute;
+    left: 0;
+    width: 35px;
+    height: 1px;
+    background: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .vv-side-burger .l1 { top: 15px; }
+  .vv-side-burger .l2 { top: 21px; }
+  .vv-side-burger[aria-expanded="true"] .l1 { transform: translateY(3px) rotate(45deg); }
+  .vv-side-burger[aria-expanded="true"] .l2 { transform: translateY(-3px) rotate(-45deg); }
+  .vv-side-burger:focus-visible { outline: 1px solid #fff; outline-offset: 6px; }
+
+  @media (max-width: 900px) {
+    .vv-side-rule { display: none; }
+    .vv-side-burger { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vv-side-burger .l1, .vv-side-burger .l2 { transition: none; }
+  }
+
   #vv-header {
     position: fixed;
     top: 0;
@@ -101,12 +174,16 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     background: rgba(18, 40, 50, 0);
     transition: background 0.4s ease, backdrop-filter 0.4s ease;
   }
+  /* スクロール時の帯はやめた（2026-08-29 アキラさん判断）。
+     背景を敷くとロゴとナビが背景写真と反転できなくなるため。
+     backdrop-filter は新しい合成の階層を作るので、これも置かない。 */
   #vv-header.scrolled {
-    background: rgba(18, 40, 50, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: transparent;
   }
+  /* 帯をやめたので、ナビ・言語切替・メニューボタンも背景と反転させる。
+     ロゴと同じ difference。素材は白（文字色 #fff）のまま。 */
   .vv-header-inner {
+    mix-blend-mode: difference;
     max-width: 1400px;
     margin: 0 auto;
     padding: 18px clamp(20px, 4vw, 36px);
@@ -115,13 +192,27 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     justify-content: space-between;
     gap: 24px;
   }
-  .vv-logo {
-    font-family: var(--font-serif);
-    font-size: 20px;
-    font-weight: 400;
-    color: #fff;
-    letter-spacing: 6px;
-    text-decoration: none;
+  /* 背景の明暗に合わせて色が反転する（るうふ杉之家と同じ手法・実測して確認）。
+     difference は「素材の色 − 背景の色」なので、素材は必ず白のロゴを使う。
+     黒いロゴだと |背景 − 0| ＝ 背景そのままになり、ロゴが消える。
+     ヘッダーの中に入れず独立させているのは、帯や backdrop-filter が
+     合成の階層を切ってしまい、背景写真と反転しなくなるため。 */
+  .vv-logo-fixed {
+    position: fixed;
+    top: 18px;
+    left: clamp(20px, 4vw, 36px);
+    z-index: 1010;
+    mix-blend-mode: difference;
+    pointer-events: auto;
+  }
+  .vv-logo-fixed a { display: block; }
+  .vv-logo-fixed img {
+    display: block;
+    width: var(--logo-w, 115px);
+    height: auto;
+  }
+  @media (max-width: 768px) {
+    .vv-logo-fixed img { width: calc(var(--logo-w, 115px) * 0.72); }
   }
   .vv-nav-desktop {
     display: flex;
