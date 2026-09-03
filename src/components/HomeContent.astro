@@ -186,10 +186,15 @@ const guestHref = localizedPath('/guest-service/', lang);
      カード3枚は未設計のため、まだ置いていない。 -->
 <section id="experience" class="vv-exp">
   <div class="vv-exp-inner">
-    <!-- 写真はアキラさんの領域。プレースホルダーで置く（CLAUDE/05_operations §5-8） -->
-    <div class="vv-exp-photo" role="img" aria-label="南城の情景写真（差し替え予定）">
-      <span>南城の情景写真<br />（横長・差し替え予定）</span>
-    </div>
+    <img
+      class="vv-exp-photo"
+      src={withBase('/images/experience-lead.jpg')}
+      alt="窓の外に海と街並みが広がるカフェスペースで、テーブルを囲む家族"
+      width="1479"
+      height="1064"
+      loading="lazy"
+      decoding="async"
+    />
     <div class="vv-exp-text">
       <p class="vv-exp-heading" aria-hidden="true">Experience</p>
       <h2 class="vv-exp-lead">{t('experience.lead')}</h2>
@@ -831,19 +836,19 @@ const guestHref = localizedPath('/guest-service/', lang);
     gap: clamp(24px, 4vw, 64px);
     align-items: start;
   }
-  /* 写真のプレースホルダー（ピンク＝画像・写真／§5-8） */
+  /* アキラさん支給の写真（2026-09-03）。元 HP掲載１.png 2.1MB を
+     拡大せずJPEG化して338KBに（1479×1064）。
+     🔴 トリミングは画像ファイルを切らず、ここで枠の縦横比を変えて `object-fit: cover`
+     で切る。元画像は原寸のまま残るので、切り方はこの2行を変えるだけでやり直せる。
+     アキラさんが提示した仕上がりは 約1.52（元は1.390）＝天井と床を落とした横長。
+     `object-position` を下寄りにして、削るぶんを天井側に多く配分している。 */
   .vv-exp-photo {
-    aspect-ratio: 759 / 554;
-    background: #FFB6C1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.9;
-    letter-spacing: 2px;
-    color: #7a3b47;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.52;
+    object-fit: cover;
+    object-position: center 62%;
   }
   .vv-exp-text {
     display: flex;
