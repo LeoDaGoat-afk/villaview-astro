@@ -153,5 +153,10 @@
   "nf.heading": "Page not found",
   "nf.body": "The page you are looking for may have been moved or removed. Please use the button below to return to the top page.",
   "nf.cta.home": "Back to top page",
-  "nf.cta.booking": "Go to booking"
+  "nf.cta.booking": "Go to booking",
+  "bookbar.checkin": "CHECK-IN",
+  "bookbar.checkout": "CHECK-OUT",
+  "bookbar.guests": "GUESTS",
+  "bookbar.submit": "See availability",
+  "bookbar.flexible": "Dates not decided"
 }

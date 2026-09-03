@@ -136,5 +136,10 @@
   "nf.heading": "Seite nicht gefunden",
   "nf.body": "Die gesuchte Seite wurde möglicherweise verschoben oder entfernt. Bitte kehren Sie über die Schaltfläche unten zur Startseite zurück.",
   "nf.cta.home": "Zur Startseite",
-  "nf.cta.booking": "Zur Buchung"
+  "nf.cta.booking": "Zur Buchung",
+  "bookbar.checkin": "ANREISE",
+  "bookbar.checkout": "ABREISE",
+  "bookbar.guests": "GÄSTE",
+  "bookbar.submit": "Verfügbarkeit ansehen",
+  "bookbar.flexible": "Termin offen"
 }

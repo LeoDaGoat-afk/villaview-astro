@@ -126,9 +126,35 @@ const guestHref = localizedPath('/guest-service/', lang);
     <p class="vv-hero-eyebrow">{t('hero.eyebrow')}</p>
     <h1 class="vv-hero-title">{t('hero.title')}</h1>
     <div class="vv-hero-divider"></div>
-    <p class="vv-hero-lead">{t('hero.lead')}</p>
-    <a href={bookingHref} class="vv-hero-cta">{t('hero.cta')}</a>
     <p class="vv-hero-rating">{t('hero.rating')}</p>
+  </div>
+</section>
+
+<!-- BOOKING BAR：ヒーロー直下の予約ブロック（るうふ杉之家と同じ位置・同じ役割）。
+     ヒーローから外したCTAはここが引き受ける。送り先は Beds24。 -->
+<section class="vv-bookbar" aria-label={t('booking.heading')}>
+  <div class="vv-bookbar-inner">
+    <div class="vv-bookbar-field">
+      <label for="vv-bb-in">{t('bookbar.checkin')}</label>
+      <input type="date" id="vv-bb-in" />
+    </div>
+    <div class="vv-bookbar-field">
+      <label for="vv-bb-out">{t('bookbar.checkout')}</label>
+      <input type="date" id="vv-bb-out" />
+    </div>
+    <div class="vv-bookbar-flex">
+      <input type="checkbox" id="vv-bb-flex" />
+      <label for="vv-bb-flex">{t('bookbar.flexible')}</label>
+    </div>
+    <div class="vv-bookbar-field vv-bookbar-guests">
+      <label for="vv-bb-guests">{t('bookbar.guests')}</label>
+      <select id="vv-bb-guests">
+        {[1,2,3,4,5,6,7,8].map(n => (
+          <option value={n} selected={n === 4}>{n}</option>
+        ))}
+      </select>
+    </div>
+    <a href={bookingHref} class="vv-bookbar-submit" id="vv-bb-go">{t('bookbar.submit')}</a>
   </div>
 </section>
 
@@ -456,11 +482,104 @@ const guestHref = localizedPath('/guest-service/', lang);
   /* HERO */
   .vv-hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    /* 上下を7%ずつ詰めて、空いた14%を直下の予約ブロックに使う（2026-08-29 アキラさん指示） */
+    height: 86vh;
+    min-height: 520px;
     overflow: hidden;
     color: #fff;
   }
+  /* ── ヒーロー直下の予約ブロック ──────────────────
+     ヒーローを上下7%ずつ詰めて空けた14%に収める。 */
+  .vv-bookbar {
+    background: var(--color-surface, #efece4);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .vv-bookbar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px clamp(20px, 4vw, 36px);
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(12px, 2vw, 28px);
+    flex-wrap: wrap;
+  }
+  .vv-bookbar-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* 「日程未定」が増えて5列になったので、日付欄は伸びすぎないようにする。
+       伸びしろはボタンに残す（はみ出させない）。 */
+    flex: 1 1 150px;
+    min-width: 130px;
+    max-width: 230px;
+  }
+  .vv-bookbar-field label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--color-muted, #78716C);
+  }
+  .vv-bookbar-field input,
+  .vv-bookbar-field select {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-ink, #2c3a31);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 2px;
+    padding: 10px 12px;
+    width: 100%;
+  }
+  .vv-bookbar-field input:focus-visible,
+  .vv-bookbar-field select:focus-visible {
+    outline: 2px solid var(--color-primary, #2a5a6e);
+    outline-offset: 1px;
+  }
+  .vv-bookbar-guests { flex: 0 0 110px; min-width: 96px; }
+  /* 日程が決まっていない人向け。チェックすると日付を送らず、
+     押した先の空室カレンダーで選んでもらう。 */
+  .vv-bookbar-flex {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding-bottom: 11px;
+  }
+  .vv-bookbar-flex input { width: 16px; height: 16px; accent-color: var(--color-primary-darker, #0c1e26); }
+  .vv-bookbar-flex label {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--color-ink, #2c3a31);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  /* 日程未定にしたとき、日付欄は残したまま操作できないことが分かるようにする */
+  .vv-bookbar-field.is-off { opacity: 0.42; }
+  .vv-bookbar-field.is-off input { pointer-events: none; background: #f3f1ec; }
+  .vv-bookbar-submit {
+    flex: 0 1 auto;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 13px clamp(18px, 2.4vw, 30px);
+    background: var(--color-primary-darker, #0c1e26);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+  }
+  .vv-bookbar-submit:hover { background: var(--color-primary, #2a5a6e); }
+  .vv-bookbar-submit:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  @media (max-width: 700px) {
+    .vv-bookbar-inner { gap: 12px; }
+    .vv-bookbar-submit { flex: 1 1 100%; }
+  }
+
   .vv-hero-slides {
     position: absolute;
     inset: 0;
@@ -1134,3 +1253,68 @@ const guestHref = localizedPath('/guest-service/', lang);
     });
   }
 </script>
+
+<script>
+  // 予約ブロックの入力を Beds24 のURLに載せる。
+  // Beds24 が受けるのは checkin（YYYY-MM-DD）／numnight（泊数）／numadult（人数）。
+  {
+    const inEl  = document.getElementById('vv-bb-in');
+    const outEl = document.getElementById('vv-bb-out');
+    const gEl   = document.getElementById('vv-bb-guests');
+    const go    = document.getElementById('vv-bb-go');
+
+    if (inEl && outEl && gEl && go) {
+      const base = go.getAttribute('href');
+      const iso = (d) => d.toISOString().slice(0, 10);
+
+      // 既定値＝明日から1泊。日付が未入力のままでも予約ページが開けるようにする。
+      const t = new Date(); t.setDate(t.getDate() + 1);
+      const t2 = new Date(t); t2.setDate(t2.getDate() + 1);
+      inEl.value  = iso(t);
+      outEl.value = iso(t2);
+      inEl.min = iso(new Date());
+
+      const flexEl = document.getElementById('vv-bb-flex');
+
+      const sync = () => {
+        // 日程未定にチェックが入っていたら、日付を送らずに空室カレンダーへ送る
+        const flexible = flexEl && flexEl.checked;
+        inEl.closest('.vv-bookbar-field').classList.toggle('is-off', flexible);
+        outEl.closest('.vv-bookbar-field').classList.toggle('is-off', flexible);
+        if (flexible) {
+          const u = new URL(base);
+          u.searchParams.delete('checkin');
+          u.searchParams.delete('numnight');
+          u.searchParams.set('numadult', gEl.value);
+          go.setAttribute('href', u.toString());
+          return;
+        }
+        const ci = inEl.value;
+        const co = outEl.value;
+        let nights = 1;
+        if (ci && co) {
+          const diff = (new Date(co) - new Date(ci)) / 86400000;
+          if (diff >= 1) nights = Math.round(diff);
+        }
+        // チェックアウトはチェックイン翌日以降にしか選べないようにする
+        if (ci) {
+          const min = new Date(ci); min.setDate(min.getDate() + 1);
+          outEl.min = iso(min);
+          if (co && new Date(co) <= new Date(ci)) outEl.value = iso(min);
+        }
+        const url = new URL(base);
+        url.searchParams.set('checkin', ci);
+        url.searchParams.set('numnight', String(nights));
+        url.searchParams.set('numadult', gEl.value);
+        go.setAttribute('href', url.toString());
+      };
+
+      if (flexEl) flexEl.addEventListener('change', sync);
+      inEl.addEventListener('change', sync);
+      outEl.addEventListener('change', sync);
+      gEl.addEventListener('change', sync);
+      sync();
+    }
+  }
+</script>
+

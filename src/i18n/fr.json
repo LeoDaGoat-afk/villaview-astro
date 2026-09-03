@@ -136,5 +136,10 @@
   "nf.heading": "Page introuvable",
   "nf.body": "La page que vous recherchez a peut-être été déplacée ou supprimée. Veuillez utiliser le bouton ci-dessous pour revenir à la page d'accueil.",
   "nf.cta.home": "Retour à l'accueil",
-  "nf.cta.booking": "Vers la réservation"
+  "nf.cta.booking": "Vers la réservation",
+  "bookbar.checkin": "ARRIVÉE",
+  "bookbar.checkout": "DÉPART",
+  "bookbar.guests": "VOYAGEURS",
+  "bookbar.submit": "Voir les disponibilités",
+  "bookbar.flexible": "Dates flexibles"
 }

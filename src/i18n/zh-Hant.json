@@ -153,5 +153,10 @@
   "nf.heading": "找不到頁面",
   "nf.body": "您造訪的頁面可能已移動或刪除。請點選下方按鈕返回首頁。",
   "nf.cta.home": "返回首頁",
-  "nf.cta.booking": "前往訂房"
+  "nf.cta.booking": "前往訂房",
+  "bookbar.checkin": "入住",
+  "bookbar.checkout": "退房",
+  "bookbar.guests": "人數",
+  "bookbar.submit": "查看空房",
+  "bookbar.flexible": "日期未定"
 }

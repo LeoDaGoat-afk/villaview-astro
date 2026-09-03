@@ -136,5 +136,10 @@
   "nf.heading": "Página no encontrada",
   "nf.body": "Es posible que la página que busca se haya movido o eliminado. Utilice el botón de abajo para volver a la página principal.",
   "nf.cta.home": "Ir a la página principal",
-  "nf.cta.booking": "Ir a la reserva"
+  "nf.cta.booking": "Ir a la reserva",
+  "bookbar.checkin": "ENTRADA",
+  "bookbar.checkout": "SALIDA",
+  "bookbar.guests": "HUÉSPEDES",
+  "bookbar.submit": "Ver disponibilidad",
+  "bookbar.flexible": "Fechas flexibles"
 }

@@ -153,5 +153,10 @@
   "nf.heading": "未找到页面",
   "nf.body": "您访问的页面可能已被移动或删除。请点击下方按钮返回首页。",
   "nf.cta.home": "返回首页",
-  "nf.cta.booking": "前往预订"
+  "nf.cta.booking": "前往预订",
+  "bookbar.checkin": "入住",
+  "bookbar.checkout": "退房",
+  "bookbar.guests": "人数",
+  "bookbar.submit": "查看空房",
+  "bookbar.flexible": "日期未定"
 }

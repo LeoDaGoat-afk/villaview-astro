@@ -153,5 +153,10 @@
   "nf.heading": "ページが見つかりません",
   "nf.body": "お探しのページは、移動したか削除された可能性があります。お手数ですが、下のボタンからトップページへお戻りください。",
   "nf.cta.home": "トップページへ",
-  "nf.cta.booking": "ご予約ページへ"
+  "nf.cta.booking": "ご予約ページへ",
+  "bookbar.checkin": "チェックイン",
+  "bookbar.checkout": "チェックアウト",
+  "bookbar.guests": "人数",
+  "bookbar.submit": "空室を見る",
+  "bookbar.flexible": "日程未定"
 }

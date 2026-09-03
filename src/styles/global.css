@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Zen+Old+Mincho:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Zen+Old+Mincho:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -33,8 +33,13 @@
 
   /* 2026-08-17 Cormorant Garamond を外した。数字がオールドスタイル（小文字サイズ）で「1」が I に見えるため。
      欧文キッカーだけは従来どおり --font-kicker（Cormorant Garamond Italic）を使う。 */
-  --font-serif: "Zen Old Mincho", "Noto Serif JP", "Noto Serif SC", serif;
-  --font-sans: "Zen Kaku Gothic New", sans-serif;
+  --font-serif: "Shippori Mincho", "Zen Old Mincho", "Noto Serif JP", "Noto Serif SC", serif;
+  /* るうふ杉之家は body・見出し・ナビ・本文のすべてを A1明朝 で組んでいる（実測）。
+     A1明朝はモリサワの有料フォントで Google Fonts に無いため、近い明朝を当てる。
+     ゴシックは使わない方針にしたので、--font-sans も明朝を指す。
+     旧ゴシックが要る場合は --font-gothic-legacy を使う。 */
+  --font-sans: "Shippori Mincho", "Zen Old Mincho", "Noto Serif JP", serif;
+  --font-gothic-legacy: "Zen Kaku Gothic New", sans-serif;
 }
 
 * { box-sizing: border-box; }

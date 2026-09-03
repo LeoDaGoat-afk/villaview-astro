@@ -165,8 +165,10 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     .vv-side-burger .l1, .vv-side-burger .l2 { transition: none; }
   }
 
+  /* るうふと同じく、上部メニューはスクロールに合わせて流れて消える。
+     最上部にだけ残す＝固定しない。ロゴ・縦罫・メニューボタンは fixed のまま残る。 */
   #vv-header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -225,10 +227,10 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     color: #fff;
     text-decoration: none;
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
     padding: 6px 0;
     position: relative;
     transition: opacity 0.3s;
@@ -236,7 +238,7 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   }
   @media (max-width: 1200px) {
     .vv-nav-desktop { gap: 14px; }
-    .vv-nav-link { font-size: 10.5px; letter-spacing: 1.5px; }
+    .vv-nav-link { font-size: 13px; letter-spacing: 1.5px; }
   }
   .vv-nav-link::after {
     content: '';
