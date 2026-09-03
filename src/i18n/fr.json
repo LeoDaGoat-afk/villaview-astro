@@ -141,5 +141,7 @@
   "bookbar.checkout": "DÉPART",
   "bookbar.guests": "VOYAGEURS",
   "bookbar.submit": "Voir les disponibilités",
-  "bookbar.flexible": "Dates flexibles"
+  "bookbar.flexible": "Dates flexibles",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

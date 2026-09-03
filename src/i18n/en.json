@@ -158,5 +158,7 @@
   "bookbar.checkout": "CHECK-OUT",
   "bookbar.guests": "GUESTS",
   "bookbar.submit": "See availability",
-  "bookbar.flexible": "Dates not decided"
+  "bookbar.flexible": "Dates not decided",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

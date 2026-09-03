@@ -48,6 +48,17 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   <span class="l2"></span>
 </button>
 
+<!-- 右下に常時出る予約ボタン（るうふ杉之家 .block_fix_reservation の実測＝150×65px・
+     right:0 bottom:0・濃色地に白文字・上段14px/字間4.2px・下段8px）。
+     🔴 サブ文言は「当サイトがもっともお得」にしない。実測でOTAが安い日があり、
+     根拠のない最安表示は景表法の有利誤認に当たる（赤①判定・pricing_design_policy）。 -->
+<section class="vv-fix-book">
+  <a href={bookingHref}>
+    <span class="t01">{t('fixbook.main')}</span>
+    <span class="t02">{t('fixbook.sub')}</span>
+  </a>
+</section>
+
 <header id="vv-header" role="banner">
   <div class="vv-header-inner">
 
@@ -169,6 +180,47 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
 
   /* るうふと同じく、上部メニューはスクロールに合わせて流れて消える。
      最上部にだけ残す＝固定しない。ロゴ・縦罫・メニューボタンは fixed のまま残る。 */
+  /* ── 右下の予約ボタン（常時表示・スクロールしても付いてくる）── */
+  .vv-fix-book {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1020;
+  }
+  .vv-fix-book a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    height: 65px;
+    padding: 15px 22px;
+    background: var(--color-primary-darker, #0c1e26);
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  .vv-fix-book a:hover { background: var(--color-primary, #2a5a6e); }
+  .vv-fix-book a:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+  .vv-fix-book .t01 {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    letter-spacing: 4.2px;
+    line-height: 1.5;
+  }
+  .vv-fix-book .t02 {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    opacity: 0.82;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  @media (max-width: 700px) {
+    .vv-fix-book a { width: 128px; height: 58px; padding: 12px 16px; }
+    .vv-fix-book .t01 { font-size: 13px; letter-spacing: 3px; }
+    .vv-fix-book .t02 { font-size: 8.5px; }
+  }
+
   #vv-header {
     position: absolute;
     top: 0;

@@ -141,5 +141,7 @@
   "bookbar.checkout": "ABREISE",
   "bookbar.guests": "GÄSTE",
   "bookbar.submit": "Verfügbarkeit ansehen",
-  "bookbar.flexible": "Termin offen"
+  "bookbar.flexible": "Termin offen",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

@@ -158,5 +158,7 @@
   "bookbar.checkout": "退房",
   "bookbar.guests": "人数",
   "bookbar.submit": "查看空房",
-  "bookbar.flexible": "日期未定"
+  "bookbar.flexible": "日期未定",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

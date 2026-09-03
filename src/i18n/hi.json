@@ -141,5 +141,7 @@
   "bookbar.checkout": "चेक-आउट",
   "bookbar.guests": "मेहमान",
   "bookbar.submit": "उपलब्धता देखें",
-  "bookbar.flexible": "तारीख तय नहीं"
+  "bookbar.flexible": "तारीख तय नहीं",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

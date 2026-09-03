@@ -141,5 +141,7 @@
   "bookbar.checkout": "SALIDA",
   "bookbar.guests": "HUÉSPEDES",
   "bookbar.submit": "Ver disponibilidad",
-  "bookbar.flexible": "Fechas flexibles"
+  "bookbar.flexible": "Fechas flexibles",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

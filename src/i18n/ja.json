@@ -158,5 +158,7 @@
   "bookbar.checkout": "チェックアウト",
   "bookbar.guests": "人数",
   "bookbar.submit": "空室を見る",
-  "bookbar.flexible": "日程未定"
+  "bookbar.flexible": "日程未定",
+  "fixbook.main": "予約する",
+  "fixbook.sub": "空室と料金を見る"
 }

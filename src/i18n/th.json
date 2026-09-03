@@ -141,5 +141,7 @@
   "bookbar.checkout": "เช็คเอาท์",
   "bookbar.guests": "จำนวนผู้เข้าพัก",
   "bookbar.submit": "ดูห้องว่าง",
-  "bookbar.flexible": "ยังไม่ระบุวันที่"
+  "bookbar.flexible": "ยังไม่ระบุวันที่",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }

@@ -141,5 +141,7 @@
   "bookbar.checkout": "체크아웃",
   "bookbar.guests": "인원",
   "bookbar.submit": "빈방 보기",
-  "bookbar.flexible": "일정 미정"
+  "bookbar.flexible": "일정 미정",
+  "fixbook.main": "BOOK",
+  "fixbook.sub": "Check dates & rates"
 }
