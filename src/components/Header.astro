@@ -142,10 +142,11 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     position: fixed;
     /* ロゴの左右中央に揃える。ロゴの左端 ＋ ロゴ幅の半分 − ボタン幅の半分。
        ロゴの幅を変えても中央が保たれるよう計算で出す。 */
-    left: calc(clamp(20px, 4vw, 36px) + (var(--logo-w, 115px) / 2) - 17.5px);
-    top: 200px;
-    width: 35px;
-    height: 35px;
+    left: calc(clamp(20px, 4vw, 36px) + (var(--logo-w, 170px) / 2) - 25px);
+    /* ロゴを170pxへ拡大＝高さ136px（1280×1024）。ロゴ下端(18+136=154px)を避けて下げる。 */
+    top: 226px;
+    width: 50px;
+    height: 50px;
     padding: 0;
     border: 0;
     background: none;
@@ -157,15 +158,15 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   .vv-side-burger .l2 {
     position: absolute;
     left: 0;
-    width: 35px;
+    width: 50px;
     height: 1px;
     background: #fff;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  .vv-side-burger .l1 { top: 15px; }
-  .vv-side-burger .l2 { top: 21px; }
-  .vv-side-burger[aria-expanded="true"] .l1 { transform: translateY(3px) rotate(45deg); }
-  .vv-side-burger[aria-expanded="true"] .l2 { transform: translateY(-3px) rotate(-45deg); }
+  .vv-side-burger .l1 { top: 21px; }
+  .vv-side-burger .l2 { top: 30px; }
+  .vv-side-burger[aria-expanded="true"] .l1 { transform: translateY(4.5px) rotate(45deg); }
+  .vv-side-burger[aria-expanded="true"] .l2 { transform: translateY(-4.5px) rotate(-45deg); }
   .vv-side-burger:focus-visible { outline: 1px solid #fff; outline-offset: 6px; }
   /* メニューが開いている間は、面の上で×として見えるように反転をやめて白線にする */
   .vv-side-burger[aria-expanded="true"] { mix-blend-mode: normal; z-index: 1200; }
@@ -264,11 +265,11 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   .vv-logo-fixed a { display: block; }
   .vv-logo-fixed img {
     display: block;
-    width: var(--logo-w, 115px);
+    width: var(--logo-w, 170px);
     height: auto;
   }
   @media (max-width: 768px) {
-    .vv-logo-fixed img { width: calc(var(--logo-w, 115px) * 0.72); }
+    .vv-logo-fixed img { width: calc(var(--logo-w, 170px) * 0.72); }
   }
   .vv-nav-desktop {
     display: flex;
@@ -386,9 +387,16 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     color: #fff;
     padding: 6px;
   }
-  #vv-burger svg { width: 28px; height: 28px; display: block; }
+  /* 2026-09-03 アキラさん指示：ハンバーガーを大きく（28px → 40px）。
+     ロゴ下の .vv-side-burger（35→50px）と揃える。 */
+  #vv-burger svg { width: 40px; height: 40px; display: block; }
 
-  @media (max-width: 900px) {
+  /* 2026-09-03：ロゴを115px→170pxに拡大したことで、固定ロゴ（左上・幅170px）と
+     上部ナビ9項目が 1100px 以下で重なった（実測：940px幅でナビ先頭が116px食い込む）。
+     ロゴは大きいままにしたいので、ナビを畳む幅を 900px → 1100px へ上げる。
+     畳んだ幅ではロゴ直下のメニューボタン（.vv-side-burger・900px以上で表示）が
+     ナビを引き受けるので、どの幅でもメニューには到達できる。 */
+  @media (max-width: 1100px) {
     .vv-nav-desktop, .vv-lang-wrap { display: none; }
     #vv-burger { display: block; margin-left: auto; }
   }
