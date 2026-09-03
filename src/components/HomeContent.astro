@@ -853,7 +853,8 @@ const guestHref = localizedPath('/guest-service/', lang);
   .vv-exp-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* 横書きにしたので、リードは列いっぱいに広げる（flex-start だと内容幅に縮む） */
+    align-items: stretch;
   }
   .vv-exp-heading {
     font-family: "Cormorant Garamond", var(--font-serif), serif;
@@ -867,48 +868,30 @@ const guestHref = localizedPath('/guest-service/', lang);
     /* 左の写真の上端と頭を揃えるため、明朝の字面ぶんだけ持ち上げる */
     margin-top: -0.12em;
   }
-  /* 🔴 リード文は縦書き。高さで折り返すので、高さが列数を決める。
-     アキラさんの確定稿は95字＝るうふの84字より長いため、高さを少し多めに取る。 */
+  /* 2026-09-03 アキラさん指示：リード文は縦書きをやめて横書きにする。
+     （るうふは縦書きだが、当サイトは横書きで通す判断） */
   .vv-exp-lead {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
     font-family: var(--font-serif);
-    font-size: clamp(15px, 1.45vw, 19.5px);
+    font-size: clamp(15px, 1.25vw, 17px);
     font-weight: 400;
     line-height: 2;
     letter-spacing: 0.02em;
     color: var(--color-ink, #2c3a31);
-    /* 🔴 縦書きは「高さ」が1列に入る字数を決め、それが列数と最終列の埋まり方を決める。
-       確定稿は99字。高さ470pxだと1列23字＝5列になり、最終列が7字（3割）しか埋まらず
-       尻切れに見えた。400pxにすると1列20字＝5列で、最終列が19字とほぼ揃う。 */
-    height: clamp(320px, 38vw, 400px);
     margin: 0;
-    /* 縦書きは右の列から始まるので、右端に寄せる */
-    margin-left: auto;
   }
   @media (max-width: 900px) {
     .vv-exp-inner {
       grid-template-columns: 1fr;
       gap: clamp(20px, 5vw, 36px);
     }
-    /* 🔴 狭い画面ではリードを横書きに戻す。
-       るうふ杉之家も390px幅で `writing-mode: horizontal-tb` に切り替えていた
-       （2026-09-03 実測：16.64px／行間33.28px＝2.0／幅343px）。
-       縦書きのままだと、高さで決まる列数が画面幅ごとに変わり、
-       最終列が2割しか埋まらない不揃いが出る（実測で確認）。 */
     .vv-exp-text {
       flex-direction: column;
       align-items: stretch;
       gap: clamp(16px, 4vw, 28px);
     }
     .vv-exp-heading { margin: 0; }
-    .vv-exp-lead {
-      writing-mode: horizontal-tb;
-      height: auto;
-      margin-left: 0;
-      font-size: clamp(15px, 4.3vw, 16.6px);
-      line-height: 2;
-    }
+    /* 狭い画面の文字サイズは、るうふ実測（390px幅で16.64px／行間2.0）に合わせる */
+    .vv-exp-lead { font-size: clamp(15px, 4.3vw, 16.6px); }
   }
 
   /* Grids */
