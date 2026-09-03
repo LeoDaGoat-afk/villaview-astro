@@ -127,7 +127,10 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   .vv-side-rule {
     position: fixed;
     top: 72px;
-    left: 179px;
+    /* 2026-09-03 アキラさん指示：少し右へ。ロゴを170pxに拡大したので、
+       ロゴの右端（左余白＋ロゴ幅）から28px右に置く＝1440pxで234px（従来179px）。
+       ロゴ幅を変えても関係が崩れないよう計算で出す。 */
+    left: calc(clamp(20px, 4vw, 36px) + var(--logo-w, 170px) + 28px);
     width: var(--rule-w, 0.25px);
     height: calc(100vh - 145px);
     background: #fff;
@@ -187,6 +190,17 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     right: 0;
     bottom: 0;
     z-index: 1020;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  /* 予約ブロックが画面に出ている間は引っ込める（HomeContent.astro のJSが付け外しする）。
+     中央寄せにした予約ブロックの「空室を見る」と重なるのを避けるため。 */
+  .vv-fix-book.is-tucked {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vv-fix-book { transition: none; }
   }
   .vv-fix-book a {
     display: flex;
