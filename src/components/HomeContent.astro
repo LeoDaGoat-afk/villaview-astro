@@ -848,6 +848,10 @@ const guestHref = localizedPath('/guest-service/', lang);
     height: auto;
     aspect-ratio: 1157 / 748;
     object-fit: cover;
+    /* 2026-09-03 アキラさん指示：少しだけ右へ。
+       transform なので大きさも列の幅も変わらず、右の文章との間隔だけが詰まる。
+       間隔は clamp(24px,4vw,64px) あるので、この移動量なら文章に触れない（実測で確認）。 */
+    transform: translateX(clamp(12px, 2.2vw, 32px));
   }
   .vv-exp-text {
     display: flex;
@@ -871,7 +875,8 @@ const guestHref = localizedPath('/guest-service/', lang);
      （るうふは縦書きだが、当サイトは横書きで通す判断） */
   .vv-exp-lead {
     font-family: var(--font-serif);
-    font-size: clamp(15px, 1.25vw, 17px);
+    /* 2026-09-03 アキラさん指示：本文をもう少し大きく（17 → 19px） */
+    font-size: clamp(16px, 1.4vw, 19px);
     font-weight: 400;
     line-height: 2;
     letter-spacing: 0.02em;
@@ -891,6 +896,10 @@ const guestHref = localizedPath('/guest-service/', lang);
     .vv-exp-heading { margin: 0; }
     /* 狭い画面の文字サイズは、るうふ実測（390px幅で16.64px／行間2.0）に合わせる */
     .vv-exp-lead { font-size: clamp(15px, 4.3vw, 16.6px); }
+    /* 🔴 写真の右シフトは「左に写真・右に文章」の並びのときだけ意味がある。
+       積み重なる幅では写真が全幅になるので、右へずらすと左右の余白が
+       不揃いになる（実測：390px幅で左32px・右8px）。ここでは解除する。 */
+    .vv-exp-photo { transform: none; }
   }
 
   /* Grids */
