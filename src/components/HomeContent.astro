@@ -190,8 +190,8 @@ const guestHref = localizedPath('/guest-service/', lang);
       class="vv-exp-photo"
       src={withBase('/images/experience-lead.jpg')}
       alt="窓の外に海と街並みが広がるカフェスペースで、テーブルを囲む家族"
-      width="1479"
-      height="1064"
+      width="1157"
+      height="748"
       loading="lazy"
       decoding="async"
     />
@@ -836,19 +836,18 @@ const guestHref = localizedPath('/guest-service/', lang);
     gap: clamp(24px, 4vw, 64px);
     align-items: start;
   }
-  /* アキラさん支給の写真（2026-09-03）。元 HP掲載１.png 2.1MB を
-     拡大せずJPEG化して338KBに（1479×1064）。
-     🔴 トリミングは画像ファイルを切らず、ここで枠の縦横比を変えて `object-fit: cover`
-     で切る。元画像は原寸のまま残るので、切り方はこの2行を変えるだけでやり直せる。
-     アキラさんが提示した仕上がりは 約1.52（元は1.390）＝天井と床を落とした横長。
-     `object-position` を下寄りにして、削るぶんを天井側に多く配分している。 */
+  /* 写真＝アキラさんがトリミングして支給した版（2026-09-03 17:24・1157×748）。
+     元 HP掲載１.png 1.3MB を拡大せずJPEG化して233KBに。
+     🔴 トリミングは既に画像側で済んでいるので、CSSでは切らない。
+     枠の縦横比を画像と同じ 1157/748 にしてあるため `object-fit: cover` は
+     実質なにも削らない（保険としてだけ置いている）。
+     ここで別の縦横比を指定すると、切られた画像をさらに切ることになる。 */
   .vv-exp-photo {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1.52;
+    aspect-ratio: 1157 / 748;
     object-fit: cover;
-    object-position: center 62%;
   }
   .vv-exp-text {
     display: flex;
