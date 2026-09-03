@@ -123,7 +123,6 @@ const guestHref = localizedPath('/guest-service/', lang);
   </div>
   <div class="vv-hero-overlay"></div>
   <div class="vv-hero-content">
-    <p class="vv-hero-eyebrow">{t('hero.eyebrow')}</p>
     <img
       class="vv-hero-illust"
       src={withBase('/images/hero-illust.png')}
@@ -134,8 +133,8 @@ const guestHref = localizedPath('/guest-service/', lang);
       fetchpriority="high"
     />
     <h1 class="vv-hero-title">{t('hero.title')}</h1>
-    <div class="vv-hero-divider"></div>
     <p class="vv-hero-rating">{t('hero.rating')}</p>
+    <p class="vv-hero-eyebrow">{t('hero.eyebrow')}</p>
   </div>
 </section>
 
@@ -659,15 +658,28 @@ const guestHref = localizedPath('/guest-service/', lang);
     justify-content: flex-end;
     align-items: flex-end;
     text-align: right;
-    padding: 0 clamp(20px, 4vw, 56px) clamp(28px, 5vh, 56px);
+    /* 2026-09-03 アキラさん指示：英字（PRIVATE VILLA IN NANJO, OKINAWA）を
+       いちばん下＝背景のすぐ上に置くので、下の余白を詰める。 */
+    padding: 0 clamp(20px, 4vw, 56px) 16px;
+  }
+  /* 🔴 右下の3点（線画・見出し・英字）は横幅を揃える。
+     基準＝英字の自然な幅（1440pxで実測402px）。この1つの変数で3つとも動く。 */
+  .vv-hero-content {
+    --hero-w: min(402px, 86vw);
+  }
+  .vv-hero-illust,
+  .vv-hero-title,
+  .vv-hero-rating,
+  .vv-hero-eyebrow {
+    width: var(--hero-w);
   }
   /* ── ヒーロー右下の線画（見出しの上に乗る）────────────
      白線・透過PNG。写真の上でも輪郭が残るよう軽く影を落とす。 */
   .vv-hero-illust {
     display: block;
-    width: clamp(240px, 34vw, 460px);
+    /* 幅は上の --hero-w で決まる（英字と同じ402px）。460pxから少し小さくなる。 */
     height: auto;
-    margin: 0 0 -6px;
+    margin: 0 0 -4px;
     opacity: 0.92;
     filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
     animation: fade-up 1s ease 0.4s both;
@@ -675,35 +687,30 @@ const guestHref = localizedPath('/guest-service/', lang);
   }
   .vv-hero-eyebrow {
     font-family: var(--font-sans);
-    font-size: 11px;
-    letter-spacing: 6px;
+    /* 1440pxで従来どおり 11px / 字間6px。狭い画面では折り返さず比率で縮む
+       （折り返すと線画・見出しと幅が揃わなくなるため）。 */
+    font-size: calc(var(--hero-w) * 0.02736);
+    letter-spacing: calc(var(--hero-w) * 0.01493);
+    white-space: nowrap;
     text-transform: uppercase;
     opacity: 0.85;
-    /* 直後に線画が来るので詰める */
-    margin-bottom: 10px;
+    margin: 0;
     animation: fade-up 1s ease 0.3s both;
   }
   .vv-hero-title {
     font-family: var(--font-serif);
-    /* 2026-09-03 アキラさん指示：文字の大きさを従来の半分に
-       （clamp(32px,6vw,64px) → その1/2）。 */
-    font-size: clamp(16px, 3vw, 32px);
+    /* 2026-09-03 アキラさん指示：横幅が線画・英字と同じになる大きさにする。
+       8文字 ×（字送り＋字間）＝ --hero-w になるよう比率で出す（402px → 48px）。 */
+    font-size: calc(var(--hero-w) * 0.1194);
     font-weight: 300;
-    line-height: 1.35;
-    letter-spacing: 2px;
-    margin: 0 0 10px;
-    max-width: 900px;
+    line-height: 1.3;
+    letter-spacing: calc(var(--hero-w) * 0.005);
+    margin: 0 0 8px;
     white-space: pre-line;
     animation: fade-up 1s ease 0.5s both;
   }
-  .vv-hero-divider {
-    width: 60px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.6);
-    /* 右寄せになったので auto センタリングをやめ、右端に揃える */
-    margin: 14px 0 14px auto;
-    animation: fade-up 1s ease 0.7s both;
-  }
+  /* .vv-hero-divider（見出し下の短い横線）は 2026-09-03 アキラさん指示で削除。
+     マークアップからも外したので、CSSもここで消している。 */
   .vv-hero-lead {
     font-family: var(--font-sans);
     font-size: 14px;
@@ -767,7 +774,7 @@ const guestHref = localizedPath('/guest-service/', lang);
     letter-spacing: 2px;
     /* クチコミ 9.4/10 は成約材料。読めない濃さにしない */
     opacity: 0.88;
-    margin-top: 28px;
+    margin: 0 0 10px;
     animation: fade-up 1s ease 1.3s both;
   }
 
