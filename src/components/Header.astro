@@ -156,6 +156,8 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   .vv-side-burger[aria-expanded="true"] .l1 { transform: translateY(3px) rotate(45deg); }
   .vv-side-burger[aria-expanded="true"] .l2 { transform: translateY(-3px) rotate(-45deg); }
   .vv-side-burger:focus-visible { outline: 1px solid #fff; outline-offset: 6px; }
+  /* メニューが開いている間は、面の上で×として見えるように反転をやめて白線にする */
+  .vv-side-burger[aria-expanded="true"] { mix-blend-mode: normal; z-index: 1200; }
 
   @media (max-width: 900px) {
     .vv-side-rule { display: none; }
@@ -419,13 +421,33 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  burger?.addEventListener('click', () => {
+  // 左サイドのメニューボタン（デスクトップ）。上部ナビと同じ中身を出す。
+  // メニュー構成が決まったら、この1つのメニューを直せば両方に反映される。
+  const sideBurger = document.querySelector<HTMLButtonElement>('.vv-side-burger');
+
+  function openMenu() {
     mobileMenu?.classList.add('open');
-    burger.setAttribute('aria-expanded', 'true');
-  });
-  closeBtn?.addEventListener('click', () => {
+    burger?.setAttribute('aria-expanded', 'true');
+    sideBurger?.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
     mobileMenu?.classList.remove('open');
     burger?.setAttribute('aria-expanded', 'false');
+    sideBurger?.setAttribute('aria-expanded', 'false');
+  }
+
+  burger?.addEventListener('click', openMenu);
+  sideBurger?.addEventListener('click', () => {
+    // 開いているときは閉じる（2本線と×が対応するように）
+    if (mobileMenu?.classList.contains('open')) closeMenu();
+    else openMenu();
+  });
+  closeBtn?.addEventListener('click', closeMenu);
+  // メニュー内のリンクを押したら閉じる
+  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  // Esc でも閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMenu();
   });
 
   // Persist language preference
