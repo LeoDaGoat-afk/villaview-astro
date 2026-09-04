@@ -192,7 +192,7 @@ const guestHref = localizedPath('/guest-service/', lang);
      Experience と同じ形（左に大判写真・右上に極細グレーの英字見出し・その下に本文）に
      組み替えた。トンマナを確実に揃えるため CSS は .vv-exp 系をそのまま共有している。
      「この宿について」の日本語ラベルは廃止し、英字見出し `Space` に置き換え。 -->
-<section id="vv-concept-sec" class="vv-exp">
+<section id="vv-concept-sec" class="vv-exp vv-exp--rev">
   <div class="vv-exp-inner">
     <img
       class="vv-exp-photo"
@@ -849,11 +849,30 @@ const guestHref = localizedPath('/guest-service/', lang);
     color: var(--color-ink, #2c3a31);
     margin: 0;
   }
+  /* 2026-09-04 アキラさん指示：Space（CONCEPT）は写真と文章を左右逆にする。
+     Experienceと交互になり、続けて並んでも単調にならない。
+     列の比率も入れ替えるので、写真の大きさは Experience と同じまま。 */
+  .vv-exp--rev .vv-exp-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  }
+  .vv-exp--rev .vv-exp-photo { grid-column: 2; grid-row: 1; }
+  .vv-exp--rev .vv-exp-text  { grid-column: 1; grid-row: 1; }
+  /* 写真の寄せも鏡にする（Experienceは右へ寄せているので、こちらは左へ）。 */
+  .vv-exp--rev .vv-exp-photo { transform: translateX(calc(-1 * clamp(12px, 2.2vw, 32px))); }
+
   @media (max-width: 900px) {
     .vv-exp-inner {
       grid-template-columns: 1fr;
       gap: clamp(20px, 5vw, 36px);
     }
+    /* 積み重なる幅では左右の入れ替えを解除し、写真が上・文章が下に戻す */
+    .vv-exp--rev .vv-exp-inner { grid-template-columns: 1fr; }
+    .vv-exp--rev .vv-exp-photo { grid-column: 1; grid-row: 1; }
+    .vv-exp--rev .vv-exp-text  { grid-column: 1; grid-row: 2; }
+    /* 🔴 反転側の寄せもここで解除する。`.vv-exp-photo { transform: none }` だけでは
+       `.vv-exp--rev .vv-exp-photo` の方が詳細度が高くて勝ってしまい、
+       写真だけ左へずれて左右の余白が不揃いになる（実測：390px幅で左8px・右32px）。 */
+    .vv-exp--rev .vv-exp-photo { transform: none; }
     .vv-exp-text {
       flex-direction: column;
       align-items: stretch;
