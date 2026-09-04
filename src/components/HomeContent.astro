@@ -166,20 +166,6 @@ const guestHref = localizedPath('/guest-service/', lang);
   </div>
 </section>
 
-<!-- CONCEPT -->
-<section class="vv-section vv-concept-sec" id="vv-concept-sec">
-  <div class="vv-concept-bg" aria-hidden="true">
-    <img src={withBase('/images/concept-bg.jpg')} alt="" loading="lazy" id="vv-concept-img" />
-  </div>
-  <div class="vv-concept-veil" aria-hidden="true"></div>
-  <div class="vv-container vv-concept">
-    <p class="eyebrow">{t('concept.eyebrow')}</p>
-    <h2 class="section-h2">{t('concept.title')}</h2>
-    <div class="vv-divider-gold-left"></div>
-    <p class="section-lead">{t('concept.body')}</p>
-  </div>
-</section>
-
 <!-- EXPERIENCE：るうふ杉之家の同名ブロックを実測して移植（2026-09-03）。
      左に大判写真、右上に極細グレーの大見出し、その下に縦書きのリード文。
      リード文はアキラさん本人の確定稿（memory: project_villaview_toppage_redesign 末尾）。
@@ -198,6 +184,29 @@ const guestHref = localizedPath('/guest-service/', lang);
     <div class="vv-exp-text">
       <p class="vv-exp-heading" aria-hidden="true">Experience</p>
       <h2 class="vv-exp-lead">{t('experience.lead')}</h2>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT：2026-09-04 アキラさん指示で Experience の下へ移動し、
+     Experience と同じ形（左に大判写真・右上に極細グレーの英字見出し・その下に本文）に
+     組み替えた。トンマナを確実に揃えるため CSS は .vv-exp 系をそのまま共有している。
+     「この宿について」の日本語ラベルは廃止し、英字見出し `Space` に置き換え。 -->
+<section id="vv-concept-sec" class="vv-exp">
+  <div class="vv-exp-inner">
+    <img
+      class="vv-exp-photo"
+      src={withBase('/images/concept-photo.jpg')}
+      alt="海に面した窓と、白いベッドが2台ならぶ寝室"
+      width="1600"
+      height="1066"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="vv-exp-text">
+      <p class="vv-exp-heading" aria-hidden="true">Space</p>
+      <h2 class="vv-concept-title">{t('concept.title')}</h2>
+      <p class="vv-exp-lead">{t('concept.body')}</p>
     </div>
   </div>
 </section>
@@ -434,64 +443,21 @@ const guestHref = localizedPath('/guest-service/', lang);
   /* ── 2番ブロック「この宿について」：左揃え＋写真の背景（2026-08-17 アキラさん指示）──
      背景は「アートボード 1.jpg」を上6%・下25%でトリミングしたもの。
      スクロールに合わせて写真がゆっくり下へ送られ、下のほうが見えてくる。 */
-  .vv-concept-sec {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
+  /* 旧CONCEPTの背景写真・紙白の覆い・パララックスは 2026-09-04 に撤去した。
+     Experience と同じ「左に写真・右に文章」の形へ組み替えたため不要になった。
+     日本語の見出しだけ、英字見出しと本文のあいだに置くのでここで整える。 */
+  .vv-concept-title {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 1.9vw, 26px);
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: var(--color-ink, #2c3a31);
+    white-space: pre-line;
+    margin: 0 0 18px;
   }
-  /* 写真は 1440x621 の原寸。拡大すると眠くなるので等倍のまま右に寄せ、左に紙白の余白を残す。
-     縦だけスクロールに合わせて送る（拡大は一切しない）。 */
-  .vv-concept-bg {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: clamp(24px, 8%, 200px);   /* ← 左の余白 */
-    overflow: hidden;
-    z-index: -2;
-  }
-  .vv-concept-bg img {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 1440px;              /* 原寸＝等倍。これ以上引き伸ばさない */
-    max-width: none;
-    height: auto;
-    will-change: transform;
-  }
-  @media (max-width: 900px) {
-    /* 狭い画面では原寸だと右端しか映らないので、幅に合わせて縮小する（縮小は眠くならない） */
-    .vv-concept-bg { left: 0; }
-    .vv-concept-bg img { width: 100%; }
-  }
-  /* 左半分だけ紙白をかぶせて文字を読ませる。右の海はそのまま見せる */
-  .vv-concept-veil {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    /* 写真の左端（画面幅の8%の位置）は必ず不透明の下に隠す。
-       26%まで紙白そのままで置き、そこから86%まで長くかけて落とすので境目が出ない。 */
-    background:
-      linear-gradient(100deg,
-        rgba(247, 245, 240, 1.00) 0%,
-        rgba(247, 245, 240, 1.00) 26%,
-        rgba(247, 245, 240, 0.92) 38%,
-        rgba(247, 245, 240, 0.70) 50%,
-        rgba(247, 245, 240, 0.40) 62%,
-        rgba(247, 245, 240, 0.14) 74%,
-        rgba(247, 245, 240, 0.00) 86%);
-  }
-  .vv-concept { text-align: left; position: relative; }
-  .vv-concept .section-h2 { letter-spacing: 0.06em; line-height: 1.45; }
-  .vv-concept .section-lead { max-width: 30em; }
-  /* 覆いの濃い側からはみ出さない幅に抑える（写真の明るい窓に文字を重ねない） */
-  .vv-concept .section-h2 { max-width: 14em; }
-  .vv-divider-gold-left {
-    width: 48px;
-    height: 1px;
-    background: var(--color-accent);
-    margin: 22px 0 26px;
-  }
+  /* .vv-divider-gold-left（旧CONCEPTの金の横線）は 2026-09-04 に撤去。
+     使っていたのは旧CONCEPTの1箇所だけで、そこを組み替えたため未使用になった。 */
   .eyebrow-light {
     color: rgba(255,255,255,0.8);
   }
@@ -1224,197 +1190,6 @@ const guestHref = localizedPath('/guest-service/', lang);
     .vv-lightbox { padding: 16px; }
   }
 </style>
-
-<script>
-  // 2番ブロックの背景写真を、スクロールに合わせてゆっくり下へ送る。
-  // ブロックが画面を通過する間に object-position を 0% → 100% まで動かすだけ。
-  // 位置の更新は rAF に載せ、スクロールごとの計算はしない。
-  {
-    const sec = document.getElementById('vv-concept-sec');
-    const img = document.getElementById('vv-concept-img') as HTMLImageElement | null;
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (sec && img && !still) {
-      let ticking = false;
-      const update = () => {
-        ticking = false;
-        const r = sec.getBoundingClientRect();
-        const span = window.innerHeight + r.height;
-        if (span <= 0) return;
-        // 画面下から入ってきて、画面上へ抜けるまでを 0→1 に写す
-        const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / span));
-        // 写真の高さとブロックの高さの差＝送れる量。等倍のまま、その範囲だけ動かす。
-        const travel = Math.max(0, img.offsetHeight - r.height);
-        img.style.transform = `translateY(${(-p * travel).toFixed(1)}px)`;
-      };
-      const onScroll = () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(update);
-      };
-      update();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-    }
-  }
-
-  // Hero slider rotation: photos hold 5s, videos play through at their real length.
-  {
-    const PHOTO_MS = 5000;
-    const FADE_MS = 3000; // must match the opacity transition in the CSS above
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const saveData = Boolean((navigator as any)?.connection?.saveData);
-
-    let slides = Array.from(document.querySelectorAll<HTMLElement>('.vv-hero-media'));
-    // Data-saver users get the photos only; the videos are never fetched.
-    if (saveData) slides = slides.filter(el => el.tagName !== 'VIDEO');
-
-    const isVideo = (el: HTMLElement): el is HTMLVideoElement => el.tagName === 'VIDEO';
-
-    if (slides.length > 0 && (reduceMotion || saveData)) {
-      // Show the first slide and stop. Videos stay paused on their poster.
-      slides.forEach((el, i) => el.classList.toggle('active', i === 0));
-    }
-
-    if (slides.length > 1 && !reduceMotion) {
-      let idx = 0;
-      let timer = 0;
-
-      // How long a slide stays before the crossfade to the next one STARTS.
-      // Photos: the full PHOTO_MS.
-      // Videos: the clip length minus the crossfade, so the dissolve finishes exactly
-      //   as the clip ends. The clip is never trimmed — its tail plays underneath the
-      //   dissolve — and it never wraps back to its opening frames (`loop` is off).
-      const durationOf = (el: HTMLElement): number => {
-        if (!isVideo(el)) return PHOTO_MS;
-        const secs = (Number.isFinite(el.duration) && el.duration > 0)
-          ? el.duration
-          : parseFloat(el.dataset.duration ?? '');
-        if (!Number.isFinite(secs) || secs <= 0) return PHOTO_MS;
-        const extra = parseFloat(el.dataset.extraHold ?? '');
-        const hold = Number.isFinite(extra) ? extra : 0;
-        return Math.max(1200, secs * 1000 - FADE_MS + hold);
-      };
-
-      // Only ever warm up the slide that plays next, so the videos are not
-      // pulled down on first paint.
-      const prefetch = (el: HTMLElement) => {
-        if (!isVideo(el) || el.preload === 'auto') return;
-        el.preload = 'auto';
-        el.load();
-      };
-
-      const schedule = (el: HTMLElement) => {
-        clearTimeout(timer);
-        timer = window.setTimeout(next, durationOf(el));
-      };
-
-      const activate = (el: HTMLElement) => {
-        el.classList.add('active');
-        if (isVideo(el)) {
-          try { el.currentTime = 0; } catch {}
-          el.play()?.catch(() => {});
-          if (!Number.isFinite(el.duration) || el.duration <= 0) {
-            // Metadata was not ready: re-time once the real length is known.
-            el.addEventListener('loadedmetadata', () => {
-              if (slides[idx] === el) schedule(el);
-            }, { once: true });
-          }
-        } else {
-          el.classList.add('vv-hero-zoom');
-        }
-      };
-
-      const deactivate = (el: HTMLElement) => {
-        el.classList.remove('active');
-        if (isVideo(el)) {
-          // Do NOT pause or rewind here. The clip is still on screen for the whole
-          // cross-dissolve, and it has exactly FADE_MS of footage left to play.
-          // Rewinding now put frame 0 back on screen while it was still visible —
-          // that was the flash of the opening shot at the end of every clip.
-          window.setTimeout(() => {
-            if (el.classList.contains('active')) return;
-            el.pause();
-            try { el.currentTime = 0; } catch {}
-          }, FADE_MS + 100);
-          return;
-        }
-        // Snap the scale back only after the cross-dissolve has finished,
-        // so the same push-in can replay on the next cycle.
-        window.setTimeout(() => {
-          if (el.classList.contains('active')) return;
-          el.classList.add('vv-hero-noanim');
-          el.classList.remove('vv-hero-zoom');
-          void el.offsetWidth; // force reflow so the reset is not animated
-          el.classList.remove('vv-hero-noanim');
-        }, FADE_MS + 100);
-      };
-
-      const next = () => {
-        const prev = slides[idx];
-        idx = (idx + 1) % slides.length;
-        const cur = slides[idx];
-        activate(cur);
-        deactivate(prev);
-        prefetch(slides[(idx + 1) % slides.length]);
-        schedule(cur);
-      };
-
-      // First slide is already marked active server-side; start its push-in.
-      activate(slides[0]);
-      schedule(slides[0]);
-      // Delay the first warm-up so it does not compete with the hero image.
-      window.setTimeout(() => prefetch(slides[1]), 1200);
-    }
-  }
-  // Lightbox
-  const lightbox = document.getElementById('vv-lightbox');
-  const lbImg = document.getElementById('vv-lightbox-img') as HTMLImageElement | null;
-  const cells = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lightbox-idx]'));
-  if (lightbox && lbImg && cells.length > 0) {
-    const sources = cells.map(c => {
-      const img = c.querySelector('img');
-      return { src: img?.src ?? '', alt: img?.alt ?? '' };
-    });
-    let current = 0;
-    const open = (i: number) => {
-      current = i;
-      lbImg.src = sources[i].src;
-      lbImg.alt = sources[i].alt;
-      lightbox.hidden = false;
-      document.body.style.overflow = 'hidden';
-    };
-    const close = () => {
-      lightbox.hidden = true;
-      lbImg.src = '';
-      document.body.style.overflow = '';
-    };
-    const show = (delta: number) => {
-      current = (current + delta + sources.length) % sources.length;
-      lbImg.src = sources[current].src;
-      lbImg.alt = sources[current].alt;
-    };
-    cells.forEach((c, i) => c.addEventListener('click', () => open(i)));
-    lightbox.querySelector('.vv-lightbox-close')?.addEventListener('click', close);
-    lightbox.querySelector('.vv-lightbox-prev')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      show(-1);
-    });
-    lightbox.querySelector('.vv-lightbox-next')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      show(1);
-    });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lbImg) close();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (lightbox.hidden) return;
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowLeft') show(-1);
-      else if (e.key === 'ArrowRight') show(1);
-    });
-  }
-</script>
 
 <script>
   // 2026-09-03：予約ブロックを中央寄せにしたので、右下の固定「予約する」ボタンが
