@@ -862,7 +862,10 @@ const guestHref = localizedPath('/guest-service/', lang);
         文章に幅を戻している（写真は Experience より少しだけ小さくなる）。 */
   @media (min-width: 901px) {
     .vv-exp--rev .vv-exp-inner {
-      padding-left: clamp(260px, 18.5vw, 300px);
+      /* 2026-09-04 アキラさん指示「右に寄せすぎ。その半分でいい」＝
+         clamp(260px,18.5vw,300px) の半分。寄せを弱めたぶん文章の列が広がるので、
+         写真も Experience の730pxに近づく。 */
+      padding-left: clamp(130px, 9.25vw, 150px);
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     }
   }
