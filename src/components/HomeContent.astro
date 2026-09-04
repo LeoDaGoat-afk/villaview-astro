@@ -855,6 +855,17 @@ const guestHref = localizedPath('/guest-service/', lang);
   .vv-exp--rev .vv-exp-inner {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
   }
+  /* 🔴 2026-09-04 アキラさん指摘：ヘッダーの固定縦線（画面左から234px・`.vv-side-rule`）が
+     反転したブロックの見出しと本文を横切っていた（実測：文章が x=49 から始まっていた）。
+     文章の始まりを縦線の右へ逃がす。縦線は900px以下では消えるので、それ以上の幅だけ効かせる。
+     ⚠️ 逃がしたぶん文章の列が狭くなるので、写真との比率も 1.35 → 1.5 に振り直して
+        文章に幅を戻している（写真は Experience より少しだけ小さくなる）。 */
+  @media (min-width: 901px) {
+    .vv-exp--rev .vv-exp-inner {
+      padding-left: clamp(260px, 18.5vw, 300px);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    }
+  }
   .vv-exp--rev .vv-exp-photo { grid-column: 2; grid-row: 1; }
   .vv-exp--rev .vv-exp-text  { grid-column: 1; grid-row: 1; }
   /* 写真の寄せも鏡にする（Experienceは右へ寄せているので、こちらは左へ）。 */
