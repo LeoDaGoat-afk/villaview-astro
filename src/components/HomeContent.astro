@@ -78,8 +78,10 @@ const floorRooms: FloorRoom[] = [
   // 風呂場とホールの間の小部屋＝セラピールーム。1人用サウナドームを置いている（Airbnb本文の表記に合わせる）
   { n: 3,  floor: 1, x: 53.9, y: 54.0, group: 'floor-sauna',    photos: ['sauna-1.jpg', 'sauna-2.jpg'],                         labelKey: 'floor.room.sauna',    capKey: 'floor.cap.sauna',    beds: [] },
   { n: 4,  floor: 1, x: 28.7, y: 55.6, group: 'floor-washitsu', photos: ['washitsu-1.jpg', 'washitsu-2.jpg', 'washitsu-3.jpg'], labelKey: 'floor.room.washitsu', capKey: 'floor.cap.washitsu', beds: ['futon', 'futon', 'futon'] },
-  { n: 5,  floor: 1, x: 87.9, y: 61.3, group: 'floor-balcony',  photos: ['terrace-1.jpg'],                                      labelKey: 'floor.room.balcony',  capKey: 'floor.cap.balcony',  beds: [] },
-  { n: 6,  floor: 1, x: 14.0, y: 78.5, group: 'floor-terrace',  photos: ['balcony-1.jpg', 'balcony-2.jpg'],                     labelKey: 'floor.room.terrace',  capKey: 'floor.cap.terrace',  beds: [] },
+  // 🔴 図面の焼き込み文字は左右が逆（図の「Balcony」が実際のテラス、図の「Terrace BBQ area」が実際のバルコニー＝BBQ）。
+  // 正典どおり BBQ＝バルコニーで、そこはリビングの窓の外。ラベルは実体に合わせる（2026-09-19 アキラさん確定）。
+  { n: 5,  floor: 1, x: 87.9, y: 61.3, group: 'floor-balcony',  photos: ['terrace-1.jpg'],                                      labelKey: 'floor.room.terrace',  capKey: 'floor.cap.terrace',  beds: [] },
+  { n: 6,  floor: 1, x: 14.0, y: 78.5, group: 'floor-terrace',  photos: ['balcony-1.jpg', 'balcony-2.jpg'],                     labelKey: 'floor.room.balcony',  capKey: 'floor.cap.balcony',  beds: [] },
   { n: 7,  floor: 1, x: 29.5, y: 76.5, group: 'floor-living',   photos: ['living-1.jpg', 'living-2.jpg'],                       labelKey: 'floor.room.living',   capKey: 'floor.cap.living',   beds: [] },
   { n: 8,  floor: 1, x: 48.0, y: 79.3, group: 'floor-dining',   photos: ['dining-1.jpg', 'dining-2.jpg'],                       labelKey: 'floor.room.dining',   capKey: 'floor.cap.dining',   beds: [] },
   // bedroom1＝2F右上・シングル2
