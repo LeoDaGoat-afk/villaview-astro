@@ -57,6 +57,39 @@ const galleryImages: { src: string; altKey: string }[] = [
   { src: '/images/minibar/ballparty.jpg',                altKey: 'photo.hallParty' },
 ];
 
+// 間取りブロック（2026-09-18 新設 / 同日 図面と写真を差し替え）
+// 図面は1F・2Fを別画像に切り出したものを使う（785×702 / 421×546）。
+// 座標は「その階の画像」に対する % で持つ。1F のピンは1F画像、2F のピンは2F画像が基準。
+// side＝ラベルチップを出す向き。図に焼き込まれた英字（Hall / CAFE area / Balcony /
+// Terrace BBQ area / Bathroom / W.C.）を覆わない向きを1件ずつ選んである。
+// group＝ライトボックスの群。部屋ごとに分けてあるので、前後送りはその部屋の中だけで回る。
+type FloorRoom = {
+  n: number; floor: 1 | 2; x: number; y: number;
+  group: string; photos: string[]; labelKey: string; capKey: string;
+  beds: ('d' | 's' | 'sofa' | 'futon')[];
+};
+const FM = '/images/floormap/';
+// 番号は図の中で上から下へ自然に並ぶ順。1F が①〜⑧、2F が⑨〜⑪。
+// 図の上に出すのは番号バッジだけ（2026-09-18 アキラさん指示で部屋名のチップは廃止）。
+// 部屋名は図の下の番号つきリストで読む。
+const floorRooms: FloorRoom[] = [
+  { n: 1,  floor: 1, x: 62.0, y: 24.9, group: 'floor-cafe',     photos: ['cafe-1.jpg'],                                         labelKey: 'floor.room.cafe',     capKey: 'floor.cap.cafe',     beds: [] },
+  { n: 2,  floor: 1, x: 76.2, y: 42.7, group: 'floor-hall',     photos: ['hall-1.jpg', 'hall-2.jpg', 'hall-3.jpg'],             labelKey: 'floor.room.hall',     capKey: 'floor.cap.hall',     beds: [] },
+  // 風呂場とホールの間の小部屋＝セラピールーム。1人用サウナドームを置いている（Airbnb本文の表記に合わせる）
+  { n: 3,  floor: 1, x: 53.9, y: 54.0, group: 'floor-sauna',    photos: ['sauna-1.jpg', 'sauna-2.jpg'],                         labelKey: 'floor.room.sauna',    capKey: 'floor.cap.sauna',    beds: [] },
+  { n: 4,  floor: 1, x: 28.7, y: 55.6, group: 'floor-washitsu', photos: ['washitsu-1.jpg', 'washitsu-2.jpg', 'washitsu-3.jpg'], labelKey: 'floor.room.washitsu', capKey: 'floor.cap.washitsu', beds: ['futon', 'futon', 'futon'] },
+  { n: 5,  floor: 1, x: 87.9, y: 61.3, group: 'floor-balcony',  photos: ['terrace-1.jpg'],                                      labelKey: 'floor.room.balcony',  capKey: 'floor.cap.balcony',  beds: [] },
+  { n: 6,  floor: 1, x: 14.0, y: 78.5, group: 'floor-terrace',  photos: ['balcony-1.jpg', 'balcony-2.jpg'],                     labelKey: 'floor.room.terrace',  capKey: 'floor.cap.terrace',  beds: [] },
+  { n: 7,  floor: 1, x: 29.5, y: 76.5, group: 'floor-living',   photos: ['living-1.jpg', 'living-2.jpg'],                       labelKey: 'floor.room.living',   capKey: 'floor.cap.living',   beds: [] },
+  { n: 8,  floor: 1, x: 48.0, y: 79.3, group: 'floor-dining',   photos: ['dining-1.jpg', 'dining-2.jpg'],                       labelKey: 'floor.room.dining',   capKey: 'floor.cap.dining',   beds: [] },
+  // bedroom1＝2F右上・シングル2
+  { n: 9,  floor: 2, x: 65.3, y: 45.8, group: 'floor-bedB',     photos: ['bed1-1.jpg', 'bed1-2.jpg', 'bed1-3.jpg'],             labelKey: 'floor.room.bedB',     capKey: 'floor.cap.bedB',     beds: ['s', 's'] },
+  // bedroom2＝2F右下・ダブル＋ソファベッド
+  { n: 10, floor: 2, x: 68.9, y: 66.0, group: 'floor-bedA',     photos: ['bed2-1.jpg', 'bed2-2.jpg', 'bed2-3.jpg', 'bed2-4.jpg'], labelKey: 'floor.room.bedA',   capKey: 'floor.cap.bedA',     beds: ['d', 'sofa'] },
+  // bedroom3＝2F左下・シングル2
+  { n: 11, floor: 2, x: 23.8, y: 85.7, group: 'floor-bedC',     photos: ['bed3-1.jpg', 'bed3-2.jpg'],                           labelKey: 'floor.room.bedC',     capKey: 'floor.cap.bedC',     beds: ['s', 's'] },
+];
+
 const restaurants: [string, string, string, number][] = [
   ['CAFE&BAR GarageLife|カフェ＆バー ガレージライフ|GarageLife', 'American · Burgers|アメリカン・バーガー|美式汉堡', '+81 80-3998-5885', 4.7],
   ['Okinawa Soba Maruchi|沖縄そば まるち|冲绳荞麦 Maruchi', 'Okinawa Soba|沖縄そば|冲绳荞麦面', '+81 98-917-5850', 4.4],
@@ -211,6 +244,89 @@ const guestHref = localizedPath('/guest-service/', lang);
   </div>
 </section>
 
+<!-- FLOOR MAP（間取り）：2026-09-18 新設。設計＝CONCEPT の直後・FACILITIES の前。
+     PC は 1F+2F が横に並んだ元画像を1枚のまま出し、SP は「縮小全景（形を見せる図）」＋
+     「1F/2F タブで拡大した図（読む図）」の二段構えにする。クロップは画像を切らずに
+     枠の中で面をずらして行うので、ピンの %座標は3つの見え方で共通に使える。 -->
+<section id="floormap" class="vv-section">
+  <div class="vv-container">
+    <div class="vv-text-center vv-section-head">
+      <p class="eyebrow">{t('floor.eyebrow')}</p>
+      <h2 class="section-h2">{t('floor.title')}</h2>
+      <div class="vv-divider-gold-center"></div>
+      <p class="section-lead vv-mx-auto">{t('floor.lead')}</p>
+    </div>
+
+    <!-- 縮小全景：SP だけに出す。文字は読めなくてよく、建物の形と上下の関係だけを渡す。 -->
+    <img
+      class="vv-fm-overview"
+      src={withBase('/images/floor-map.webp')}
+      alt={t('floor.overviewAlt')}
+      width="1298"
+      height="918"
+      loading="lazy"
+      decoding="async"
+    />
+
+    <div class="vv-fm-tabs" role="tablist" aria-label={t('floor.eyebrow')}>
+      <button type="button" class="vv-fm-tab is-on" data-fm-tab="1" role="tab" aria-selected="true">{t('floor.tab1')}</button>
+      <button type="button" class="vv-fm-tab" data-fm-tab="2" role="tab" aria-selected="false">{t('floor.tab2')}</button>
+    </div>
+
+    <div class="vv-fm-stage" id="vv-fm-stage" data-fm-view="all">
+      {([1, 2] as const).map(fl => (
+        <figure class="vv-fm-fig" data-fm-floor={fl}>
+          <img
+            class="vv-fm-map"
+            src={withBase(fl === 1 ? '/images/floor-1f.webp' : '/images/floor-2f.webp')}
+            alt={fl === 1 ? t('floor.tab1') : t('floor.tab2')}
+            width={fl === 1 ? 785 : 421}
+            height={fl === 1 ? 702 : 546}
+            loading="lazy"
+            decoding="async"
+          />
+          {floorRooms.filter(r => r.floor === fl).map(r => (
+            <button
+              type="button"
+              class="vv-fm-pin"
+              style={`left:${r.x}%;top:${r.y}%`}
+              data-lb-group={r.group}
+              data-lb-idx="0"
+              aria-label={t(r.labelKey)}
+            >
+              <span class="vv-fm-pin-n" aria-hidden="true">{r.n}</span>
+            </button>
+          ))}
+        </figure>
+      ))}
+    </div>
+
+    <p class="vv-fm-note">{t('floor.area')}</p>
+
+    <ul class="vv-fm-list">
+      {floorRooms.map(r => (
+        <li>
+          <button type="button" class="vv-fm-row" data-lb-group={r.group} data-lb-idx="0" aria-label={t(r.capKey)}>
+            <span class="vv-fm-n" aria-hidden="true">{r.n}</span>
+            <img class="vv-fm-thumb" src={withBase(FM + r.photos[0])} alt="" loading="lazy" decoding="async" />
+            <span class="vv-fm-rowtext">
+              <span class="vv-fm-name">{t(r.labelKey)}</span>
+              <span class="vv-fm-floor">{r.floor === 1 ? t('floor.tab1') : t('floor.tab2')}</span>
+            </span>
+            <span class="vv-fm-beds" aria-hidden="true">
+              {r.beds.map(b => (<i class={`vv-fm-bed vv-fm-bed--${b}`}></i>))}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <div class="vv-text-center vv-fm-cta">
+      <a class="btn-outline" href={bookingHref}>{t('floor.cta')}</a>
+    </div>
+  </div>
+</section>
+
 <!-- FACILITIES -->
 <section id="facilities" class="vv-section">
   <div class="vv-container">
@@ -302,7 +418,7 @@ const guestHref = localizedPath('/guest-service/', lang);
     </div>
     <div class="vv-gallery-grid">
       {galleryImages.map((img, i) => (
-        <button type="button" class="vv-gallery-cell" data-lightbox-idx={i} aria-label={t(img.altKey)}>
+        <button type="button" class="vv-gallery-cell" data-lb-group="gallery" data-lb-idx={i} aria-label={t(img.altKey)}>
           <img src={withBase(img.src)} alt={t(img.altKey)} loading="lazy" />
         </button>
       ))}
@@ -313,7 +429,24 @@ const guestHref = localizedPath('/guest-service/', lang);
     <button type="button" class="vv-lightbox-prev" aria-label="前の写真">‹</button>
     <button type="button" class="vv-lightbox-next" aria-label="次の写真">›</button>
     <img id="vv-lightbox-img" alt="" />
+    <div class="vv-lb-caption" id="vv-lightbox-capbar" aria-live="polite" hidden>
+      <span class="vv-lb-num" id="vv-lightbox-num" hidden></span>
+      <span id="vv-lightbox-cap"></span>
+      <span class="vv-lb-dots" id="vv-lightbox-dots" aria-hidden="true"></span>
+    </div>
   </div>
+
+  <!-- ライトボックスが開く写真の一覧。トリガー（ギャラリーのセル／間取りのピンとリスト）は
+       group と idx だけを持ち、実体はここ1か所に置く。同じ写真に複数のトリガーがあっても
+       前後送りの並びが二重にならない。 -->
+  <script type="application/json" is:inline data-lb-data="gallery" set:html={JSON.stringify(
+    galleryImages.map(g => ({ src: withBase(g.src), alt: t(g.altKey) }))
+  )}></script>
+  {floorRooms.map(r => (
+    <script type="application/json" is:inline data-lb-data={r.group} set:html={JSON.stringify(
+      r.photos.map(f => ({ src: withBase(FM + f), alt: t(r.labelKey), cap: t(r.capKey), n: r.n }))
+    )}></script>
+  ))}
 </section>
 
 <!-- ATTRACTIONS -->
@@ -793,6 +926,11 @@ const guestHref = localizedPath('/guest-service/', lang);
     padding: clamp(64px, 9vw, 120px) 0;
     background: var(--color-bg, #fff);
   }
+  /* 2026-09-19 アキラさん指示：コンセプトと間取りの地色を入れ替える。
+     コンセプト＝ページ既定の生成りに落とし、間取りを純白にして図面のカードと段差を作らない。
+     #experience は純白のまま（.vv-exp の既定を共有しているので ID で上書きする）。 */
+  #vv-concept-sec { background: var(--color-cream, #faf9f7); }
+  #floormap { background: #fff; }
   .vv-exp-inner {
     max-width: 1400px;
     margin: 0 auto;
@@ -1172,6 +1310,160 @@ const guestHref = localizedPath('/guest-service/', lang);
     outline-offset: 2px;
   }
 
+  /* FLOOR MAP（間取り） */
+  .vv-fm-overview {
+    display: none;            /* PC は本体の図がそのまま全景なので出さない */
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 18px;
+    opacity: 0.85;
+  }
+  .vv-fm-tabs {
+    display: none;            /* PC は 1F/2F を切り替えない（1枚で並んで見えている） */
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .vv-fm-tab {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 8px 22px;
+    background: transparent;
+    color: var(--color-ink-soft);
+    border: 1px solid var(--color-cream-darker);
+    cursor: pointer;
+  }
+  .vv-fm-tab.is-on {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+  /* 図面は1F・2Fの別画像。PC は元の全景と同じ見え方になるよう横に並べ、
+     SP はタブで選んだ階だけを幅いっぱいに出す。画像を切り出してあるので、
+     以前の「枠の中で面をずらす」拡大移動と、方位磁針を伏せる地色マスクは撤去した。 */
+  .vv-fm-stage {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 40px);
+  }
+  .vv-fm-fig { position: relative; margin: 0; }
+  .vv-fm-map { display: block; width: 100%; height: auto; }
+  .vv-fm-stage[data-fm-view="all"] .vv-fm-fig[data-fm-floor="1"] { flex: 0 1 62%; }
+  .vv-fm-stage[data-fm-view="all"] .vv-fm-fig[data-fm-floor="2"] { flex: 0 1 33%; }
+  .vv-fm-stage[data-fm-view="1"] .vv-fm-fig[data-fm-floor="2"],
+  .vv-fm-stage[data-fm-view="2"] .vv-fm-fig[data-fm-floor="1"] { display: none; }
+  .vv-fm-stage[data-fm-view="1"] .vv-fm-fig[data-fm-floor="1"] { flex: 1 1 100%; }
+  .vv-fm-stage[data-fm-view="2"] .vv-fm-fig[data-fm-floor="2"] { flex: 1 1 100%; max-width: 330px; }
+
+  .vv-fm-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .vv-fm-pin-n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-primary-darker);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .vv-fm-pin:hover .vv-fm-pin-n { transform: scale(1.12); background: var(--color-primary); }
+  .vv-fm-pin:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+  .vv-fm-note {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  .vv-fm-list {
+    list-style: none;
+    padding: 0;
+    margin: 26px auto 0;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+  }
+  .vv-fm-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .vv-fm-row:hover { background: #fff; border-color: var(--color-cream-darker); }
+  .vv-fm-row:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  .vv-fm-n {
+    flex: 0 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-primary-darker);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1;
+  }
+  .vv-fm-thumb { flex: 0 0 56px; width: 56px; height: 42px; object-fit: cover; }
+  .vv-fm-rowtext { flex: 1 1 auto; display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+  .vv-fm-name {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--color-ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .vv-fm-floor {
+    flex: 0 0 auto;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--color-muted);
+  }
+  /* 寝具のピクト。台数分そのまま並べるので、読者が足し算をしなくても埋まり方が形で分かる。 */
+  .vv-fm-beds { flex: 0 0 auto; display: flex; align-items: flex-end; gap: 4px; }
+  .vv-fm-bed { display: block; background: var(--color-mitsu, #c08a4e); border-radius: 2px; }
+  .vv-fm-bed--s    { width: 9px;  height: 14px; }
+  .vv-fm-bed--d    { width: 16px; height: 14px; }
+  .vv-fm-bed--sofa { width: 14px; height: 9px;  border-radius: 2px 2px 4px 4px; opacity: 0.75; }
+  .vv-fm-bed--futon{ width: 9px;  height: 7px;  opacity: 0.75; }
+
+  .vv-fm-cta { margin-top: 34px; }
+
+  @media (max-width: 900px) {
+    .vv-fm-overview { display: block; }
+    .vv-fm-tabs { display: flex; }
+    .vv-fm-list { grid-template-columns: 1fr; }
+  }
+
   /* Lightbox */
   .vv-lightbox {
     position: fixed;
@@ -1216,9 +1508,54 @@ const guestHref = localizedPath('/guest-service/', lang);
     padding: 0;
   }
   .vv-lightbox button:hover { background: rgba(255, 255, 255, 0.25); }
+  .vv-lightbox button[hidden] { display: none; }
   .vv-lightbox-close { top: 24px; right: 24px; }
   .vv-lightbox-prev { left: 24px; top: 50%; transform: translateY(-50%); }
   .vv-lightbox-next { right: 24px; top: 50%; transform: translateY(-50%); }
+  .vv-lb-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 88%;
+    padding: 7px 16px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .vv-lb-caption[hidden] { display: none; }
+  /* その部屋に何枚あって今が何枚目か。文字を足さずに「同じ部屋の中で送っている」と分かる。 */
+  .vv-lb-dots { display: flex; align-items: center; gap: 5px; margin-left: 2px; }
+  .vv-lb-dots i {
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .vv-lb-dots i.is-on { background: #fff; }
+  /* 右下の固定「予約する」（z-index 1020）はライトボックスより手前に出るため、
+     開いている間だけ引っ込める。375px では説明の帯とちょうど重なる。 */
+  :global(html.vv-lb-open .vv-fix-book) { display: none; }
+  .vv-lb-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    font-size: 11px;
+    line-height: 1;
+  }
+  .vv-lb-num[hidden] { display: none; }
   @media (max-width: 600px) {
     .vv-lightbox { padding: 16px; }
   }
@@ -1315,3 +1652,138 @@ const guestHref = localizedPath('/guest-service/', lang);
   }
 </script>
 
+<script>
+  // ライトボックス（2026-09-18 新規実装）。
+  // それまで #vv-lightbox はマークアップと CSS だけが置かれていて開閉の処理が無く、
+  // GALLERY のセルはクリックしても何も起きない状態だった。ここで1本にまとめ、
+  // data-lb-group（gallery / floor）で写真群を分ける。前後送りは群の中だけで回る。
+  {
+    const box = document.getElementById('vv-lightbox');
+    const imgEl = document.getElementById('vv-lightbox-img');
+    const capEl = document.getElementById('vv-lightbox-cap');
+    const numEl = document.getElementById('vv-lightbox-num');
+    const capBar = document.getElementById('vv-lightbox-capbar');
+    const dotsEl = document.getElementById('vv-lightbox-dots');
+
+    if (box && imgEl) {
+      const groups = {};
+      document.querySelectorAll('script[data-lb-data]').forEach((el) => {
+        try { groups[el.getAttribute('data-lb-data')] = JSON.parse(el.textContent || '[]'); }
+        catch (e) { /* 壊れた JSON でページ全体を止めない */ }
+      });
+
+      let list = [];
+      let idx = 0;
+      let opener = null;
+
+      const render = () => {
+        const it = list[idx];
+        if (!it) return;
+        imgEl.src = it.src;
+        imgEl.alt = it.alt || '';
+        if (capEl) capEl.textContent = it.cap || '';
+        // 説明の無い群（GALLERY）では帯ごと出さない。空の黒帯が写真の下に残るため。
+        if (capBar) capBar.hidden = !it.cap;
+        if (dotsEl) {
+          // 2枚以上のときだけ出す。1枚しかない群でドットが1つ光っても意味がない。
+          dotsEl.innerHTML = '';
+          if (list.length > 1) {
+            list.forEach((_, k) => {
+              const d = document.createElement('i');
+              if (k === idx) d.className = 'is-on';
+              dotsEl.appendChild(d);
+            });
+          }
+        }
+        if (numEl) {
+          numEl.textContent = it.n ? String(it.n) : '';
+          numEl.hidden = !it.n;
+        }
+      };
+
+      const open = (group, i) => {
+        list = groups[group] || [];
+        if (!list.length) return;
+        idx = Math.min(Math.max(i, 0), list.length - 1);
+        render();
+        const prevBtn = box.querySelector('.vv-lightbox-prev');
+        const nextBtn = box.querySelector('.vv-lightbox-next');
+        if (prevBtn) prevBtn.hidden = list.length < 2;
+        if (nextBtn) nextBtn.hidden = list.length < 2;
+        box.hidden = false;
+        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('vv-lb-open');
+        const closeBtn = box.querySelector('.vv-lightbox-close');
+        if (closeBtn) closeBtn.focus();
+      };
+
+      const close = () => {
+        box.hidden = true;
+        document.body.style.overflow = '';
+        document.documentElement.classList.remove('vv-lb-open');
+        if (opener) opener.focus();
+      };
+
+      const step = (d) => {
+        if (!list.length) return;
+        idx = (idx + d + list.length) % list.length;
+        render();
+      };
+
+      document.querySelectorAll('[data-lb-group]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          opener = btn;
+          open(btn.getAttribute('data-lb-group'), Number(btn.getAttribute('data-lb-idx') || 0));
+        });
+      });
+
+      const on = (sel, fn) => {
+        const el = box.querySelector(sel);
+        if (el) el.addEventListener('click', fn);
+      };
+      on('.vv-lightbox-close', (e) => { e.stopPropagation(); close(); });
+      on('.vv-lightbox-prev',  (e) => { e.stopPropagation(); step(-1); });
+      on('.vv-lightbox-next',  (e) => { e.stopPropagation(); step(1); });
+      // 余白のクリックで閉じる（写真そのものを押しても閉じない）
+      box.addEventListener('click', (e) => { if (e.target === box) close(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (box.hidden) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') step(-1);
+        else if (e.key === 'ArrowRight') step(1);
+      });
+    }
+  }
+</script>
+
+<script>
+  // 間取りの 1F / 2F 切替。900px 以下でだけ効かせ、それより広い画面では
+  // 元画像のまま（1F と 2F が横に並んだ全景）を出す。
+  {
+    const stage = document.getElementById('vv-fm-stage');
+    if (stage) {
+      const tabs = Array.from(document.querySelectorAll('[data-fm-tab]'));
+      const mq = window.matchMedia('(max-width: 900px)');
+      let current = '1';
+
+      const apply = () => {
+        stage.setAttribute('data-fm-view', mq.matches ? current : 'all');
+        tabs.forEach((t) => {
+          const on = t.getAttribute('data-fm-tab') === current;
+          t.classList.toggle('is-on', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      };
+
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        current = t.getAttribute('data-fm-tab') || '1';
+        apply();
+      }));
+
+      if (mq.addEventListener) mq.addEventListener('change', apply);
+      else mq.addListener(apply);
+      apply();
+    }
+  }
+</script>
