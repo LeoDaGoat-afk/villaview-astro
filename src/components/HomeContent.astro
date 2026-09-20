@@ -73,23 +73,23 @@ const FM = '/images/floormap/';
 // 図の上に出すのは番号バッジだけ（2026-09-18 アキラさん指示で部屋名のチップは廃止）。
 // 部屋名は図の下の番号つきリストで読む。
 const floorRooms: FloorRoom[] = [
-  { n: 1,  floor: 1, x: 62.0, y: 24.9, group: 'floor-cafe',     photos: ['cafe-1.jpg', 'cafe-2.jpg'],                           labelKey: 'floor.room.cafe',     capKey: 'floor.cap.cafe',     beds: [] },
-  { n: 2,  floor: 1, x: 76.2, y: 42.7, group: 'floor-hall',     photos: ['hall-1.jpg', 'hall-2.jpg', 'hall-3.jpg'],             labelKey: 'floor.room.hall',     capKey: 'floor.cap.hall',     beds: [] },
-  // 風呂場とホールの間の小部屋＝セラピールーム。1人用サウナドームを置いている（Airbnb本文の表記に合わせる）
-  { n: 3,  floor: 1, x: 53.9, y: 54.0, group: 'floor-sauna',    photos: ['sauna-1.jpg', 'sauna-2.jpg'],                         labelKey: 'floor.room.sauna',    capKey: 'floor.cap.sauna',    beds: [] },
-  { n: 4,  floor: 1, x: 28.7, y: 55.6, group: 'floor-washitsu', photos: ['washitsu-1.jpg', 'washitsu-2.jpg', 'washitsu-3.jpg'], labelKey: 'floor.room.washitsu', capKey: 'floor.cap.washitsu', beds: ['futon', 'futon', 'futon'] },
-  // 🔴 図面の焼き込み文字は左右が逆（図の「Balcony」が実際のテラス、図の「Terrace BBQ area」が実際のバルコニー＝BBQ）。
-  // 正典どおり BBQ＝バルコニーで、そこはリビングの窓の外。ラベルは実体に合わせる（2026-09-19 アキラさん確定）。
-  { n: 5,  floor: 1, x: 87.9, y: 61.3, group: 'floor-balcony',  photos: ['terrace-1.jpg'],                                      labelKey: 'floor.room.terrace',  capKey: 'floor.cap.terrace',  beds: [] },
-  { n: 6,  floor: 1, x: 14.0, y: 78.5, group: 'floor-terrace',  photos: ['balcony-1.jpg', 'balcony-2.jpg'],                     labelKey: 'floor.room.balcony',  capKey: 'floor.cap.balcony',  beds: [] },
-  { n: 7,  floor: 1, x: 29.5, y: 76.5, group: 'floor-living',   photos: ['living-1.jpg', 'living-2.jpg'],                       labelKey: 'floor.room.living',   capKey: 'floor.cap.living',   beds: [] },
-  { n: 8,  floor: 1, x: 48.0, y: 79.3, group: 'floor-dining',   photos: ['dining-1.jpg', 'dining-2.jpg'],                       labelKey: 'floor.room.dining',   capKey: 'floor.cap.dining',   beds: [] },
+  // 2026-09-20 図面画像を差し替え（アキラさんが Illustrator でテラス／バルコニーの表記を入れ替えた版）。
+  // 新しい画像は書き出し位置が微妙に違うので、座標は全ピン実測し直している。
+  // これで図の焼き込み文字も正しい＝右のデッキが Terrace、左下が Balcony BBQ area（リビングの外）。
+  { n: 1,  floor: 1, x: 61.8, y: 26.0, group: 'floor-cafe',     photos: ['cafe-1.jpg', 'cafe-2.jpg'],                           labelKey: 'floor.room.cafe',     capKey: 'floor.cap.cafe',     beds: [] },
+  { n: 2,  floor: 1, x: 73.0, y: 50.4, group: 'floor-hall',     photos: ['hall-1.jpg', 'hall-2.jpg', 'hall-3.jpg'],             labelKey: 'floor.room.hall',     capKey: 'floor.cap.hall',     beds: [] },
+  { n: 3,  floor: 1, x: 52.0, y: 57.3, group: 'floor-sauna',    photos: ['sauna-1.jpg', 'sauna-2.jpg'],                         labelKey: 'floor.room.sauna',    capKey: 'floor.cap.sauna',    beds: [] },
+  { n: 4,  floor: 1, x: 28.3, y: 56.5, group: 'floor-washitsu', photos: ['washitsu-1.jpg', 'washitsu-2.jpg', 'washitsu-3.jpg'], labelKey: 'floor.room.washitsu', capKey: 'floor.cap.washitsu', beds: ['futon', 'futon', 'futon'] },
+  { n: 5,  floor: 1, x: 86.2, y: 45.8, group: 'floor-terrace',  photos: ['terrace-1.jpg'],                                      labelKey: 'floor.room.terrace',  capKey: 'floor.cap.terrace',  beds: [] },
+  { n: 6,  floor: 1, x: 13.8, y: 75.6, group: 'floor-balcony',  photos: ['balcony-1.jpg', 'balcony-2.jpg'],                     labelKey: 'floor.room.balcony',  capKey: 'floor.cap.balcony',  beds: [] },
+  { n: 7,  floor: 1, x: 31.6, y: 79.4, group: 'floor-living',   photos: ['living-1.jpg', 'living-2.jpg'],                       labelKey: 'floor.room.living',   capKey: 'floor.cap.living',   beds: [] },
+  { n: 8,  floor: 1, x: 48.7, y: 81.7, group: 'floor-dining',   photos: ['dining-1.jpg', 'dining-2.jpg'],                       labelKey: 'floor.room.dining',   capKey: 'floor.cap.dining',   beds: [] },
   // bedroom1＝2F右上・シングル2
-  { n: 9,  floor: 2, x: 65.3, y: 45.8, group: 'floor-bedB',     photos: ['bed1-1.jpg', 'bed1-2.jpg', 'bed1-3.jpg'],             labelKey: 'floor.room.bedB',     capKey: 'floor.cap.bedB',     beds: ['s', 's'] },
+  { n: 9,  floor: 2, x: 69.9, y: 44.2, group: 'floor-bedB',     photos: ['bed1-1.jpg', 'bed1-2.jpg', 'bed1-3.jpg'],             labelKey: 'floor.room.bedB',     capKey: 'floor.cap.bedB',     beds: ['s', 's'] },
   // bedroom2＝2F右下・ダブル＋ソファベッド
-  { n: 10, floor: 2, x: 68.9, y: 66.0, group: 'floor-bedA',     photos: ['bed2-1.jpg', 'bed2-2.jpg', 'bed2-3.jpg', 'bed2-4.jpg'], labelKey: 'floor.room.bedA',   capKey: 'floor.cap.bedA',     beds: ['d', 'sofa'] },
+  { n: 10, floor: 2, x: 72.3, y: 70.0, group: 'floor-bedA',     photos: ['bed2-1.jpg', 'bed2-2.jpg', 'bed2-3.jpg', 'bed2-4.jpg'], labelKey: 'floor.room.bedA',   capKey: 'floor.cap.bedA',     beds: ['d', 'sofa'] },
   // bedroom3＝2F左下・シングル2
-  { n: 11, floor: 2, x: 23.8, y: 85.7, group: 'floor-bedC',     photos: ['bed3-1.jpg', 'bed3-2.jpg'],                           labelKey: 'floor.room.bedC',     capKey: 'floor.cap.bedC',     beds: ['s', 's'] },
+  { n: 11, floor: 2, x: 23.3, y: 84.2, group: 'floor-bedC',     photos: ['bed3-1.jpg', 'bed3-2.jpg'],                           labelKey: 'floor.room.bedC',     capKey: 'floor.cap.bedC',     beds: ['s', 's'] },
 ];
 
 const restaurants: [string, string, string, number][] = [
