@@ -297,5 +297,7 @@ const allSchemas = [lodgingSchema, breadcrumbSchema, ...(schemas ?? [])].filter(
       <slot />
     </main>
     {!noFooter && <Footer />}
+    {/* 訪問数の計測（Cloudflare Web Analytics・Cookie なし・アキラさんのアカウント／2026-11-05） */}
+    <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2069f40614174e95a8314d667be07537"}'></script>
   </body>
 </html>
