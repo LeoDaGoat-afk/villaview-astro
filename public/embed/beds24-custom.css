@@ -96,6 +96,7 @@ h1, h2, h3, h4, h5, h6 { color: var(--vv-ink) !important; font-family: var(--vv-
 .vv-cal-wrap { max-width: 1100px; margin: 36px auto 0; padding: 0 24px; }
 .vv-cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; gap: 16px; flex-wrap: wrap; }
 .vv-cal-title { font-family: var(--vv-font-serif); font-size: 24px; font-weight: 400; color: var(--vv-ink); letter-spacing: 1px; margin: 0; }
+.vv-cal-note { font-size: 13px; line-height: 1.7; color: #666; margin: -6px 0 16px; }
 .vv-cal-legend { display: flex; gap: 18px; font-family: var(--vv-font-sans); font-size: 11px; color: var(--vv-muted); align-items: center; flex-wrap: wrap; }
 .vv-cal-legend-item { display: inline-flex; align-items: center; gap: 6px; }
 .vv-cal-legend-sw { width: 14px; height: 14px; border: 1px solid var(--vv-border); display: inline-block; }

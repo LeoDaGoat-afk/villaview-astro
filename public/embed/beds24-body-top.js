@@ -79,6 +79,9 @@
       fbarCheckin: 'チェックイン', fbarCheckout: 'チェックアウト', fbarAdults: '大人', fbarChildren: '子供 (6-12歳)', fbarGo: '空き状況を確認',
       fbarNights: '泊数', fbarNightUnit: '泊', fbarBbq: 'BBQ機材を利用する',
       fbarChildNote: '※ 5歳以下無料、6-12歳お一人 ¥2,000追加',
+      calNote: '※ カレンダーの料金は4名様までの1泊分です（清掃費は別途）。大人5名様からは、5人目以降お一人につき1泊 ¥4,000 が加わります。',
+      roomName: 'Villa VIEW 沖縄 ― 海を望む貸切ヴィラ',
+      roomDesc: '沖縄・南城市の、海を見渡す貸切ヴィラです。寝室4室・リビング・キッチン・屋根付きバルコニー（BBQ可）・海の見える1階のホール。最大8名様。Wi-Fi・駐車場は無料です。',
       fbarBbqNote: '※ 別料金 ¥5,000（現金または銀行振込）',
       calTitle: '料金・空室カレンダー', calLegendAvail: '空室あり', calLegendBusy: '満室', calLegendSel: '選択中',
       calBusy: '満室', calLoading: '読み込み中…', calErr: 'カレンダーを読み込めませんでした',
@@ -114,6 +117,7 @@
       fbarCheckin: 'Check-in', fbarCheckout: 'Check-out', fbarAdults: 'Adults', fbarChildren: 'Children (6-12)', fbarGo: 'Check Availability',
       fbarNights: 'Nights', fbarNightUnit: '', fbarBbq: 'Add BBQ equipment',
       fbarChildNote: '※ Under 5 free · Ages 6-12 add ¥2,000 per child',
+      calNote: '※ Calendar rates are per night for up to 4 guests (cleaning fee not included). From the 5th adult, ¥4,000 per person per night is added.',
       fbarBbqNote: '※ Optional extra — ¥5,000 (cash or bank transfer)',
       calTitle: 'Rates & Availability', calLegendAvail: 'Available', calLegendBusy: 'Booked', calLegendSel: 'Selected',
       calBusy: 'Booked', calLoading: 'Loading…', calErr: 'Unable to load calendar',
@@ -149,6 +153,9 @@
       fbarCheckin: '入住', fbarCheckout: '退房', fbarAdults: '成人', fbarChildren: '儿童 (6-12岁)', fbarGo: '查空房',
       fbarNights: '晚数', fbarNightUnit: '晚', fbarBbq: '加 BBQ 设备',
       fbarChildNote: '※ 5岁以下免费，6-12岁每人加 ¥2,000',
+      calNote: '※ 日历价格为最多4人的每晚价格（不含清洁费）。第5位成人起，每人每晚加收 ¥4,000。',
+      roomName: 'Villa VIEW 冲绳 ― 海景独栋包租别墅',
+      roomDesc: '位于冲绳南城市、可眺望大海的独栋包租别墅。4间卧室、客厅、厨房、带顶棚阳台（可BBQ）、一楼海景大厅。最多入住8人。免费Wi-Fi与停车场。',
       fbarBbqNote: '※ 另收费 ¥5,000（现金或银行转账）',
       calTitle: '价格 & 空房日历', calLegendAvail: '可订', calLegendBusy: '满房', calLegendSel: '已选',
       calBusy: '满', calLoading: '加载中…', calErr: '日历加载失败',
@@ -283,6 +290,7 @@
       '<div class="vv-cal-header">' +
         '<h2 class="vv-cal-title">' + T.calTitle + '</h2>' +
       '</div>' +
+      (T.calNote ? '<p class="vv-cal-note">' + T.calNote + '</p>' : '') +
       '<div class="vv-cal-months" id="vv-cal-months">' +
         '<div class="vv-cal-loading">' + T.calLoading + '</div>' +
       '</div>' +
@@ -384,7 +392,25 @@
     document.body.appendChild(el(footerHTML));
     wireUp();
     loadCalendar();
+    localizeRoom();
   }
+
+  // 2026-11-05: Beds24 の部屋の名前・説明は英語の1つしか無い（texts は ja の欄に英文）。
+  // Beds24 の言語の代わりの出し方に頼らず、ここで ja・zh だけ置き換える（en ほかは英文のまま）。
+  var ROOM_NAME_EN = 'Villa VIEW Okinawa - Ocean View Private Villa';
+  var ROOM_DESC_EN = 'Private villa overlooking the ocean in Nanjo, Okinawa.';
+  function localizeRoom() {
+    if (!T.roomName && !T.roomDesc) return;
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var hits = [], n;
+    while ((n = w.nextNode())) {
+      var v = n.nodeValue.trim();
+      if (T.roomName && v === ROOM_NAME_EN) hits.push([n, T.roomName]);
+      else if (T.roomDesc && v.indexOf(ROOM_DESC_EN) === 0) hits.push([n, T.roomDesc]);
+    }
+    hits.forEach(function (h) { h[0].nodeValue = h[1]; });
+  }
+  window.addEventListener('load', localizeRoom);
 
   function wireUp() {
     var btn = document.getElementById('vv-lang-toggle');
