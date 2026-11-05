@@ -149,5 +149,18 @@
   "bookbar.flexible": "일정 미정",
   "fixbook.main": "BOOK",
   "fixbook.sub": "Check dates & rates",
-  "experience.lead": "Nanjo is a place where the legends of Amamikiyo, who is said to have begun the Ryukyus, still live on. From Niraikanai, the paradise beyond the sea, gods were said to come, bring the harvest, and return. At the World Heritage site of Sefa-utaki prayers continue to this day, and from the port you can cross to Kudaka, the island of the gods. On a hillside overlooking the sea stands a villa you can rent in its entirety. Quiet hours are waiting to receive you. Beyond the window, the sea opens out — for you."
+  "experience.lead": "Nanjo is a place where the legends of Amamikiyo, who is said to have begun the Ryukyus, still live on. From Niraikanai, the paradise beyond the sea, gods were said to come, bring the harvest, and return. At the World Heritage site of Sefa-utaki prayers continue to this day, and from the port you can cross to Kudaka, the island of the gods. On a hillside overlooking the sea stands a villa you can rent in its entirety. Quiet hours are waiting to receive you. Beyond the window, the sea opens out — for you.",
+  "stay.eyebrow": "WAYS TO SPEND",
+  "stay.title": "한 집에서 보내는 여러 가지 시간",
+  "stay.lead": "8명이 함께 묵어도 모두가 같은 것을 하지 않아도 괜찮습니다. 바다를 바라보다 보면 어느새 시간이 흘러 있기도 하고, 장을 보고 돌아와 요리 준비로 북적이기도 합니다.",
+  "stay.c1.title": "창 가득 펼쳐지는 바다",
+  "stay.c1.body": "높은 곳에 자리하고 있어서 홀과 카페 공간, 테라스에서 바다가 보입니다. 전망 좋은 자리에 앉으면 한동안 그대로 일어나지 않게 됩니다.",
+  "stay.c1.where": "카페 공간／홀·테라스에서도 바다 전망",
+  "stay.c2.title": "지붕 아래에서 불을 둘러싸고",
+  "stay.c2.body": "비가 조금 오는 정도라면 계획을 바꾸지 않고 구울 수 있습니다. 굽는 사람과 기다리는 사람으로 느슨하게 나뉘다가도, 결국 모두 발코니로 나와 같은 불을 둘러싸고 있습니다.",
+  "stay.c2.where": "거실 밖 지붕 있는 발코니",
+  "stay.c3.title": "1인용 사우나 돔으로",
+  "stay.c3.body": "여기저기 돌아다닌 날 밤에 천천히 몸을 데우고 그대로 방으로 돌아가 쉴 수 있습니다.",
+  "stay.c3.where": "1층 테라피룸",
+  "stay.closing": "초대한 당신이 일정을 짜지 않아도, 각자 좋아하는 곳에 자리를 잡고, 정신을 차려 보면 다시 같은 테이블에 모여 있습니다."
 }
