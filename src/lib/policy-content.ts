@@ -38,6 +38,7 @@ export const privacy: PolicyContent = {
 
 ■ 6. クッキー（Cookie）の使用
 当施設のウェブサイトは、サービス向上のためクッキーを使用することがあります。ブラウザの設定により無効化できます。
+また、ウェブサイトの利用状況を把握するため、Cloudflare Web Analytics を使用しています。このサービスはクッキーを使わず、訪問者一人ひとりを追跡しません。
 
 ■ 7. お問い合わせ窓口
 個人情報の取扱いに関するお問い合わせは、以下までご連絡ください。
@@ -47,7 +48,7 @@ VILLA VIEW
 メール: info.serena.breeze@gmail.com
 
 制定日: 2026年4月1日
-最終改定日: 2026年8月8日`,
+最終改定日: 2026年11月5日`,
   en: `VILLA VIEW ("the Property") considers the protection of your personal information our highest priority and handles it appropriately based on the following policy.
 
 ■ 1. Personal Information Collected
@@ -83,6 +84,7 @@ Upon request from the individual concerned, we will respond promptly and reasona
 
 ■ 6. Use of Cookies
 Our website may use cookies to improve services. You can disable them through your browser settings.
+We also use Cloudflare Web Analytics to understand how our website is used. It does not use cookies and does not track individual visitors.
 
 ■ 7. Contact
 For inquiries regarding the handling of personal information, please contact:
@@ -92,7 +94,7 @@ Phone: +81 98-894-2474
 Email: info.serena.breeze@gmail.com
 
 Established: April 1, 2026
-Last updated: August 8, 2026`,
+Last updated: November 5, 2026`,
   zh: `VILLA VIEW（以下简称"本设施"）将客户的个人信息保护视为最重要的事项，并根据以下方针进行妥善处理。
 
 ■ 1. 收集的个人信息
@@ -128,6 +130,7 @@ Last updated: August 8, 2026`,
 
 ■ 6. Cookie 的使用
 本设施的网站可能为提升服务体验而使用 Cookie。您可通过浏览器设置将其禁用。
+此外，我们使用 Cloudflare Web Analytics 了解网站的使用情况。该服务不使用 Cookie，也不追踪个别访客。
 
 ■ 7. 联系方式
 有关个人信息处理的咨询，请联系：
@@ -173,6 +176,7 @@ VILLA VIEW
 
 ■ 6. Cookie 的使用
 本設施的網站可能為提升服務體驗而使用 Cookie。您可透過瀏覽器設定將其停用。
+此外，我們使用 Cloudflare Web Analytics 了解網站的使用情況。此服務不使用 Cookie，也不追蹤個別訪客。
 
 ■ 7. 聯絡方式
 有關個人資料處理的諮詢，請聯絡：
