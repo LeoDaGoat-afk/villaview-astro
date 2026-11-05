@@ -140,7 +140,7 @@ VILLA VIEW
 邮箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最后修订：2026年8月8日`,
+最后修订：2026年11月5日`,
   zhHant: `VILLA VIEW（以下簡稱「本設施」）將客戶的個人資料保護視為最重要的事項，並依照以下方針妥善處理。
 
 ■ 1. 蒐集的個人資料
@@ -186,7 +186,7 @@ VILLA VIEW
 電子信箱: info.serena.breeze@gmail.com
 
 制定日期：2026年4月1日
-最後修訂：2026年8月8日`,
+最後修訂：2026年11月5日`,
 };
 
 export const terms: PolicyContent = {
