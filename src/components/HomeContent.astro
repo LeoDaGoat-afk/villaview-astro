@@ -22,15 +22,16 @@ type HeroSlide = {
   // 尺の短いクリップ用の追い足し時間。クリップが終わったあと、この分だけ
   // 最後のコマのまま残ってから溶け始める（フェード中なので静止には見えない）。
   extraHoldMs?: number;
+  altKey?: string;
 };
 const heroSlides: HeroSlide[] = [
-  { src: '/images/hero-bedroom.jpg', type: 'image' },
+  { src: '/images/hero-bedroom.jpg', type: 'image', altKey: 'photo.bedroomSea' },
   { src: '/images/hero-drone-1.mp4', type: 'video', poster: '/images/hero-drone-1-poster.jpg', durationFallback: 7.1 },
-  { src: '/images/hero-bar.jpg',     type: 'image' },
-  { src: '/images/hero-cafe.jpg',    type: 'image' },
+  { src: '/images/hero-bar.jpg',     type: 'image', altKey: 'photo.bar' },
+  { src: '/images/hero-cafe.jpg',    type: 'image', altKey: 'photo.cafeSea' },
   { src: '/images/hero-drone-2.mp4', type: 'video', poster: '/images/hero-drone-2-poster.jpg', durationFallback: 5.8, extraHoldMs: 1800 },
-  { src: '/images/hero-hall.jpg',    type: 'image' },
-  { src: '/images/night-view.jpg',   type: 'image' },
+  { src: '/images/hero-hall.jpg',    type: 'image', altKey: 'photo.hallSea' },
+  { src: '/images/night-view.jpg',   type: 'image', altKey: 'photo.night' },
 ];
 
 const facilities = [
@@ -43,17 +44,20 @@ const facilities = [
 ];
 
 const galleryImages: { src: string; altKey: string }[] = [
-  { src: '/images/guestroom/guestroom-oceanview.jpg',    altKey: 'photo.bedroomSea' },
-  { src: '/images/guestroom/bedroom-oceanview.jpg',      altKey: 'photo.bedroom' },
-  { src: '/images/guestroom/living-room.jpg',            altKey: 'photo.living' },
-  { src: '/images/guestroom/terrace.jpg',                altKey: 'photo.terrace' },
-  { src: '/images/guestroom/washitu.jpg',                altKey: 'photo.washitsu' },
   { src: '/images/yogastudio/living-room-oceanview.jpg', altKey: 'photo.hallSea' },
-  { src: '/images/yogastudio/IMG_4715.jpg',              altKey: 'photo.hall' },
-  { src: '/images/yogastudio/bancony.jpg',               altKey: 'photo.balcony' },
+  { src: '/images/guestroom/guestroom-oceanview.jpg',    altKey: 'photo.bedroomSea' },
   { src: '/images/bbq/IMG_7211.jpg',                     altKey: 'photo.bbq' },
+  { src: '/images/yogastudio/IMG_4715.jpg',              altKey: 'photo.hall' },
+  { src: '/images/beds24/03-kitchen.jpg',                altKey: 'photo.kitchen' },
+  { src: '/images/guestroom/terrace.jpg',                altKey: 'photo.terrace' },
+  { src: '/images/guestroom/bedroom-oceanview.jpg',      altKey: 'photo.bedroom' },
+  { src: '/images/bbq/IMG_7222.jpg',                     altKey: 'photo.balcony' },
+  { src: '/images/guestroom/washitu.jpg',                altKey: 'photo.washitsu' },
+  { src: '/images/guestroom/living-room.jpg',            altKey: 'photo.living' },
   { src: '/images/coffee/coffeearea2.jpg',               altKey: 'photo.desk' },
+  { src: '/images/beds24/07-bathroom.jpg',               altKey: 'photo.bath' },
   { src: '/images/therapy/IMG_5915.jpg',                 altKey: 'photo.sauna' },
+  { src: '/images/beds24/09-washer.jpg',                 altKey: 'photo.washer' },
   { src: '/images/minibar/ballparty.jpg',                altKey: 'photo.hallParty' },
 ];
 
@@ -153,7 +157,7 @@ const guestHref = localizedPath('/guest-service/', lang);
       ) : (
         <img
           src={withBase(slide.src)}
-          alt="VILLA VIEW Okinawa"
+          alt={slide.altKey ? t(slide.altKey) : 'VILLA VIEW Okinawa'}
           class:list={['vv-hero-media', 'vv-hero-img', i === 0 ? 'active' : '']}
           data-idx={i}
           loading={i === 0 ? 'eager' : 'lazy'}
@@ -215,10 +219,10 @@ const guestHref = localizedPath('/guest-service/', lang);
   <div class="vv-exp-inner">
     <img
       class="vv-exp-photo"
-      src={withBase('/images/experience-lead.jpg')}
-      alt="窓の外に海と街並みが広がるカフェスペースで、テーブルを囲む家族"
-      width="1157"
-      height="748"
+      src={withBase('/images/hero-cafe.jpg')}
+      alt="窓の外に海と街並みが広がるカフェスペース"
+      width="2400"
+      height="1600"
       loading="lazy"
       decoding="async"
     />
