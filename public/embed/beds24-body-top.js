@@ -393,6 +393,7 @@
     wireUp();
     loadCalendar();
     localizeRoom();
+    formatYen();
   }
 
   // 2026-11-05: Beds24 の部屋の名前・説明は英語の1つしか無い（texts は ja の欄に英文）。
@@ -411,6 +412,19 @@
     hits.forEach(function (h) { h[0].nodeValue = h[1]; });
   }
   window.addEventListener('load', localizeRoom);
+
+  // 2026-11-05: Beds24 は円でも「JPY 49,381.00」と出す。端数の設定（nearestOne）で円未満は 0 になったので、
+  // 「.00」の時だけ隠し、「JPY 」を「¥」にする（.00 でない時は触らない＝金額を隠さない）。
+  function formatYen() {
+    document.querySelectorAll('span.bookingpagecents').forEach(function (c) {
+      if (c.textContent.trim() !== '.00') return;
+      var cur = c.parentElement && c.parentElement.querySelector('span.bookingpagecurrency');
+      if (!cur || cur.textContent.trim() !== 'JPY') return;
+      c.style.display = 'none';
+      cur.textContent = '¥';
+    });
+  }
+  window.addEventListener('load', formatYen);
 
   function wireUp() {
     var btn = document.getElementById('vv-lang-toggle');
