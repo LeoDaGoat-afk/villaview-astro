@@ -76,8 +76,9 @@ const FM = '/images/floormap/';
 // 図の上に出すのは番号バッジだけ（2026-09-18 アキラさん指示で部屋名のチップは廃止）。
 // 部屋名は図の下の番号つきリストで読む。
 const floorRooms: FloorRoom[] = [
-  // 2026-09-20 画像差し替え（間取り全部.png）に合わせて座標を実測し直した。
-  // この版で図面の焼き込み文字も正しくなった＝右のデッキが Terrace、左下が Balcony BBQ area。
+  // 2026-09-20 図面画像を差し替え（アキラさんが Illustrator でテラス／バルコニーの表記を入れ替えた版）。
+  // 新しい画像は書き出し位置が微妙に違うので、座標は全ピン実測し直している。
+  // これで図の焼き込み文字も正しい＝右のデッキが Terrace、左下が Balcony BBQ area（リビングの外）。
   { n: 1,  floor: 1, x: 61.8, y: 26.0, group: 'floor-cafe',     photos: ['cafe-1.jpg', 'cafe-2.jpg'],                           labelKey: 'floor.room.cafe',     capKey: 'floor.cap.cafe',     beds: [] },
   { n: 2,  floor: 1, x: 73.0, y: 50.4, group: 'floor-hall',     photos: ['hall-1.jpg', 'hall-2.jpg', 'hall-3.jpg'],             labelKey: 'floor.room.hall',     capKey: 'floor.cap.hall',     beds: [] },
   { n: 3,  floor: 1, x: 52.0, y: 57.3, group: 'floor-sauna',    photos: ['sauna-1.jpg', 'sauna-2.jpg'],                         labelKey: 'floor.room.sauna',    capKey: 'floor.cap.sauna',    beds: [] },
@@ -92,13 +93,6 @@ const floorRooms: FloorRoom[] = [
   { n: 10, floor: 2, x: 72.3, y: 70.0, group: 'floor-bedA',     photos: ['bed2-1.jpg', 'bed2-2.jpg', 'bed2-3.jpg', 'bed2-4.jpg'], labelKey: 'floor.room.bedA',   capKey: 'floor.cap.bedA',     beds: ['d', 'sofa'] },
   // bedroom3＝2F左下・シングル2
   { n: 11, floor: 2, x: 23.3, y: 84.2, group: 'floor-bedC',     photos: ['bed3-1.jpg', 'bed3-2.jpg'],                           labelKey: 'floor.room.bedC',     capKey: 'floor.cap.bedC',     beds: ['s', 's'] },
-];
-
-// STAY＝滞在の過ごし方カード（暫定・2026-09-19）。写真は既存の間取り写真と夜景を流用。
-const stayCards = [
-  { img: '/images/floormap/cafe-1.jpg',   titleKey: 'stay.c1.title', bodyKey: 'stay.c1.body', whereKey: 'stay.c1.where' },
-  { img: '/images/floormap/bbq-1.jpg',    titleKey: 'stay.c2.title', bodyKey: 'stay.c2.body', whereKey: 'stay.c2.where' },
-  { img: '/images/floormap/sauna-1.jpg',  titleKey: 'stay.c3.title', bodyKey: 'stay.c3.body', whereKey: 'stay.c3.where' },
 ];
 
 const restaurants: [string, string, string, number][] = [
@@ -339,35 +333,6 @@ const guestHref = localizedPath('/guest-service/', lang);
 </section>
 
 <!-- FACILITIES -->
-<!-- STAY（暫定・2026-09-19 アキラさん確認待ち。承認まで push しない） -->
-<section id="stay" class="vv-section vv-section-cream">
-  <div class="vv-container">
-    <div class="vv-text-center vv-section-head">
-      <p class="eyebrow">{t('stay.eyebrow')}</p>
-      <h2 class="section-h2">{t('stay.title')}</h2>
-      <div class="vv-divider-gold-center"></div>
-      <p class="section-lead vv-mx-auto">{t('stay.lead')}</p>
-    </div>
-
-    <div class="vv-grid-3 vv-stay-grid">
-      {stayCards.map(c => (
-        <article class="vv-fac-card vv-stay-card">
-          <div class="vv-fac-img-wrap">
-            <img src={withBase(c.img)} alt={t(c.titleKey)} loading="lazy" decoding="async" />
-          </div>
-          <div class="vv-fac-body">
-            <h3>{t(c.titleKey)}</h3>
-            <p>{t(c.bodyKey)}</p>
-            <p class="vv-stay-where">{t(c.whereKey)}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <p class="vv-stay-closing">{t('stay.closing')}</p>
-  </div>
-</section>
-
 <section id="facilities" class="vv-section">
   <div class="vv-container">
     <div class="vv-text-center vv-section-head">
@@ -1128,30 +1093,6 @@ const guestHref = localizedPath('/guest-service/', lang);
     color: var(--color-muted);
     line-height: 1.7;
     margin: 0;
-  }
-
-  /* STAY（暫定） */
-  .vv-stay-grid { align-items: stretch; }
-  .vv-stay-card .vv-fac-body h3 { font-size: 20px; line-height: 1.5; }
-  .vv-stay-card .vv-fac-body { display: flex; flex-direction: column; gap: 10px; }
-  .vv-stay-where {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--color-muted);
-    opacity: 0.7;
-    margin: 0 !important;
-    padding-top: 4px;
-    border-top: 1px solid var(--color-cream-darker);
-  }
-  .vv-stay-closing {
-    font-family: var(--font-serif);
-    font-size: clamp(15px, 1.6vw, 18px);
-    line-height: 2;
-    text-align: center;
-    max-width: 640px;
-    margin: clamp(32px, 4vw, 52px) auto 0;
-    color: var(--color-ink);
   }
 
   /* Deal card */
