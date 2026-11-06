@@ -393,43 +393,47 @@ const guestHref = localizedPath('/guest-service/', lang);
   </div>
 </section>
 
-<!-- DEALS -->
-<section class="vv-section vv-section-cream">
+<!-- ATTRACTIONS -->
+<section id="attractions" class="vv-section vv-section-cream">
   <div class="vv-container">
     <div class="vv-text-center vv-section-head">
-      <p class="eyebrow">{t('deals.eyebrow')}</p>
-      <h2 class="section-h2">{t('deals.title')}</h2>
+      <p class="eyebrow">{t('exp.eyebrow')}</p>
+      <h2 class="section-h2">{t('exp.title')}</h2>
       <div class="vv-divider-gold-center"></div>
-      <p class="section-lead vv-mx-auto">{t('deals.lead')}</p>
+      <p class="section-lead vv-mx-auto">{t('exp.lead')}</p>
     </div>
-    <div class="vv-grid-2">
-      <article class="vv-deal-card">
-        <img src={withBase('/images/lawson.jpg')} alt="LAWSON" loading="lazy" />
-        <div class="vv-deal-body">
-          <h3>{t('deals.lawson.title')}</h3>
-          <p>{t('deals.lawson.body')}</p>
-        </div>
-      </article>
-      <article class="vv-deal-card vv-deal-card-primary">
-        <div class="vv-deal-body">
-          <h3>{t('deals.direct.title')}</h3>
-          <p>{t('deals.direct.body')}</p>
-          <a class="btn-outline-light" href={bookingHref}>{t('deals.cta')}</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
-<!-- DINING -->
-<section class="vv-section">
-  <div class="vv-container">
-    <div class="vv-text-center vv-section-head">
-      <p class="eyebrow">{t('dining.eyebrow')}</p>
-      <h2 class="section-h2">{t('dining.title')}</h2>
-      <div class="vv-divider-gold-center"></div>
-      <p class="section-lead vv-mx-auto">{t('dining.lead')}</p>
+    <h3 class="vv-sub-eyebrow">{t('exp.attractions')}</h3>
+    <div class="vv-grid-3">
+      {attractions.map(([name, tag, rating, img, desc]) => (
+        <article class="vv-att-card">
+          <img src={withBase(img)} alt={p(name)} loading="lazy" />
+          <div class="vv-att-body">
+            <p class="vv-att-tag">{p(tag)}</p>
+            <h4>{p(name)}</h4>
+            <p class="vv-att-rating">★ {rating}</p>
+            <p class="vv-att-desc">{p(desc)}</p>
+          </div>
+        </article>
+      ))}
     </div>
+
+    <h3 class="vv-sub-eyebrow" style="margin-top: 60px;">{t('exp.beaches')}</h3>
+    <div class="vv-grid-3">
+      {beaches.map(([name, tag, rating, img]) => (
+        <article class="vv-att-card">
+          <img src={withBase(img)} alt={p(name)} loading="lazy" />
+          <div class="vv-att-body">
+            <p class="vv-att-tag">{p(tag)}</p>
+            <h4>{p(name)}</h4>
+            <p class="vv-att-rating">★ {rating}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h3 class="vv-sub-eyebrow" style="margin-top: 60px;">{t('dining.eyebrow')}</h3>
+    <p class="section-lead vv-mx-auto vv-text-center">{t('dining.lead')}</p>
     <div class="vv-dining-grid">
       {restaurants.map(([name, cuisine, phone, rating]) => (
         <div class="vv-dining-card">
@@ -447,9 +451,8 @@ const guestHref = localizedPath('/guest-service/', lang);
   </div>
 </section>
 
-<!-- ATTRACTIONS -->
 <!-- GALLERY -->
-<section id="gallery" class="vv-section vv-section-cream">
+<section id="gallery" class="vv-section">
   <div class="vv-container">
     <div class="vv-text-center vv-section-head">
       <p class="eyebrow">{t('gallery.eyebrow')}</p>
@@ -488,47 +491,6 @@ const guestHref = localizedPath('/guest-service/', lang);
       r.photos.map(f => ({ src: withBase(FM + f), alt: t(r.labelKey), cap: t(r.capKey), n: r.n }))
     )}></script>
   ))}
-</section>
-
-<!-- ATTRACTIONS -->
-<section id="attractions" class="vv-section">
-  <div class="vv-container">
-    <div class="vv-text-center vv-section-head">
-      <p class="eyebrow">{t('exp.eyebrow')}</p>
-      <h2 class="section-h2">{t('exp.title')}</h2>
-      <div class="vv-divider-gold-center"></div>
-      <p class="section-lead vv-mx-auto">{t('exp.lead')}</p>
-    </div>
-
-    <h3 class="vv-sub-eyebrow">{t('exp.attractions')}</h3>
-    <div class="vv-grid-3">
-      {attractions.map(([name, tag, rating, img, desc]) => (
-        <article class="vv-att-card">
-          <img src={withBase(img)} alt={p(name)} loading="lazy" />
-          <div class="vv-att-body">
-            <p class="vv-att-tag">{p(tag)}</p>
-            <h4>{p(name)}</h4>
-            <p class="vv-att-rating">★ {rating}</p>
-            <p class="vv-att-desc">{p(desc)}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <h3 class="vv-sub-eyebrow" style="margin-top: 60px;">{t('exp.beaches')}</h3>
-    <div class="vv-grid-3">
-      {beaches.map(([name, tag, rating, img]) => (
-        <article class="vv-att-card">
-          <img src={withBase(img)} alt={p(name)} loading="lazy" />
-          <div class="vv-att-body">
-            <p class="vv-att-tag">{p(tag)}</p>
-            <h4>{p(name)}</h4>
-            <p class="vv-att-rating">★ {rating}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
 </section>
 
 <!-- CHECK-IN -->
@@ -570,6 +532,7 @@ const guestHref = localizedPath('/guest-service/', lang);
           <li>{t('access.detail1')}</li>
           <li>{t('access.detail2')}</li>
           <li>{t('access.detail3')}</li>
+          <li>{t('deals.lawson.title')}</li>
         </ul>
         <p><a class="vv-access-tel" href="tel:+81988942474">{t('access.tel')}</a></p>
         <a href="https://www.google.com/maps/search/?api=1&query=26.162946,127.7936485" target="_blank" rel="noopener noreferrer" class="btn-outline">{t('access.map')}</a>
@@ -587,6 +550,17 @@ const guestHref = localizedPath('/guest-service/', lang);
         ></iframe>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- BOOK（末尾の予約・2026-11-06） -->
+<section id="book" class="vv-section vv-section-cream">
+  <div class="vv-container vv-text-center">
+    <p class="eyebrow">{t('booking.heading')}</p>
+    <h2 class="section-h2">{t('deals.title')}</h2>
+    <div class="vv-divider-gold-center"></div>
+    <p class="section-lead vv-mx-auto">{t('deals.direct.body')}</p>
+    <a class="btn-primary vv-book-cta" href={bookingHref}>{t('deals.cta')}</a>
   </div>
 </section>
 
@@ -1156,40 +1130,7 @@ const guestHref = localizedPath('/guest-service/', lang);
   }
 
   /* Deal card */
-  .vv-deal-card {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--color-cream-darker);
-    display: flex;
-    flex-direction: column;
-  }
-  .vv-deal-card img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-  }
-  .vv-deal-body { padding: 28px 30px; }
-  .vv-deal-body h3 {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 400;
-    margin: 0 0 10px;
-  }
-  .vv-deal-body p {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: var(--color-muted);
-    line-height: 1.7;
-    margin: 0 0 18px;
-  }
-  .vv-deal-card-primary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: #fff;
-    justify-content: center;
-  }
-  .vv-deal-card-primary .vv-deal-body h3 { color: #fff; }
-  .vv-deal-card-primary .vv-deal-body p { color: rgba(255,255,255,0.85); }
+  .vv-book-cta { margin-top: 28px; }
 
   /* Dining */
   .vv-dining-grid {
@@ -1199,7 +1140,7 @@ const guestHref = localizedPath('/guest-service/', lang);
   }
   .vv-dining-card {
     padding: 22px 24px;
-    background: var(--color-cream);
+    background: #fff;
     border: 1px solid var(--color-cream-darker);
     border-radius: 10px;
   }
