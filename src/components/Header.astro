@@ -289,6 +289,13 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   }
   @media (max-width: 768px) {
     .vv-logo-fixed img { width: calc(var(--logo-w, 170px) * 0.72); }
+    /* 2026-11-06 アキラさん「1で直して公開」：スマホでは少し下へ読み進んだらロゴを半分の大きさにし、
+       本文の文字に重なる面積を減らす。一番上に戻ると元の大きさ。PC は変えない。 */
+    .vv-logo-fixed img { transform-origin: top left; transition: transform 0.3s ease; }
+    .vv-logo-fixed.is-small img { transform: scale(0.5); }
+  }
+  @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .vv-logo-fixed img { transition: none; }
   }
   .vv-nav-desktop {
     display: flex;
@@ -489,6 +496,7 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
 
 <script>
   const header = document.getElementById('vv-header');
+  const logoFixed = document.querySelector('.vv-logo-fixed');
   const burger = document.getElementById('vv-burger');
   const closeBtn = document.getElementById('vv-mobile-close');
   const mobileMenu = document.getElementById('vv-mobile-menu');
@@ -496,6 +504,7 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
   function onScroll() {
     if (window.scrollY > 40) header?.classList.add('scrolled');
     else header?.classList.remove('scrolled');
+    logoFixed?.classList.toggle('is-small', window.scrollY > 120);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
