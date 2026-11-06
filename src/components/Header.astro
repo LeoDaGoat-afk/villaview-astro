@@ -211,7 +211,7 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
        文字も同じ比率で上げる（アキラさん指示「文字もエリアも大きく」）。 */
     width: 232px;
     height: 102px;
-    padding: 20px 28px;
+    padding: 20px 22px;
     background: var(--color-primary-darker, #0c1e26);
     color: #fff;
     text-decoration: none;
@@ -233,12 +233,14 @@ const currentLangLabel = LANGS.find(l => l.code === lang)?.native ?? lang;
     opacity: 0.82;
     line-height: 1.45;
     margin-top: 4px;
+    /* 2026-11-06「に」1字だけ次の行に落ちていたので折り返さない */
+    white-space: nowrap;
   }
   @media (max-width: 700px) {
     /* 狭い画面も同率で（128×58 → 160×73 → 198×90） */
-    .vv-fix-book a { width: 198px; height: 90px; padding: 17px 22px; }
+    .vv-fix-book a { width: 198px; height: 90px; padding: 17px 16px; }
     .vv-fix-book .t01 { font-size: 19.5px; letter-spacing: 4.6px; }
-    .vv-fix-book .t02 { font-size: 12.5px; }
+    .vv-fix-book .t02 { font-size: 12.5px; letter-spacing: 0; }
   }
 
   #vv-header {
