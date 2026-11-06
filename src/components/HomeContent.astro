@@ -1218,12 +1218,12 @@ const guestHref = localizedPath('/guest-service/', lang);
   /* Check-in */
   .vv-checkin-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
     max-width: 720px;
     margin: 40px auto 28px;
   }
-  .vv-checkin-cell { padding: 14px; }
+  .vv-checkin-cell { padding: 14px; min-width: 0; overflow-wrap: break-word; }
   .vv-checkin-num {
     font-family: var(--font-serif);
     font-size: clamp(40px, 7vw, 72px);
@@ -1287,6 +1287,8 @@ const guestHref = localizedPath('/guest-service/', lang);
       grid-template-columns: 1fr;
     }
     .vv-checkin-grid { gap: 16px; }
+    .vv-checkin-cell { padding: 14px 4px; }
+    .vv-checkin-label { letter-spacing: 1px; }
   }
   .vv-gallery-grid {
     display: grid;
