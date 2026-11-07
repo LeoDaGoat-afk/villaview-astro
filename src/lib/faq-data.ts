@@ -191,9 +191,9 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "支払い方法は？", en: "What payment methods are accepted?", zh: "支持哪些支付方式？" },
         a: {
-          ja: "宿泊料金と清掃費は、公式サイトでのご予約時にクレジットカードで全額をお支払いいただきます（Stripe 経由で安全に処理）。VISA、Mastercard に対応しています。宿泊料金の現地払いは承っておりません。BBQ利用料（5,000円）のみ、現金または銀行振込で別途申し受けます。",
-          en: "The room rate and the cleaning fee are charged in full to your credit card at the time of booking via Stripe (secure processing). VISA and Mastercard are accepted. We cannot accept payment for the stay on arrival. Only the BBQ fee (5,000 yen) is settled separately, by cash or bank transfer.",
-          zh: "住宿费用及清洁费于预订时通过 Stripe 以信用卡一次付清（安全处理）。支持 VISA、Mastercard。住宿费用不接受现场支付。仅烧烤使用费（5,000 日元）另行以现金或银行转账结算。",
+          ja: "宿泊料金と清掃費は、公式サイトでのご予約時にクレジットカードで全額をお支払いいただきます（Stripe 経由で安全に処理）。VISA、Mastercard に対応しています。宿泊料金の現地払いは承っておりません。BBQ利用料（5,000円）のみ、現金または銀行振込で別途申し受けます。公式サイトからのご予約で、2026年12月1日〜2027年3月31日にチェックインの場合は、BBQ利用料が無料です。",
+          en: "The room rate and the cleaning fee are charged in full to your credit card at the time of booking via Stripe (secure processing). VISA and Mastercard are accepted. We cannot accept payment for the stay on arrival. Only the BBQ fee (5,000 yen) is settled separately, by cash or bank transfer. For bookings made on this official site with check-in between December 1, 2026 and March 31, 2027, BBQ use is free of charge.",
+          zh: "住宿费用及清洁费于预订时通过 Stripe 以信用卡一次付清（安全处理）。支持 VISA、Mastercard。住宿费用不接受现场支付。仅烧烤使用费（5,000 日元）另行以现金或银行转账结算。通过本官网预订、于2026年12月1日至2027年3月31日入住的客人，免收烧烤使用费。",
         },
       },
       {
