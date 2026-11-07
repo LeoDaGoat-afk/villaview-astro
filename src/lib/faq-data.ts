@@ -93,9 +93,9 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         q: { ja: "バルコニーの BBQ を使いたいです", en: "Can I use the BBQ on the balcony?", zh: "想使用阳台的烧烤区" },
         a: {
-          ja: "屋根付きのバルコニーで 21:00 までご利用いただけます。ご利用は有料（5,000円・現金または銀行振込）で、炭・網・着火剤・トングをお貸しします。コンロは清掃した状態でご用意します。食材はお持ち込みください。ご希望の場合は事前にお知らせください。",
-          en: "You can use the covered BBQ area on the balcony until 21:00. It costs 5,000 yen, payable by cash or bank transfer, and includes charcoal, a grill net, firelighter and tongs. The grill is provided clean. Please bring your own food, and let us know in advance if you would like to use it.",
-          zh: "阳台的带顶烧烤区可使用至 21:00。使用需付费 5,000 日元（现金或银行转账），含木炭、烤网、助燃剂和夹子。烤架已清洁完毕。食材请自备，如需使用请提前告知我们。",
+          ja: "屋根付きのバルコニーで 21:00 までご利用いただけます。ご利用は有料（5,000円・現金または銀行振込）で、炭・網・着火剤・トングをお貸しします。公式サイトからのご予約で、2026年12月1日〜2027年3月31日にチェックインの場合は、BBQ利用料が無料です。コンロは清掃した状態でご用意します。食材はお持ち込みください。ご希望の場合は事前にお知らせください。",
+          en: "You can use the covered BBQ area on the balcony until 21:00. It costs 5,000 yen, payable by cash or bank transfer, and includes charcoal, a grill net, firelighter and tongs. For bookings made on this official site with check-in between December 1, 2026 and March 31, 2027, BBQ use is free of charge. The grill is provided clean. Please bring your own food, and let us know in advance if you would like to use it.",
+          zh: "阳台的带顶烧烤区可使用至 21:00。使用需付费 5,000 日元（现金或银行转账），含木炭、烤网、助燃剂和夹子。通过本官网预订、于2026年12月1日至2027年3月31日入住的客人，免收烧烤使用费。烤架已清洁完毕。食材请自备，如需使用请提前告知我们。",
         },
       },
       {
